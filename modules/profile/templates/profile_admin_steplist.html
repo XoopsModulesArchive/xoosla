@@ -1,0 +1,18 @@
+<div><a href="step.php?op=new"><{$smarty.const._ADD}> <{$smarty.const._PROFILE_AM_STEP}></a></div>
+<table>
+    <th><{$smarty.const._PROFILE_AM_STEPNAME}></th>
+    <th><{$smarty.const._PROFILE_AM_STEPORDER}></th>
+    <th><{$smarty.const._PROFILE_AM_STEPSAVE}></th>
+    <th><{$smarty.const._PROFILE_AM_ACTION}></th>
+    <{foreach item=step from=$steps}>
+        <tr class="<{cycle values='odd, even'}>">
+            <td><{$step.step_name}></td>
+            <td align= "center"><{$step.step_order}></td>
+            <td align= "center"><{if $step.step_save == 1}><img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" /><{else}><img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" /><{/if}></td>
+            <td align= "center">
+                <a href="step.php?id=<{$step.step_id}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+                &nbsp;<a href="step.php?op=delete&amp;id=<{$step.step_id}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>"</a>
+            </td>
+        </tr>
+    <{/foreach}>
+</table>

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><{$xoops_sitename}><{if $xoops_pagetitle !=''}> - <{$xoops_pagetitle}><{/if}></title>
+<!-- Meta Tags -->
+<meta name="Description" content="<{$xoops_meta_description}>" />
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="keywords" content="<{$xoops_pagetitle}>,<{$xoops_meta_keywords}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="<{$smarty.const.META_GENER}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="revisit-after" content="<{$smarty.const.META_REV_AFT}>" />
+<meta name="viewport" content="width=device-width" />
+<!-- Styles/Relations -->
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<{xoAppUrl backend.php}>" />
+<!--
+<link rel="stylesheet" type="text/css" media="screen" href="<{xoAppUrl xoops.css}>" />
+-->
+<link rel="stylesheet" type="text/css" media="print"  href="<{xoImgUrl otherCss/print.css}>"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="<{xoImgUrl otherCss/highcontrast.css}>" title="zoom" rev="zoom"/>
+<link rel="stylesheet" type="text/css" media="all" href="<{xoImgUrl style.css}>" />
+<!-- Mobile Support -->
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 960px), only screen and (max-device-width: 960px)" href="<{xoImgUrl style-mobile.css}>" />
+<!-- JS -->
+<{php}> 
+	global $xoTheme; 
+	$xoTheme->addScript('browse.php?Frameworks/jquery/jquery.js');
+	$xoTheme->addScript('js/jquery.tools.min.js');
+	$this->assign('xoops_module_header', $xoTheme->renderMetas(null, true)); 
+<{/php}> 
+<{$xoops_module_header}>
+<!--[if lt IE 7]>
+<script src="<{xoImgUrl js/unitpngfix.js}>" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 8]>
+<script src="<{xoImgUrl js/IE8.js}>" type="text/javascript"></script>
+<![endif]-->
+<!-- Smarty Assign -->
+<{assign var=theme_name value=$xoTheme->folderName}>
+<{assign var=theme_name value=$xoTheme->folderName|cat:'/tpl'}>
+<!-- Rewrite Specific Module Style -->
+<link rel="stylesheet" type="text/css" media="all" href="<{xoImgUrl style-rewrite.css}>" />
+</head>
+<body>
+<!--- Header -->
+<div class="container_12">
+	<div class="grid_4"><h1><a href="<{xoAppUrl}>"><{$xoops_sitename}></a></h1></div>
+	<div class="grid_8"><{$xoops_banner}></div>
+	<div class="clear"></div>
+</div>
+<!-- Content -->
+<div class="container_12">
+	<{if $xoBlocks.canvas_left}>
+	<!-- Left Blocks -->
+	<div class="grid_3">
+	<div class="left-block">
+		<{foreach item=block from=$xoBlocks.canvas_left}>
+			<div class="left-block-content">
+				<h2><{$block.title}></h2>
+				<{$block.content}>
+			</div>
+		<{/foreach}>
+	</div>
+	</div>
+	<{/if}>
+	<!-- Center Blocks -->
+	<{if $xoBlocks.canvas_left and $xoBlocks.canvas_right}>
+	<div class="grid_6">
+	<{else}><{if $xoBlocks.canvas_left or $xoBlocks.canvas_right}>
+	<div class="grid_9">
+	<{else}>
+	<div class="grid_12">
+	<{/if}><{/if}>
+		<{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+			<!-- Center Top Left -->
+			<div class="center-top-left">
+			<{foreach item=block from=$xoBlocks.page_topleft}>
+				<div class="center-top-left-block">
+					<h2><{$block.title}></h2>
+					<{$block.content}>
+				</div>
+			<{/foreach}>
+			</div>
+			<!-- Center Top Right -->
+			<div class="center-top-right">
+			<{foreach item=block from=$xoBlocks.page_topright}>
+				<div class="center-top-right-block">
+					<h2><{$block.title}></h2>
+					<{$block.content}>
+				</div>
+			<{/foreach}>
+			</div>
+			<!-- Center Top Center -->
+			<div class="center-top-center">
+			<{foreach item=block from=$xoBlocks.page_topcenter}>
+				<div class="center-top-center-block">
+					<h2><{$block.title}></h2>
+					<{$block.content}>
+				</div>
+			<{/foreach}>
+			</div>
+		<{/if}>
+		<!-- Content -->
+		<{if $xoops_contents && ($xoops_contents != '') }>
+			<div class="xo-content">
+				<{$xoops_contents}>
+			</div>
+		<{/if}>
+		<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomcenter or $xoBlocks.page_bottomright}>
+			<!-- Center Bottom Left -->
+			<div class="center-bottom-left">
+			<{foreach item=block from=$xoBlocks.page_bottomleft}>
+				<div class="center-bottom-left-block">
+					<h2><{$block.title}></h2>
+					<{$block.content}>
+				</div>
+			<{/foreach}>
+			</div>
+			<!-- Center Bottom Right -->
+			<div class="center-bottom-right">
+			<{foreach item=block from=$xoBlocks.page_bottomright}>
+				<div class="center-bottom-block">
+					<h2><{$block.title}></h2>
+					<{$block.content}>
+				</div>
+			<{/foreach}>
+			</div>
+			<!-- Center Bottom Center -->
+			<div class="center-bottom-center">
+			<{foreach item=block from=$xoBlocks.page_bottomcenter}>
+				<div class="center-bottom-center-block">
+					<h2><{$block.title}></h2>
+					<{$block.content}>
+				</div>
+			<{/foreach}>
+			</div>
+		<{/if}>
+	</div>
+	<{if $xoBlocks.canvas_right}>
+	<!-- Right Blocks -->
+	<div class="grid_3">
+	<div class="right-block">
+		<{foreach item=block from=$xoBlocks.canvas_right}>
+			<div class="right-block-content">
+				<h2><{$block.title}></h2>
+				<{$block.content}>
+			</div>
+		<{/foreach}>
+	</div>	
+	</div>
+	<{/if}>
+	<div class="clear"></div>
+</div>
+<div class="container_12">
+	<div class="footer"><{$xoops_footer}></div>
+</div>
+</body>
+</html>
