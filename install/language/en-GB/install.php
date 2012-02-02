@@ -164,14 +164,12 @@ define( 'INSTALL_FINISH_YOUR_SITE_MSG', 'Now that the installer has finished ins
 2. <strong>Install Modules:</strong> Modules help enhance the functionality of your website, from adding content, forums or providing extra functionality to the system. We strongly suggest that you install the Protector module and configure it for extra security.<br />
 3. <strong>Install Theme:</strong>: Change the whole look of your new web portal by installing a theme. Visit <a href="http://www.xoosla.com" target="_blank">www.xoosla.com</a> for more advice on creating or installing a new theme.
 </p>
-Access your website from <a href="../index.php">here</a>.');
+Access your website from <a href="../index.php">here</a>.' );
 define( 'INSTALL_FINISH_SUPPORT_LEGEND', 'Xoosla Support' );
 define( 'INSTALL_FINISH_SUPPORT_MSG', 'Visit <a href="http://www.xoosla.com" rel="external">Xoosla!</a>' );
 define( 'INSTALL_FINISH_SECURITY_LEGEND', 'Security Consideration' );
 define( 'INSTALL_FINISH_SECURITY_MSG', 'The installer will try to configure your site for security considerations. Please double check to make sure the <em>mainfile.php</em> is readonly. 044' );
 define( 'INSTALL_FINISH_NOTICE', '<p>The installer has attempted to rename the <strong>install</strong> folder to the following:</p> <p><strong>%s</strong></p><p>Please remove this folder for security reasons.</p>' );
-
-
 
 /**
  * Messages
@@ -211,19 +209,22 @@ define( 'INSTALL_ERR_NO_DATABASE', 'Could not create database. Contact the serve
 define( 'INSTALL_ERR_COULD_NOT_ACCESS', 'Could not access the specified folder. Please verify that it exists and is readable by the server.' );
 define( 'INSTALL_ERR_NO_INSTALL_XOOSLA_FOUND', 'No Xoosla! installation could be found in the specified folder.' );
 define( 'INSTALL_ERR_NEED_WRITE_ACCESS', 'The server must be given write access to the following files and folders<br />(i.e. <em>chmod 777 directory_name</em> on a UNIX/LINUX server)<br />If they are not available or not created correctly, please create manually and set proper permissions.' );
-// define( 'INSTALL_ERR_NO_DBCONNECTION', 'Could not connect to the database server.' );
 define( 'INSTALL_ERR_WRITING_CONSTANT', 'Failed writing constant %s.' );
 define( 'INSTALL_ERR_COPY_MAINFILE', 'Could not copy the distribution file to mainfile.php' );
 define( 'INSTALL_ERR_WRITE_MAINFILE', 'Could not write into mainfile.php. Please check the file permission and try again.' );
 define( 'INSTALL_ERR_READ_MAINFILE', 'Could not open mainfile.php for reading' );
 define( 'INSTALL_ERR_INVALID_DBCHARSET', 'The char set &apos;%s&apos; is not supported.' );
 define( 'INSTALL_ERR_INVALID_DBCOLLATION', 'The collation &apos;%s&apos; is not supported.' );
-define( 'INSTALL_ERR_CHARSET_NOT_SET', 'Default character set is not set for Xoosla! database.' );
+define( 'INSTALL_INSTALL_ERR_NO_DATABASE', 'MySQL error %s: %s<br />There is a problem conntecting to your choosen database. Either it doesn\'t exist, your settings are incorrect or you do not have permission to update/edit this database. ' );
+define( 'INSTALL_ERR_CHARSET_NOT_SET', 'MySQL error %s: %s<br /> There is a problem updating the database default character set, please contact your hosting company about this error.' );
 define( 'INSTALL_ERR_ADMIN_EXIST', 'The installer has notices that an administrator account has already been created for this installion. The installer will skip this step and proceed to the next one.<br /><br />Press <strong> next </strong> to continue.' );
-define( 'INSTALL_ERR_PLEASE_CHECK_UANDP', 'MySQL error %s: %s<br>Your settings are incorrect, please check and update as required.' );
+define( 'INSTALL_ERR_PLEASE_CHECK_UANDP', 'MySQL error %s: %s<br />Your settings are incorrect, please check and update as required.' );
 define( 'INSTALL_ERR_NO_PERMISSION', 'You do not have permission to access this area. Access to this area is restricted.' );
 define( 'INSTALL_ERR_PATHS_INCORRECT', 'Selected paths are incorrect, please recheck and update them as required.' );
-// password message
+
+/**
+ * Password Message
+ */
 define( 'PASSWORD_LABEL', 'Password Strength' );
 define( 'PASSWORD_DESC', 'Enter Your Password' );
 define( 'PASSWORD_GENERATOR', 'Password Generator' );

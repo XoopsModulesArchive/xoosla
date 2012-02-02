@@ -370,7 +370,7 @@ INSERT INTO `configoption` (`confop_id`, `confop_name`, `confop_value`, `conf_id
 (20, '_MD_AM_METAO14YRS', '14 years', 48),
 (21, '_MD_AM_METAOREST', 'restricted', 48),
 (22, '_MD_AM_METAOMAT', 'mature', 48),
-(23, '_MD_AM_DEBUGMODE0', '0', 13),
+
 (24, 'PHP mail()', 'mail', 64),
 (25, 'sendmail', 'sendmail', 64),
 (26, 'SMTP', 'smtp', 64),
@@ -687,6 +687,7 @@ CREATE TABLE `newblocks` (
   `options` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(150) NOT NULL DEFAULT '',
   `title` varchar(255) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
   `content` text,
   `side` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -706,25 +707,26 @@ CREATE TABLE `newblocks` (
   KEY `visible` (`visible`),
   KEY `isactive_visible_mid` (`isactive`,`visible`,`mid`),
   KEY `mid_funcnum` (`mid`,`func_num`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8 ;
 
-#
-# Dumping data for table `newblocks`
-#
+--
+-- Dumping data for table `x632_newblocks`
+--
 
-INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `content`, `side`, `weight`, `visible`, `block_type`, `c_type`, `isactive`, `dirname`, `func_file`, `show_func`, `edit_func`, `template`, `bcachetime`, `last_modified`) VALUES
-(1, 1, 0, '', 'User Menu', 'User Menu', '', 0, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_user_show', '', 'system_block_user.html', 0, CURRENT_TIMESTAMP),
-(2, 1, 2, '', 'Login', 'Login', '', 0, 1, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_login_show', '', 'system_block_login.html', 0, CURRENT_TIMESTAMP),
-(3, 1, 3, '', 'Search', 'Search', '', 1, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_search_show', '', 'system_block_search.html', 0, CURRENT_TIMESTAMP),
-(4, 1, 4, '', 'Waiting Contents', 'Waiting Contents', '', 0, 3, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_waiting_show', '', 'system_block_waiting.html', 0, CURRENT_TIMESTAMP),
-(5, 1, 5, '', 'Main Menu', 'Main Menu', '', 0, 2, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_main_show', '', 'system_block_mainmenu.html', 0, CURRENT_TIMESTAMP),
-(6, 1, 6, '320|190|s_poweredby.gif|1', 'Site Info', 'Site Info', '', 0, 4, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_info_show', 'b_system_info_edit', 'system_block_siteinfo.html', 0, CURRENT_TIMESTAMP),
-(7, 1, 7, '', 'Who is Online', 'Who is Online', '', 0, 5, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_online_show', '', 'system_block_online.html', 0, CURRENT_TIMESTAMP),
-(8, 1, 8, '10|1', 'Top Posters', 'Top Posters', '', 0, 6, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_topposters_show', 'b_system_topposters_edit', 'system_block_topusers.html', 0, CURRENT_TIMESTAMP),
-(9, 1, 9, '10|1', 'New Members', 'New Members', '', 0, 7, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_newmembers_show', 'b_system_newmembers_edit', 'system_block_newusers.html', 0, CURRENT_TIMESTAMP),
-(10, 1, 10, '10', 'Recent Comments', 'Recent Comments', '', 0, 8, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_comments_show', 'b_system_comments_edit', 'system_block_comments.html', 0, CURRENT_TIMESTAMP),
-(11, 1, 11, '', 'Notification Options', 'Notification Options', '', 0, 9, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_notification_show', '', 'system_block_notification.html', 0, CURRENT_TIMESTAMP),
-(12, 1, 12, '0|80', 'Themes', 'Themes', '', 0, 10, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_themes_show', 'b_system_themes_edit', 'system_block_themes.html', 0, CURRENT_TIMESTAMP);
+INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `description`, `content`, `side`, `weight`, `visible`, `block_type`, `c_type`, `isactive`, `dirname`, `func_file`, `show_func`, `edit_func`, `template`, `bcachetime`, `last_modified`) VALUES
+(1, 1, 0, '', 'User Menu', 'User Menu2', 'Shows user block', '', 0, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_user_show', '', 'system_block_user.html', 0, CURRENT_TIMESTAMP),
+(2, 1, 2, '', 'Login', 'Login2', 'Shows login form', '', 0, 1, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_login_show', '', 'system_block_login.html', 0, CURRENT_TIMESTAMP),
+(3, 1, 3, '', 'Search', 'Search', 'Shows search form block', '', 1, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_search_show', '', 'system_block_search.html', 0, CURRENT_TIMESTAMP),
+(4, 1, 4, '', 'Waiting Contents', 'Waiting Contents', 'Shows contents waiting for approval', '', 0, 3, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_waiting_show', '', 'system_block_waiting.html', 0, CURRENT_TIMESTAMP),
+(5, 1, 5, '', 'Main Menu', 'Main Menu', 'Shows the main navigation menu of the site', '', 0, 2, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_main_show', '', 'system_block_mainmenu.html', 0, CURRENT_TIMESTAMP),
+(6, 1, 6, '320|190|s_poweredby.gif|1', 'Site Info', 'Site Info', 'Shows basic info about the site and a link to Recommend Us pop up window', '', 0, 4, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_info_show', 'b_system_info_edit', 'system_block_siteinfo.html', 0, CURRENT_TIMESTAMP),
+(7, 1, 7, '', 'Who is Online', 'Who is Online', 'Displays users/guests currently online', '', 0, 5, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_online_show', '', 'system_block_online.html', 0, CURRENT_TIMESTAMP),
+(8, 1, 8, '10|1', 'Top Posters', 'Top Posters', 'Top posters', '', 0, 6, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_topposters_show', 'b_system_topposters_edit', 'system_block_topusers.html', 0, CURRENT_TIMESTAMP),
+(9, 1, 9, '10|1', 'New Members', 'New Members', 'Shows most recent users', '', 0, 7, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_newmembers_show', 'b_system_newmembers_edit', 'system_block_newusers.html', 0, CURRENT_TIMESTAMP),
+(10, 1, 10, '10', 'Recent Comments', 'Recent Comments', 'Shows most recent comments', '', 0, 8, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_comments_show', 'b_system_comments_edit', 'system_block_comments.html', 0, CURRENT_TIMESTAMP),
+(11, 1, 11, '', 'Notification Options', 'Notification Options', 'Shows notification options', '', 0, 9, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_notification_show', '', 'system_block_notification.html', 0, CURRENT_TIMESTAMP),
+(12, 1, 12, '0|80', 'Themes', 'Themes', 'Shows theme selection box', '', 0, 10, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_themes_show', 'b_system_themes_edit', 'system_block_themes.html', 0, CURRENT_TIMESTAMP),
+(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'Welcome to Xoosla', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP),
 
 # ############################
 

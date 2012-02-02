@@ -1,52 +1,49 @@
 <?php
 // $Id: xoops_version.php 8066 2011-11-06 05:09:33Z beckmi $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
+// XOOPS - PHP Content Management System                      //
+// Copyright (c) 2000 XOOPS.org                           //
+// <http://www.xoops.org/>                             //
+// ------------------------------------------------------------------------ //
+// This program is free software; you can redistribute it and/or modify     //
+// it under the terms of the GNU General Public License as published by     //
+// the Free Software Foundation; either version 2 of the License, or        //
+// (at your option) any later version.                                      //
+// //
+// You may not change or alter any portion of this comment or credits       //
+// of supporting developers from this source code or any supporting         //
+// source code which is considered copyrighted (c) material of the          //
+// original comment or credit authors.                                      //
+// //
+// This program is distributed in the hope that it will be useful,          //
+// but WITHOUT ANY WARRANTY; without even the implied warranty of           //
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
+// GNU General Public License for more details.                             //
+// //
+// You should have received a copy of the GNU General Public License        //
+// along with this program; if not, write to the Free Software              //
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
+// ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
 // URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-
-$modversion['name']        = _MI_SYSTEM_NAME;
-$modversion['version']     = 2.10;
+$modversion['name'] = _MI_SYSTEM_NAME;
+$modversion['version'] = 2.10;
 $modversion['description'] = _MI_SYSTEM_DESC;
-$modversion['author']      = '';
-$modversion['credits']     = 'The XOOPS Project; MusS, Kraven30, Mage';
-$modversion['help']        = 'system.html';
+$modversion['author'] = '';
+$modversion['credits'] = 'The XOOPS Project; MusS, Kraven30, Mage';
+$modversion['help'] = 'system.html';
 $modversion['license'] = "GPL see LICENSE";
-$modversion['official']    = 1;
-$modversion['image']       = 'images/system_slogo.png';
-$modversion['dirname']     = 'system';
-
+$modversion['official'] = 1;
+$modversion['image'] = 'images/system_slogo.png';
+$modversion['dirname'] = 'system';
 // Admin things
-$modversion['hasAdmin']   = 1;
+$modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = 'admin.php';
-$modversion['adminmenu']  = 'menu.php';
+$modversion['adminmenu'] = 'menu.php';
 
-$modversion['onUpdate']   = 'include/update.php';
-
+$modversion['onUpdate'] = 'include/update.php';
 // Templates
 $modversion['templates'][] = array( 'file' => 'system_imagemanager.html', 'description' => '' );
 $modversion['templates'][] = array( 'file' => 'system_imagemanager2.html', 'description' => '' );
@@ -67,7 +64,6 @@ $modversion['templates'][] = array( 'file' => 'system_homepage.html', 'descripti
 $modversion['templates'][] = array( 'file' => 'system_bannerlogin.html', 'description' => '' );
 $modversion['templates'][] = array( 'file' => 'system_banner.html', 'description' => '' );
 $modversion['templates'][] = array( 'file' => 'system_bannerdisplay.html', 'description' => '' );
-
 // Admin Templates
 $modversion['templates'][] = array( 'file' => 'system_header.html', 'description' => '', 'type' => 'admin' );
 $modversion['templates'][] = array( 'file' => 'system_banners.html', 'description' => '', 'type' => 'admin' );
@@ -92,14 +88,13 @@ $modversion['templates'][] = array( 'file' => 'system_filemanager.html', 'descri
 $modversion['templates'][] = array( 'file' => 'system_index.html', 'description' => '', 'type' => 'admin' );
 $modversion['templates'][] = array( 'file' => 'system_maintenance.html', 'description' => '', 'type' => 'admin' );
 $modversion['templates'][] = array( 'file' => 'system_help.html', 'description' => '', 'type' => 'admin' );
-
 // Blocks
 $modversion['blocks'][] = array(
-    'file'        => 'system_blocks.php',
-    'name'        => _MI_SYSTEM_BNAME2,
-    'description' => 'Shows user block',
-    'show_func'   => 'b_system_user_show',
-    'template'    => 'system_block_user.html');
+	'file' => 'system_blocks.php',
+	'name' => _MI_SYSTEM_BNAME2,
+	'description' => 'Shows user block',
+	'show_func' => 'b_system_user_show',
+	'template' => 'system_block_user.html' );
 
 $modversion['blocks'][2]['file'] = 'system_blocks.php';
 $modversion['blocks'][2]['name'] = _MI_SYSTEM_BNAME3;
@@ -162,7 +157,6 @@ $modversion['blocks'][10]['show_func'] = 'b_system_comments_show';
 $modversion['blocks'][10]['options'] = '10';
 $modversion['blocks'][10]['edit_func'] = 'b_system_comments_edit';
 $modversion['blocks'][10]['template'] = 'system_block_comments.html';
-
 // RMV-NOTIFY:
 // Adding a block...
 $modversion['blocks'][11]['file'] = 'system_blocks.php';
@@ -178,10 +172,8 @@ $modversion['blocks'][12]['show_func'] = 'b_system_themes_show';
 $modversion['blocks'][12]['options'] = '0|80';
 $modversion['blocks'][12]['edit_func'] = 'b_system_themes_edit';
 $modversion['blocks'][12]['template'] = 'system_block_themes.html';
-
 // Menu
 $modversion['hasMain'] = 0;
-
 // Préférences
 $i = 0;
 $modversion['config'][$i]['name'] = 'break1';
@@ -199,35 +191,35 @@ $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = 1;
 $i++;
 include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
-$icons = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/modules/system/images/icons');
-$modversion['config'][$i]['name']           = 'typeicons';
-$modversion['config'][$i]['title']          = '_MI_SYSTEM_PREFERENCE_ICONS';
-$modversion['config'][$i]['description']    = '';
-$modversion['config'][$i]['formtype']       = 'select';
-$modversion['config'][$i]['valuetype']      = 'text';
-$modversion['config'][$i]['default']        = 'default';
-$modversion['config'][$i]['options']        = $icons;
-$modversion['config'][$i]['category']       = 'global';
+$icons = XoopsLists::getDirListAsArray( XOOPS_ROOT_PATH . '/modules/system/images/icons' );
+$modversion['config'][$i]['name'] = 'typeicons';
+$modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_ICONS';
+$modversion['config'][$i]['description'] = '';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = 'default';
+$modversion['config'][$i]['options'] = $icons;
+$modversion['config'][$i]['category'] = 'global';
 $i++;
-$breadcrumb = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/modules/system/images/breadcrumb');
-$modversion['config'][$i]['name']           = 'typebreadcrumb';
-$modversion['config'][$i]['title']          = '_MI_SYSTEM_PREFERENCE_BREADCRUMB';
-$modversion['config'][$i]['description']    = '';
-$modversion['config'][$i]['formtype']       = 'select';
-$modversion['config'][$i]['valuetype']      = 'text';
-$modversion['config'][$i]['default']        = 'default';
-$modversion['config'][$i]['options']        = $breadcrumb;
-$modversion['config'][$i]['category']       = 'global';
+$breadcrumb = XoopsLists::getDirListAsArray( XOOPS_ROOT_PATH . '/modules/system/images/breadcrumb' );
+$modversion['config'][$i]['name'] = 'typebreadcrumb';
+$modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_BREADCRUMB';
+$modversion['config'][$i]['description'] = '';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = 'default';
+$modversion['config'][$i]['options'] = $breadcrumb;
+$modversion['config'][$i]['category'] = 'global';
 $i++;
-$jquery_theme = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/modules/system/css/ui');
-$modversion['config'][$i]['name']           = 'jquery_theme';
-$modversion['config'][$i]['title']          = '_MI_SYSTEM_PREFERENCE_JQUERY_THEME';
-$modversion['config'][$i]['description']    = '';
-$modversion['config'][$i]['formtype']       = 'select';
-$modversion['config'][$i]['valuetype']      = 'text';
-$modversion['config'][$i]['default']        = 'base';
-$modversion['config'][$i]['options']        = $jquery_theme;
-$modversion['config'][$i]['category']       = 'global';
+$jquery_theme = XoopsLists::getDirListAsArray( XOOPS_ROOT_PATH . '/modules/system/css/ui' );
+$modversion['config'][$i]['name'] = 'jquery_theme';
+$modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_JQUERY_THEME';
+$modversion['config'][$i]['description'] = '';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = 'base';
+$modversion['config'][$i]['options'] = $jquery_theme;
+$modversion['config'][$i]['category'] = 'global';
 $i++;
 $modversion['config'][$i]['name'] = 'break2';
 $modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_BREAK_ACTIVE';
@@ -411,33 +403,33 @@ $modversion['config'][$i]['formtype'] = 'line_break';
 $modversion['config'][$i]['valuetype'] = 'textbox';
 $modversion['config'][$i]['default'] = 'head';
 $i++;
-$editors = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/class/xoopseditor');
-$modversion['config'][$i]['name']           = 'blocks_editor';
-$modversion['config'][$i]['title']          = '_MI_SYSTEM_PREFERENCE_BLOCKS_EDITOR';
-$modversion['config'][$i]['description']    = '_MI_SYSTEM_PREFERENCE_BLOCKS_EDITOR_DSC';
-$modversion['config'][$i]['formtype']       = 'select';
-$modversion['config'][$i]['valuetype']      = 'text';
-$modversion['config'][$i]['default']        = 'dhtmltextarea';
-$modversion['config'][$i]['options']        = $editors;
-$modversion['config'][$i]['category']       = 'global';
+$editors = XoopsLists::getDirListAsArray( XOOPS_ROOT_PATH . '/class/xoopseditor' );
+$modversion['config'][$i]['name'] = 'blocks_editor';
+$modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_BLOCKS_EDITOR';
+$modversion['config'][$i]['description'] = '_MI_SYSTEM_PREFERENCE_BLOCKS_EDITOR_DSC';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = 'dhtmltextarea';
+$modversion['config'][$i]['options'] = $editors;
+$modversion['config'][$i]['category'] = 'global';
 $i++;
-$modversion['config'][$i]['name']           = 'comments_editor';
-$modversion['config'][$i]['title']          = '_MI_SYSTEM_PREFERENCE_COMMENTS_EDITOR';
-$modversion['config'][$i]['description']    = '_MI_SYSTEM_PREFERENCE_COMMENTS_EDITOR_DSC';
-$modversion['config'][$i]['formtype']       = 'select';
-$modversion['config'][$i]['valuetype']      = 'text';
-$modversion['config'][$i]['default']        = 'dhtmltextarea';
-$modversion['config'][$i]['options']        = $editors;
-$modversion['config'][$i]['category']       = 'global';
+$modversion['config'][$i]['name'] = 'comments_editor';
+$modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_COMMENTS_EDITOR';
+$modversion['config'][$i]['description'] = '_MI_SYSTEM_PREFERENCE_COMMENTS_EDITOR_DSC';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = 'dhtmltextarea';
+$modversion['config'][$i]['options'] = $editors;
+$modversion['config'][$i]['category'] = 'global';
 $i++;
-$modversion['config'][$i]['name']           = 'general_editor';
-$modversion['config'][$i]['title']          = '_MI_SYSTEM_PREFERENCE_GENERAL_EDITOR';
-$modversion['config'][$i]['description']    = '_MI_SYSTEM_PREFERENCE_GENERAL_EDITOR_DSC';
-$modversion['config'][$i]['formtype']       = 'select';
-$modversion['config'][$i]['valuetype']      = 'text';
-$modversion['config'][$i]['default']        = 'dhtmltextarea';
-$modversion['config'][$i]['options']        = $editors;
-$modversion['config'][$i]['category']       = 'global';
+$modversion['config'][$i]['name'] = 'general_editor';
+$modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_GENERAL_EDITOR';
+$modversion['config'][$i]['description'] = '_MI_SYSTEM_PREFERENCE_GENERAL_EDITOR_DSC';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = 'dhtmltextarea';
+$modversion['config'][$i]['options'] = $editors;
+$modversion['config'][$i]['category'] = 'global';
 $i++;
 $modversion['config'][$i]['name'] = 'redirect';
 $modversion['config'][$i]['title'] = '_MI_SYSTEM_PREFERENCE_REDIRECT';

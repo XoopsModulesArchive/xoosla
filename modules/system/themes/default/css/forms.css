@@ -14,9 +14,9 @@ input,button,select { vertical-align: middle }
 fieldset { margin: .5em; padding: 1em; border: 1px solid #333333; color: #000000; background-color: #f0f0f0; -moz-border-radius: 6px; -webkit-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px }
 legend { padding: .5em; font-size: 1.1em; font-weight: bolder }
 label,.caption-text { margin-bottom: .5em; padding-right: .5em; font-weight: bold }
-select { background-color: #f7f7f7; color: #333333; font-size: 1em; border: 2px inset #f1f3f8 !important }
-select[name=timezone_offset] { font-size: 1em }
-textarea { width: 95%; max-height: 300px; overflow: auto }
+select { width: auto; background-color: #f7f7f7; color: #333333; font-size: 1em; border: 1px inset #f1f3f8 !important }
+select[name=timezone_offset] { width: auto; font-size: 1em }
+textarea { width: 99%; max-height: 300px; overflow: auto }
 input[type=submit],input[type=reset],input[type=button],.xo-formbuttons,.formButton,button { margin: 2px 5px 2px 5px; padding: 4px 8px; font-size: 1em; font-weight: bold; border: 1px solid #cccccc; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0 20px 10px -10px rgba(255, 255, 255, 0.3) inset; -moz-box-shadow: 0 20px 10px -10px rgba(255, 255, 255, 0.3) inset; -webkit-box-shadow: 0 20px 10px -10px rgba(255, 255, 255, 0.3) inset; -khtml-box-shadow: 0 20px 10px -10px rgba(255, 255, 255, 0.3) inset; cursor: pointer; background-color: #595b5f; color: #f7f7f7 }
 input[type=submit]:hover,input[type=reset]:hover,input[type=button]:hover,.xo-formbuttons:hover,.formButton:hover,button:hover
 	{ background-color: #c2ceef; padding: 4px 8px; color: inherit; cursor: pointer }

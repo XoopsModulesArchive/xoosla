@@ -30,9 +30,9 @@ defined( 'XOOSLA_INSTALL' ) or die( 'Direct Access To This File Not Allowed!' );
 setcookie( 'xo_install_user', '', null, null, null );
 
 $installer_modified = 'install_remove_' . uniqid( mt_rand() );
-// register_shutdown_function( 'install_finalize', $installer_modified );
-ob_start();
+register_shutdown_function( 'install_finalize', $installer_modified );
 
+ob_start();
 xoShowNotice( sprintf( INSTALL_FINISH_NOTICE, $installer_modified ), 't-warning' );
 ?>
 

@@ -73,9 +73,9 @@ if ( empty( $errors ) ) {
 		}
 		if ( empty( $errors ) ) {
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' && !empty( $vars['DB_NAME'] ) ) {
-				$ret = validateDbCharset( $link, $vars['DB_CHARSET'], $vars['DB_COLLATION'] );
-				if ( $ret ) {
-					$errors['novalidcharset'] = $ret;
+				$result = validateDbCharset( $link, $vars['DB_CHARSET'], $vars['DB_COLLATION'] );
+				if ( $result ) {
+					$errors['novalidcharset'] = $result;
 				}
 				$db_exist = true;
 				if ( empty( $errors ) ) {
@@ -83,15 +83,17 @@ if ( empty( $errors ) ) {
 						// Database not here: try to create it
 						$result = mysql_query( 'CREATE DATABASE `' . $vars['DB_NAME'] . '`' );
 						if ( !$result ) {
-							$errors['nodatabase'] = INSTALL_INSTALL_ERR_NO_DATABASE;
+							$errors['nodatabase'] = sprintf( INSTALL_INSTALL_ERR_NO_DATABASE, mysql_errno(), mysql_error() ) ;
 							$db_exist = false;
 						}
 					}
 					if ( $db_exist && $vars['DB_CHARSET'] ) {
 						$sql = 'ALTER DATABASE `' . $vars['DB_NAME'] . '` DEFAULT CHARACTER SET ' . mysql_real_escape_string( $vars['DB_CHARSET'] )
 						 . ( $vars['DB_COLLATION'] ? ' COLLATE ' . mysql_real_escape_string( $vars['DB_COLLATION'] ) : '' );
-						if ( !mysql_query( $sql ) ) {
-							$errors['charsetnotset'] = INSTALL_ERR_CHARSET_NOT_SET . $sql;
+						$result = mysql_query( $sql );
+
+						if ( !$result ) {
+							$errors['charsetnotset'] = sprintf( INSTALL_ERR_CHARSET_NOT_SET, mysql_errno(), mysql_error() );
 						}
 					}
 				}

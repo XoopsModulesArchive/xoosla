@@ -56,7 +56,7 @@ a.fontSmall { color: #006699 }
 a.fontSmall:hover { color: #c23030; text-decoration: underline }
 /*=============== styles for tables =================*/
 table { margin: 0; width: 100%; border: none; border-collapse: separate; /*collapse*/ border-spacing: 1px }
-th { background-color: #2e323b; color: #ffffff; padding: 5px; text-align: left; font-weight: bold }
+th { background-color: #2e323b; color: #ffffff; padding: 5px; font-weight: bold }
 .outer { width: 99%; border: 1px solid #d5d1df; -moz-border-radius: 1px; -webkit-border-radius: 1px; -khtml-border-radius: 1px; border-radius: 1px }
 .head { background-color: #ebebeb; padding: 5px; font-weight: bold; border-bottom: 1px solid #cccccc }
 .even { background-color: #ebebeb; padding: 5px; border-bottom: 1px solid #cccccc }

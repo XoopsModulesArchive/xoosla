@@ -28,6 +28,7 @@ require_once $GLOBALS['xoops']->path( 'class/xoopsblock.php' );
 $xoopsLogger = &XoopsLogger::getInstance();
 $xoopsLogger->stopTime( 'Module init' );
 $xoopsLogger->startTime( 'Xoosla output init' );
+
 if ( $xoopsConfig['theme_set'] != 'default' && file_exists( XOOPS_THEME_PATH . '/' . $xoopsConfig['theme_set'] . '/theme.php' ) ) {
 	require_once $GLOBALS['xoops']->path( 'include/xoops13_header.php' );
 } else {
@@ -44,10 +45,11 @@ if ( $xoopsConfig['theme_set'] != 'default' && file_exists( XOOPS_THEME_PATH . '
 			$xoopsOption['template_main'] = 'db:' . $xoopsOption['template_main'];
 		}
 	}
-	$xoopsThemeFactory = null;
+
 	$xoopsThemeFactory = new xos_opal_ThemeFactory();
 	$xoopsThemeFactory->allowedThemes = $xoopsConfig['theme_set_allowed'];
-	$xoopsThemeFactory->defaultTheme = $xoopsConfig['theme_set'];
+
+	$xoopsThemeFactory->setDefaultTheme($xoopsConfig['theme_set']) ;
 
 	/**
 	 *

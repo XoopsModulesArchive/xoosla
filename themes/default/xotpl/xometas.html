@@ -1,0 +1,40 @@
+<!-- Title -->
+	<title><{if $xoops_pagetitle !=''}><{$xoops_pagetitle}> : <{/if}><{$xoops_sitename}></title>
+
+	<!-- Meta Tags -->
+	<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+	<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+	<meta name="keywords" content="<{$xoops_pagetitle}>,<{$xoops_meta_keywords}>" />
+	<meta name="description" content="<{$xoops_pagetitle}>, <{$xoops_meta_description}>" />
+	<meta name="rating" content="<{$xoops_meta_rating}>" />
+	<meta name="author" content="<{$xoops_meta_author}>" />
+	<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+	<meta name="generator" content="<{$smarty.const.META_GENER}>" />
+	<meta name="robots" content="<{$xoops_meta_robots}>" />
+	<meta name="revisit-after" content="<{$smarty.const.META_REV_AFT}>" />
+	<meta name="viewport" content="width=device-width" />
+	<!-- Styles/Relations -->
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="<{xoAppUrl backend.php}>" />
+	<{if $url}>
+		<meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" />
+	<{/if}>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/ico" href="<{xoImgUrl img/favicon.ico}>" />
+	<!-- Theme style sheets -->
+	<link rel="stylesheet" type="text/css" media="screen" title="Color" href="<{xoImgUrl css/template.css}>" />
+	<link rel="stylesheet" type="text/css" media="print" href="<{xoImgUrl css/print.css}>" />
+	<!-- Mobile Support -->
+	<link rel="stylesheet" type="text/css" media="only screen and (max-width: 960px), only screen and (max-device-width: 960px)" href="<{xoImgUrl style-mobile.css}>" />
+	<!-- Rewrite Specific Module Style -->
+	<link rel="stylesheet" type="text/css" media="all" href="<{xoImgUrl style-rewrite.css}>" />
+	<!-- scripts xoops.js and instructions header.php files-->
+	<{$xoops_module_header}>
+
+	<!-- JS -->
+	<script src="<{xoImgUrl browse.php?Frameworks/jquery/jquery.js}>" type="text/javascript"></script>
+	<script src="<{xoImgUrl browse.php?Frameworks/jquery/jquery.tools.min.js}>" type="text/javascript"></script>
+	<script src="<{xoImgUrl js/fixes/curvycorners.js}>" type="text/javascript"></script>
+	<script src="<{xoImgUrl js/hoverIntent.js}>" type="text/javascript"></script>
+	<script src="<{xoImgUrl js/superfish.js}>" type="text/javascript"></script>
+	<script src="<{xoImgUrl js/supersubs.js}>" type="text/javascript"></script>

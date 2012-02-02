@@ -1,5 +1,4 @@
 <?php
-// $Id: xoops_version.php 8066 2011-11-06 05:09:33Z beckmi $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -24,23 +23,17 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
 
-$modversion['name']        = _AM_SYSTEM_BLOCKS;
-$modversion['version']     = '1.0';
+$modversion['name'] = _AM_SYSTEM_BLOCKS;
+$modversion['version']     = '0.0';
 $modversion['description'] = _AM_SYSTEM_BLOCKS_DESC;
-$modversion['author']      = '';
-$modversion['credits']     = 'The XOOPS Project; The MPN SE Project; Andricq Nicolas (AKA MusS)';
-$modversion['help']        = 'page=blocksadmin';
+$modversion['author'] = "";
+$modversion['credits'] = "The MPN SE Project";
+$modversion['help'] = "blocks.html";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['official']    = 1;
-$modversion['image']       = 'blocks.png';
-
-$modversion['hasAdmin']    = 1;
-$modversion['adminpath']   = 'admin.php?fct=blocksadmin';
-$modversion['category']    = XOOPS_SYSTEM_BLOCK;
-
+$modversion['official'] = 1;
+$modversion['image'] = "blocks.png";
+$modversion['hasAdmin'] = 1;
+$modversion['adminpath'] = "admin.php?fct=blocksadmin";
+$modversion['category'] = XOOPS_SYSTEM_BLOCK;
 ?>

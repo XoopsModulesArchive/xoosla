@@ -123,6 +123,7 @@ $xoopsConfig = $config_handler->getConfigsByCat(XOOPS_CONF);
 if (file_exists($file = $GLOBALS['xoops']->path('var/configs/xoopsconfig.php'))) {
     $fileConfigs = include $file;
     $xoopsConfig = array_merge($xoopsConfig, (array) $fileConfigs);
+
     unset($fileConfigs, $file);
 } else {
     trigger_error('File Path Error: ' . 'var/configs/xoopsconfig.php' . ' does not exist.');
@@ -326,4 +327,5 @@ $xoopsLogger->stopTime('XOOPS Boot');
 $xoopsLogger->startTime('Module init');
 
 $xoopsPreload->triggerEvent('core.include.common.end');
+
 ?>
