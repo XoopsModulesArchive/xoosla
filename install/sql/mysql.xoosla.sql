@@ -330,9 +330,6 @@ INSERT INTO `configcategory` (`confcat_id`, `confcat_name`, `confcat_order`) VAL
 
 # ############################
 
-#
-# Table structure for table `configoption`
-#
 
 CREATE TABLE `configoption` (
   `confop_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -341,65 +338,66 @@ CREATE TABLE `configoption` (
   `conf_id` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`confop_id`),
   KEY `conf_id` (`conf_id`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
-#
-# Dumping data for table `configoption`
-#
+--
+-- Dumping data for table `x632_configoption`
+--
 
 INSERT INTO `configoption` (`confop_id`, `confop_name`, `confop_value`, `conf_id`) VALUES
-(1, '_MD_AM_DEBUGMODE1', '1', 13),
-(2, '_MD_AM_DEBUGMODE2', '2', 13),
-(3, '_NESTED', 'nest', 32),
-(4, '_FLAT', 'flat', 32),
-(5, '_THREADED', 'thread', 32),
-(6, '_OLDESTFIRST', '0', 33),
-(7, '_NEWESTFIRST', '1', 33),
-(8, '_MD_AM_USERACTV', '0', 21),
-(9, '_MD_AM_AUTOACTV', '1', 21),
-(10, '_MD_AM_ADMINACTV', '2', 21),
-(11, '_MD_AM_STRICT', '0', 23),
-(12, '_MD_AM_MEDIUM', '1', 23),
-(13, '_MD_AM_LIGHT', '2', 23),
-(14, '_MD_AM_DEBUGMODE3', '3', 13),
-(15, '_MD_AM_INDEXFOLLOW', 'index,follow', 43),
-(16, '_MD_AM_NOINDEXFOLLOW', 'noindex,follow', 43),
-(17, '_MD_AM_INDEXNOFOLLOW', 'index,nofollow', 43),
-(18, '_MD_AM_NOINDEXNOFOLLOW', 'noindex,nofollow', 43),
-(19, '_MD_AM_METAOGEN', 'general', 48),
-(20, '_MD_AM_METAO14YRS', '14 years', 48),
-(21, '_MD_AM_METAOREST', 'restricted', 48),
-(22, '_MD_AM_METAOMAT', 'mature', 48),
-
-(24, 'PHP mail()', 'mail', 64),
-(25, 'sendmail', 'sendmail', 64),
-(26, 'SMTP', 'smtp', 64),
-(27, 'SMTPAuth', 'smtpauth', 64),
-(28, '_MD_AM_AUTH_CONFOPTION_XOOPS', 'xoops', 74),
-(29, '_MD_AM_AUTH_CONFOPTION_LDAP', 'ldap', 74),
-(30, '_MD_AM_AUTH_CONFOPTION_AD', 'ads', 74),
-(31, '_NO', '0', 95),
-(32, '_MD_AM_WELCOMETYPE_EMAIL', '1', 95),
-(33, '_MD_AM_WELCOMETYPE_PM', '2', 95),
-(34, '_MD_AM_WELCOMETYPE_BOTH', '3', 95),
-(35, 'dhtmltextarea', 'dhtmltextarea', 126),
-(36, 'textarea', 'textarea', 126),
-(37, 'tinymce', 'tinymce', 126),
-(38, 'dhtmltextarea', 'dhtmltextarea', 127),
-(39, 'textarea', 'textarea', 127),
-(40, 'tinymce', 'tinymce', 127),
-(41, 'dhtmltextarea', 'dhtmltextarea', 128),
-(42, 'textarea', 'textarea', 128),
-(43, 'tinymce', 'tinymce', 128),
-(44, 'default', 'default', 98),
-(45, 'default', 'default', 99),
-(46, 'base', 'base', 133),
-(47, 'cupertino', 'cupertino', 133),
-(48, 'redmond', 'redmond', 133),
-(49, 'smoothness', 'smoothness', 133),
-(50, 'south-street', 'south-street', 133),
-(51, 'ui-darkness', 'ui-darkness', 133),
-(52, 'ui-lightness', 'ui-lightness', 133);
+(0, '_MD_AM_DEBUGMODE0', '0', 13),
+(0, '_MD_AM_DEBUGMODE1', '1', 13),
+(0, '_MD_AM_DEBUGMODE2', '2', 13),
+(0, '_MD_AM_DEBUGMODE4', '4', 13),
+(0, '_MD_AM_DEBUGMODE3', '3', 13),
+(0, '_NESTED', 'nest', 32),
+(0, '_FLAT', 'flat', 32),
+(0, '_THREADED', 'thread', 32),
+(0, '_NEWESTFIRST', '1', 33),
+(0, '_OLDESTFIRST', '0', 33),
+(0, '_MD_AM_USERACTV', '0', 21),
+(0, '_MD_AM_AUTOACTV', '1', 21),
+(0, '_MD_AM_ADMINACTV', '2', 21),
+(0, '_MD_AM_STRICT', '0', 23),
+(0, '_MD_AM_MEDIUM', '1', 23),
+(0, '_MD_AM_LIGHT', '2', 23),
+(0, '_MD_AM_INDEXFOLLOW', 'index,follow', 43),
+(0, '_MD_AM_NOINDEXFOLLOW', 'noindex,follow', 43),
+(0, '_MD_AM_INDEXNOFOLLOW', 'index,nofollow', 43),
+(0, '_MD_AM_NOINDEXNOFOLLOW', 'noindex,nofollow', 43),
+(0, '_MD_AM_METAOGEN', 'general', 48),
+(0, '_MD_AM_METAO14YRS', '14 years', 48),
+(0, '_MD_AM_METAOREST', 'restricted', 48),
+(0, '_MD_AM_METAOMAT', 'mature', 48),
+(0, 'PHP mail()', 'mail', 64),
+(0, 'sendmail', 'sendmail', 64),
+(0, 'SMTP', 'smtp', 64),
+(0, 'SMTPAuth', 'smtpauth', 64),
+(0, '_MD_AM_AUTH_CONFOPTION_XOOPS', 'xoops', 74),
+(0, '_MD_AM_AUTH_CONFOPTION_LDAP', 'ldap', 74),
+(0, '_MD_AM_AUTH_CONFOPTION_AD', 'ads', 74),
+(0, '_NO', '0', 95),
+(0, '_MD_AM_WELCOMETYPE_EMAIL', '1', 95),
+(0, '_MD_AM_WELCOMETYPE_PM', '2', 95),
+(0, '_MD_AM_WELCOMETYPE_BOTH', '3', 95),
+(0, 'default', 'default', 533),
+(0, 'default', 'default', 534),
+(0, 'base', 'base', 535),
+(0, 'cupertino', 'cupertino', 535),
+(0, 'redmond', 'redmond', 535),
+(0, 'smoothness', 'smoothness', 535),
+(0, 'south-street', 'south-street', 535),
+(0, 'ui-darkness', 'ui-darkness', 535),
+(0, 'ui-lightness', 'ui-lightness', 535),
+(0, 'dhtmltextarea', 'dhtmltextarea', 562),
+(0, 'textarea', 'textarea', 562),
+(0, 'tinymce', 'tinymce', 562),
+(0, 'dhtmltextarea', 'dhtmltextarea', 563),
+(0, 'textarea', 'textarea', 563),
+(0, 'tinymce', 'tinymce', 563),
+(0, 'dhtmltextarea', 'dhtmltextarea', 564),
+(0, 'textarea', 'textarea', 564),
+(0, 'tinymce', 'tinymce', 564);
 
 # ############################
 
@@ -680,6 +678,24 @@ INSERT INTO `modules` (`mid`, `name`, `version`, `last_update`, `weight`, `isact
 # Table structure for table `newblocks`
 #
 
+INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `description`, `content`, `side`, `weight`, `visible`, `block_type`, `c_type`, `isactive`, `dirname`, `func_file`, `show_func`, `edit_func`, `template`, `bcachetime`, `last_modified`) VALUES
+(1, 1, 0, '', 'User Menu', 'User Menu2', 'Shows user block', '', 0, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_user_show', '', 'system_block_user.html', 0, CURRENT_TIMESTAMP),
+(2, 1, 2, '', 'Login', 'Login2', 'Shows login form', '', 0, 1, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_login_show', '', 'system_block_login.html', 0, CURRENT_TIMESTAMP),
+(3, 1, 3, '', 'Search', 'Search', 'Shows search form block', '', 1, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_search_show', '', 'system_block_search.html', 0, CURRENT_TIMESTAMP),
+(4, 1, 4, '', 'Waiting Contents', 'Waiting Contents', 'Shows contents waiting for approval', '', 0, 3, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_waiting_show', '', 'system_block_waiting.html', 0, CURRENT_TIMESTAMP),
+(5, 1, 5, '', 'Main Menu', 'Main Menu', 'Shows the main navigation menu of the site', '', 0, 2, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_main_show', '', 'system_block_mainmenu.html', 0, CURRENT_TIMESTAMP),
+(6, 1, 6, '320|190|s_poweredby.gif|1', 'Site Info', 'Site Info', 'Shows basic info about the site and a link to Recommend Us pop up window', '', 0, 4, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_info_show', 'b_system_info_edit', 'system_block_siteinfo.html', 0, CURRENT_TIMESTAMP),
+(7, 1, 7, '', 'Who is Online', 'Who is Online', 'Displays users/guests currently online', '', 0, 5, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_online_show', '', 'system_block_online.html', 0, CURRENT_TIMESTAMP),
+(8, 1, 8, '10|1', 'Top Posters', 'Top Posters', 'Top posters', '', 0, 6, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_topposters_show', 'b_system_topposters_edit', 'system_block_topusers.html', 0, CURRENT_TIMESTAMP),
+(9, 1, 9, '10|1', 'New Members', 'New Members', 'Shows most recent users', '', 0, 7, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_newmembers_show', 'b_system_newmembers_edit', 'system_block_newusers.html', 0, CURRENT_TIMESTAMP),
+(10, 1, 10, '10', 'Recent Comments', 'Recent Comments', 'Shows most recent comments', '', 0, 8, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_comments_show', 'b_system_comments_edit', 'system_block_comments.html', 0, CURRENT_TIMESTAMP),
+(11, 1, 11, '', 'Notification Options', 'Notification Options', 'Shows notification options', '', 0, 9, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_notification_show', '', 'system_block_notification.html', 0, CURRENT_TIMESTAMP),
+(12, 1, 12, '0|80', 'Themes', 'Themes', 'Shows theme selection box', '', 0, 10, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_themes_show', 'b_system_themes_edit', 'system_block_themes.html', 0, CURRENT_TIMESTAMP),
+(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'Welcome to Xoosla', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP),
+
+#
+# Dumping data for table `newblocks`
+#
 CREATE TABLE `newblocks` (
   `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `mid` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -707,11 +723,11 @@ CREATE TABLE `newblocks` (
   KEY `visible` (`visible`),
   KEY `isactive_visible_mid` (`isactive`,`visible`,`mid`),
   KEY `mid_funcnum` (`mid`,`func_num`)
-) DEFAULT CHARSET=utf8 ;
+) DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `x632_newblocks`
---
+#
+# Dumping data for table `x632_newblocks`
+#
 
 INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `description`, `content`, `side`, `weight`, `visible`, `block_type`, `c_type`, `isactive`, `dirname`, `func_file`, `show_func`, `edit_func`, `template`, `bcachetime`, `last_modified`) VALUES
 (1, 1, 0, '', 'User Menu', 'User Menu2', 'Shows user block', '', 0, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_user_show', '', 'system_block_user.html', 0, CURRENT_TIMESTAMP),
@@ -726,7 +742,8 @@ INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `
 (10, 1, 10, '10', 'Recent Comments', 'Recent Comments', 'Shows most recent comments', '', 0, 8, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_comments_show', 'b_system_comments_edit', 'system_block_comments.html', 0, CURRENT_TIMESTAMP),
 (11, 1, 11, '', 'Notification Options', 'Notification Options', 'Shows notification options', '', 0, 9, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_notification_show', '', 'system_block_notification.html', 0, CURRENT_TIMESTAMP),
 (12, 1, 12, '0|80', 'Themes', 'Themes', 'Shows theme selection box', '', 0, 10, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_themes_show', 'b_system_themes_edit', 'system_block_themes.html', 0, CURRENT_TIMESTAMP),
-(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'Welcome to Xoosla', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP),
+(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'werwerwerwerwe', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP);
+
 
 # ############################
 
@@ -845,6 +862,7 @@ INSERT INTO `smiles` (`id`, `code`, `smile_url`, `emotion`, `display`) VALUES
 (1, ':-D', 'smilies/biggrin.gif', 'Very Happy', 1),
 (2, ':-)', 'smilies/smile.gif', 'Smile', 1),
 (3, ':-(', 'smilies/sad.gif', 'Sad', 1),
+
 (4, ':-o', 'smilies/ohmy.gif', 'OH MY GAWD!', 1),
 (5, ':unsure:', 'smilies/unsure.gif', 'Confused', 1),
 (6, '8-)', 'smilies/cool.gif', 'Cool', 1),
