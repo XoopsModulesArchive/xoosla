@@ -199,13 +199,13 @@ if ( $op == "order" ) {
 			order_block( $bid[$i], $weight[$i], $visible[$i], $side[$i], $name[$i], $title[$i], $bmodule[$i], $bcachetime[$i] );
 		}
 	}
-redirect_header( "admin.php?fct=blocksadmin", 1, _AM_DBUPDATED );
+    redirect_header( "admin.php?fct=blocksadmin", 1, _AM_DBUPDATED );
 	exit();
 }
 
 if ( $op == "save" ) {
 	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		redirect_header( "admin.php?fct=blocksadmin", 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
 		exit();
 	}
 	$bgroups = isset( $bgroups ) ? $bgroups : array();

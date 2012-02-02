@@ -49,7 +49,7 @@ class XoopsLogger {
 
 	var $usePopup = false;
 	var $activated = true;
-
+	var $developer = false;
 	/**
 	 * *@access protected
 	 */
@@ -125,8 +125,9 @@ class XoopsLogger {
 	 */
 	function startTime( $name = 'XOOPS' )
 	{
-		if ( $this->activated )
+		if ( $this->activated ) {
 			$this->logstart[$name] = $this->microtime();
+		}
 	}
 
 	/**
@@ -136,8 +137,9 @@ class XoopsLogger {
 	 */
 	function stopTime( $name = 'XOOPS' )
 	{
-		if ( $this->activated )
+		if ( $this->activated ) {
 			$this->logend[$name] = $this->microtime();
+		}
 	}
 
 	/**
@@ -149,8 +151,9 @@ class XoopsLogger {
 	 */
 	function addQuery( $sql, $error = null, $errno = null, $query_time = null )
 	{
-		if ( $this->activated )
+		if ( $this->activated ) {
 			$this->queries[] = array( 'sql' => $sql , 'error' => $error , 'errno' => $errno, 'query_time' => $query_time );
+		}
 	}
 
 	/**
@@ -162,8 +165,9 @@ class XoopsLogger {
 	 */
 	function addBlock( $name, $cached = false, $cachetime = 0 )
 	{
-		if ( $this->activated )
+		if ( $this->activated ) {
 			$this->blocks[] = array( 'name' => $name , 'cached' => $cached , 'cachetime' => $cachetime );
+		}
 	}
 
 	/**
@@ -174,8 +178,9 @@ class XoopsLogger {
 	 */
 	function addExtra( $name, $msg )
 	{
-		if ( $this->activated )
+		if ( $this->activated ) {
 			$this->extra[] = array( 'name' => $name , 'msg' => $msg );
+		}
 	}
 
 	/**
@@ -187,8 +192,9 @@ class XoopsLogger {
 	 */
 	function addDeprecated( $msg )
 	{
-		if ( $this->activated )
+		if ( $this->activated && $this->developer ) {
 			$this->deprecated[] = $msg;
+		}
 	}
 
 	/**
@@ -274,8 +280,9 @@ class XoopsLogger {
 	 */
 	function dumpTime( $name = 'XOOPS', $unset = false )
 	{
-		if ( !$this->activated )
+		if ( !$this->activated ) {
 			return null;
+		}
 
 		if ( !isset( $this->logstart[$name] ) ) {
 			return 0;
@@ -319,7 +326,6 @@ class XoopsLogger {
 	function dumpAll()
 	{
 		$GLOBALS['xoopsLogger']->addDeprecated( '\'$xoopsLogger->dumpAll();\' is deprecated since XOOPS 2.5.4, please use \'$xoopsLogger->dump(\'\');\' instead.' );
-
 		return $this->dump( '' );
 	}
 
@@ -332,7 +338,6 @@ class XoopsLogger {
 	function dumpBlocks()
 	{
 		$GLOBALS['xoopsLogger']->addDeprecated( '\'$xoopsLogger->dumpBlocks();\' is deprecated since XOOPS 2.5.4, please use \'$xoopsLogger->dump(\'blocks\');\' instead.' );
-
 		return $this->dump( 'blocks' );
 	}
 
@@ -345,7 +350,6 @@ class XoopsLogger {
 	function dumpExtra()
 	{
 		$GLOBALS['xoopsLogger']->addDeprecated( '\'$xoopsLogger->dumpExtra();\' is deprecated since XOOPS 2.5.4, please use \'$xoopsLogger->dump(\'extra\');\' instead.' );
-
 		return $this->dump( 'extra' );
 	}
 
@@ -358,7 +362,6 @@ class XoopsLogger {
 	function dumpQueries()
 	{
 		$GLOBALS['xoopsLogger']->addDeprecated( '\'$xoopsLogger->dumpQueries();\' is deprecated since XOOPS 2.5.4, please use \'$xoopsLogger->dump(\'queries\');\' instead.' );
-
 		return $this->dump( 'queries' );
 	}
 	/**
@@ -382,6 +385,7 @@ function XoopsErrorHandler_HandleError( $errNo, $errStr, $errFile, $errLine, $er
 		return true;
 	}
 	// XOOPS should always be STRICT compliant thus the above lines makes no sense and will be removed! -- Added by Taiwen Jiang
+    // I had to lol at this......... added by Catzwolf
 	$logger = &XoopsLogger::getInstance();
 	$logger->handleError( $errNo, $errStr, $errFile, $errLine, $errContext );
 }
