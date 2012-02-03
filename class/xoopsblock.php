@@ -310,12 +310,12 @@ class XoopsBlock extends XoopsObject {
 	 * get all the blocks that match the supplied parameters
 	 *
 	 * @param  $side 0: sideblock - left
-	 *                    1: sideblock - right
-	 *                    2: sideblock - left and right
-	 *                    3: centerblock - left
-	 *                    4: centerblock - right
-	 *                    5: centerblock - center
-	 *                    6: centerblock - left, right, center
+	 *                       1: sideblock - right
+	 *                       2: sideblock - left and right
+	 *                       3: centerblock - left
+	 *                       4: centerblock - right
+	 *                       5: centerblock - center
+	 *                       6: centerblock - left, right, center
 	 * @param  $groupid groupid (can be an array)
 	 * @param  $visible 0: not visible 1: visible
 	 * @param  $orderby order of the blocks
@@ -498,11 +498,13 @@ class XoopsBlock extends XoopsObject {
 				return $blockids;
 			}
 		}
+
 		$sql = 'SELECT b.* FROM ' . $db->prefix( 'newblocks' ) . ' b, ' . $db->prefix( 'block_module_link' ) . ' m WHERE m.block_id=b.bid';
 		$sql .= ' AND b.isactive=' . $isactive;
 		if ( isset( $visible ) ) {
 			$sql .= ' AND b.visible=' . intval( $visible );
 		}
+
 		if ( !isset( $module_id ) ) {
 		} else if ( !empty( $module_id ) ) {
 			$sql .= ' AND m.module_id IN (0,' . intval( $module_id );
@@ -510,7 +512,7 @@ class XoopsBlock extends XoopsObject {
 				$sql .= ',-1';
 			}
 			$sql .= ')';
-		} else if ( $module_id = '-2' ) {
+		} else if ( $module_id == '-2' ) {
 		} else {
 			if ( $toponlyblock ) {
 				$sql .= ' AND m.module_id IN (0,-1)';
@@ -518,7 +520,7 @@ class XoopsBlock extends XoopsObject {
 				$sql .= ' AND m.module_id = 0';
 			}
 		}
-		if ( !empty( $blockids ) ) {
+        if ( !empty( $blockids ) ) {
 			$sql .= ' AND b.bid IN (' . implode( ',', $blockids ) . ')';
 		}
 		$sql .= ' ORDER BY ' . $orderby;
