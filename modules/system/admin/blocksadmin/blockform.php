@@ -39,10 +39,22 @@ $mod_select = new XoopsFormSelect( _AM_VISIBLEIN, 'bmodule', $block['modules'], 
 $module_handler = &xoops_gethandler( 'module' );
 $criteria = new CriteriaCompo( new Criteria( 'hasmain', 1 ) );
 $criteria->add( new Criteria( 'isactive', 1 ) );
-$module_list = $module_handler->getList( $criteria );
+
 $module_list[ - 1] = _AM_TOPPAGE;
 $module_list[0] = _AM_ALLPAGES;
-ksort( $module_list );
+$module_list[ - 3] = _AM_TOPPAGE;
+
+$display_list_spec[ - 1] = _AM_TOPPAGE;
+$display_list_spec[ - 2] = _AM_ALLPAGES;
+$display_list_spec[ - 3] = _AM_UNASSIGNED;
+
+$module_list = $module_handler->getList( $criteria );
+$module_list = $display_list_spec + $module_list;
+foreach ( $module_list as $k => $v ) {
+	$m_list[$k] = $v;
+	// $form .= '<option value="' . $k . '"' . ( $k == $selmod ? ' selected="selected"' : '' ) . '>' . $v . '</option>';
+}
+//ksort( $module_list );
 $mod_select->addOptionArray( $module_list );
 $form->addElement( $mod_select );
 
@@ -56,7 +68,7 @@ if ( $block['is_custom'] ) {
 	$form->addElement( $textarea, true );
 
 	$description = new XoopsFormTextArea( _AM_DESCRIPTION, 'bdescription', $block['description'], 4, 20 );
-	//$description->setDescription(  _AM_DESCRIPTION_DESC );
+	// $description->setDescription(  _AM_DESCRIPTION_DESC );
 	$description->doHtml = false;
 	$form->addElement( $description, true );
 
@@ -88,7 +100,6 @@ $form->addElement( new XoopsFormRadioYN( _AM_VISIBLE, 'bvisible', $block['visibl
 $cache_select = new XoopsFormSelect( _AM_BCACHETIME, 'bcachetime', $block['cachetime'] );
 $cache_select->addOptionArray( array( '0' => _NOCACHE, '30' => sprintf( _SECONDS, 30 ), '60' => _MINUTE, '300' => sprintf( _MINUTES, 5 ), '1800' => sprintf( _MINUTES, 30 ), '3600' => _HOUR, '18000' => sprintf( _HOURS, 5 ), '86400' => _DAY, '259200' => sprintf( _DAYS, 3 ), '604800' => _WEEK, '2592000' => _MONTH ) );
 $form->addElement( $cache_select );
-
 
 $form->addElement( new XoopsFormHidden( 'op', $block['op'] ) );
 $form->addElement( new XoopsFormHidden( 'fct', 'blocksadmin' ) );

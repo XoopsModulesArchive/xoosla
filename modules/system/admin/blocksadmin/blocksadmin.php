@@ -83,6 +83,7 @@ function list_blocks()
 	ksort( $display_list );
 	$display_list_spec[ - 2] = _AM_ALLPAGES;
 	$display_list_spec[ - 1] = _AM_TOPPAGE;
+	$display_list_spec[ - 3] = _AM_UNASSIGNED;
 	// $display_list_spec[0] = 'This one';
 	$display_list = $display_list_spec + $display_list;
 	foreach ( $display_list as $k => $v ) {
