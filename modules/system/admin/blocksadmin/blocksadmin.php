@@ -43,14 +43,13 @@ function list_blocks()
 	// Modules generating the blocks
 	$generator_list = $module_handler->getList();
 
-	$gen_list[-1] = _AM_TYPES;
+	$gen_list[ - 1] = _AM_TYPES;
 	$gen_list[0] = _AM_CUSTOM;
 	foreach ( $generator_list as $k => $v ) {
 		$gen_list[$k] = $v;
 	}
 	$generator_list = $gen_list;
 	unset( $gen_list );
-
 	// for custom blocks
 	$requests = array( "selmod" => - 1,
 		"selgen" => 1,
@@ -163,23 +162,16 @@ function list_blocks()
 			$block_mod[$row['block_id']][] = $row['module_id'];
 		}
 	}
-
 	$bcachetime = array( '0' => _NOCACHE, '30' => sprintf( _SECONDS, 30 ), '60' => _MINUTE, '300' => sprintf( _MINUTES, 5 ), '1800' => sprintf( _MINUTES, 30 ), '3600' => _HOUR, '18000' => sprintf( _HOURS, 5 ), '86400' => _DAY, '259200' => sprintf( _DAYS, 3 ), '604800' => _WEEK, '2592000' => _MONTH ) ;
-
 	foreach ( array_keys( $block_arr ) as $i ) {
-	    $module_options = '';
-        foreach ( $display_list as $key => $mod ) {
-	        if ( !empty($block_mod[$i]) && in_array($key, $block_mod[$i]) ) {
-	            $module_options .= "<option value='$key' selected='selected'>$mod</a>" ;
-	        } else {
-	            $module_options .= "<option value='$key'>$mod</a>" ;
-	        }
-	    }
-
-	    print_r_html($module_options);
-
-	    echo '<br />';
-
+		$module_options = '';
+		foreach ( $display_list as $key => $mod ) {
+			if ( !empty( $block_mod[$i] ) && in_array( $key, $block_mod[$i] ) ) {
+				$module_options .= "<option value='$key' selected='selected'>$mod</a>" ;
+			} else {
+				$module_options .= "<option value='$key'>$mod</a>" ;
+			}
+		}
 		$cachetime_options = '';
 		foreach ( $bcachetime as $key => $cachetime ) {
 			if ( $key == $block_arr[$i]->getVar( 'bcachetime' ) ) {
@@ -403,7 +395,6 @@ function edit_block( $bid )
  * @param array $options
  * @param array $bgroups
  * @return
-
  */
 function update_block( $bid, $bside, $bweight, $bvisible, $bname, $btitle, $bdescription, $bcontent, $bctype, $bcachetime, $bmodule, $options = array(), $bgroups = array() )
 {
@@ -571,7 +562,10 @@ function order_block( $bid, $weight, $visible, $side , $name, $title, $bmodule, 
 
 	foreach ( $bmodule as $bmid ) {
 		$sql = sprintf( "INSERT INTO %s (block_id, module_id) VALUES (%u, %d)", $db->prefix( 'block_module_link' ), $bid, intval( $bmid ) );
-		$db->queryF( $sql );
+		$res = $db->queryF( $sql );
+		if ( !$res ) {
+			echo $db->error();
+		}
 	}
 }
 

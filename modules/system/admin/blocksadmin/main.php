@@ -166,13 +166,10 @@ if ( $op == "list" ) {
 }
 
 if ( $op == "order" ) {
-	//if ( !$GLOBALS['xoopsSecurity']->check() ) {
-	//	//redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
-//		exit();
-//	}
-
-    print_r_html($_REQUEST);
-
+	if ( !$GLOBALS['xoopsSecurity']->check() ) {
+		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		exit();
+	}
 
 	$key = 0 ;
 	$tmpoldbmodule = array();
@@ -193,11 +190,11 @@ if ( $op == "order" ) {
 	            } elseif ( array_diff(${$each}[$i], ${'old'.$each}[$i]) ) {
 	                $isChange = 1;
 	            }
-	        } elseif ( isset(${$each}[$i]) && trim(${'old'.$each}[$i]) != trim(${$each}[$i]) ) {
+	        } elseif ( isset(${$each}[$i]) && ( trim(${'old'.$each}[$i]) != trim(${$each}[$i]) ) ) {
 	            $isChange = 1;
 	        }
 	    }
-		if ( $isChange == 1 ) {
+        if ( $isChange == 1 ) {
 			order_block( $bid[$i], $weight[$i], $visible[$i], $side[$i], $name[$i], $title[$i], $bmodule[$i], $bcachetime[$i] );
 		}
 	}
