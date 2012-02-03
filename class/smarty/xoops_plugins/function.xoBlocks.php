@@ -1,5 +1,29 @@
 <?php
+/**
+ * Xoosla
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright The Xoosla Project http://sourceforge.net/projects/xoosla/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package install
+ * @since 1.0.0.0
+ * @author John Neill <zaquria@xoosla.com>
+ * @version $Id:
+ */
 
+/**
+ * smarty_function_xoBlocks()
+ *
+ * @param mixed $argStr
+ * @param mixed $smarty
+ * @return
+ */
 function smarty_function_xoBlocks( $argStr, &$smarty )
 {
 	static $block_objs;
@@ -13,8 +37,8 @@ function smarty_function_xoBlocks( $argStr, &$smarty )
 	$block_class = ( isset( $argStr['class'] ) && !empty( $argStr['class'] ) == 1 ) ? strip_tags( strtolower( $argStr['class'] ) ) : '';
 	$block_read_more = ( isset( $argStr['readmore'] ) && !empty( $argStr['readmore'] ) == 1 ) ? htmlspecialchars( $argStr['class'] ) : '';
 	/**
-	* get the block if it existsits
-	**/
+	 * get the block if it existsits
+	 */
 	if ( !isset( $block_objs[$block_id] ) ) {
 		$blockObj = new XoopsBlock( $block_id );
 		if ( !is_object( $blockObj ) ) {
@@ -72,14 +96,15 @@ function smarty_function_xoBlocks( $argStr, &$smarty )
 	$block = '';
 	$class = ( $block_class ) ? 'class="' . $block_class . '"' : '';
 	$block = '<div class="block"><div ' . $class . '>';
-	if ( $blockObj->getVar( 'title' ) ) {
-		$block .= '<h2 class="title">' . $blockObj->getVar( 'title' ) . '</h2>';
+
+	if ( $blockObj->getVar( 'title' ) != '' ) {
+		$block .= '<h2 class="block-title">' . $blockObj->getVar( 'title' ) . '</h2>';
 	}
 	$block .= '<div class="block-content">' . $content . '</div>';
 	if ( $block_read_more ) {
 		$block .= '<span class="block-read-more">Read More</span>';
 	}
-	$block .= '</div>';
+	$block .= '<div class="clear"></div></div>';
 	$block .= '</div>';
 	return $block;
 }
