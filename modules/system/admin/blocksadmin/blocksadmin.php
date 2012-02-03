@@ -167,14 +167,18 @@ function list_blocks()
 	$bcachetime = array( '0' => _NOCACHE, '30' => sprintf( _SECONDS, 30 ), '60' => _MINUTE, '300' => sprintf( _MINUTES, 5 ), '1800' => sprintf( _MINUTES, 30 ), '3600' => _HOUR, '18000' => sprintf( _HOURS, 5 ), '86400' => _DAY, '259200' => sprintf( _DAYS, 3 ), '604800' => _WEEK, '2592000' => _MONTH ) ;
 
 	foreach ( array_keys( $block_arr ) as $i ) {
-		$module_options = '';
-		foreach ( $display_list as $key => $mod ) {
-			if ( !empty( $block_mod[$i] ) && in_array( $key, $block_mod[$i] ) ) {
-				$module_options .= "<option value='$key' selected='selected'>$mod</a>" ;
-			} else {
-				$module_options .= "<option value='$key'>$mod</a>" ;
-			}
-		}
+	    $module_options = '';
+        foreach ( $display_list as $key => $mod ) {
+	        if ( !empty($block_mod[$i]) && in_array($key, $block_mod[$i]) ) {
+	            $module_options .= "<option value='$key' selected='selected'>$mod</a>" ;
+	        } else {
+	            $module_options .= "<option value='$key'>$mod</a>" ;
+	        }
+	    }
+
+	    print_r_html($module_options);
+
+	    echo '<br />';
 
 		$cachetime_options = '';
 		foreach ( $bcachetime as $key => $cachetime ) {
@@ -553,11 +557,11 @@ function delete_block_ok( $bid )
 function order_block( $bid, $weight, $visible, $side , $name, $title, $bmodule, $bcachetime )
 {
 	$myblock = new XoopsBlock( $bid );
-	$myblock->setVar( 'name', $name );
-	$myblock->setVar( 'title', $title );
 	$myblock->setVar( 'weight', $weight );
 	$myblock->setVar( 'visible', $visible );
 	$myblock->setVar( 'side', $side );
+	$myblock->setVar( 'name', $name );
+	$myblock->setVar( 'title', $title );
 	$myblock->setVar( 'bcachetime', $bcachetime );
 	$myblock->store();
 

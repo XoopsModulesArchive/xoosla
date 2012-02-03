@@ -118,7 +118,6 @@ if ( isset( $previewblock ) ) {
 
 if ( $op == "list" ) {
 	xoops_cp_header();
-
 	// Define main template
 	$xoopsOption['template_main'] = 'system_blocks.html';
 	// Call Header
@@ -167,10 +166,13 @@ if ( $op == "list" ) {
 }
 
 if ( $op == "order" ) {
-	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
-		exit();
-	}
+	//if ( !$GLOBALS['xoopsSecurity']->check() ) {
+	//	//redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+//		exit();
+//	}
+
+    print_r_html($_REQUEST);
+
 
 	$key = 0 ;
 	$tmpoldbmodule = array();
@@ -184,22 +186,22 @@ if ( $op == "order" ) {
 	foreach ( array_keys( $bid ) as $i ) {
 		$isChange = 0 ;
 		$list = array( 'name', 'title', 'weight', 'visible', 'side', 'bcachetime', 'bmodule' );
-		foreach ( $list as $each ) {
-			if ( isset( ${$each}[$i] ) && is_array( ${$each}[$i] ) ) {
-				if ( count( ${$each}[$i] ) != count( ${'old' . $each}[$i] ) ) {
-					$isChange = 1;
-				} else if ( isset( ${$each}[$i] ) && array_diff( ${$each}[$i], ${'old' . $each}[$i] ) ) {
-					$isChange = 1;
-				}
-			} else if ( isset( ${'old' . $each}[$i] ) && trim( ${'old' . $each}[$i] ) != trim( ${$each}[$i] ) ) {
-				$isChange = 1;
-			}
-		}
+	    foreach ($list as $each) {
+            if ( isset(${$each}[$i]) && is_array(${$each}[$i]) ) {
+	            if ( count(${$each}[$i]) != count(${'old'.$each}[$i]) ) {
+	                $isChange = 1;
+	            } elseif ( array_diff(${$each}[$i], ${'old'.$each}[$i]) ) {
+	                $isChange = 1;
+	            }
+	        } elseif ( isset(${$each}[$i]) && trim(${'old'.$each}[$i]) != trim(${$each}[$i]) ) {
+	            $isChange = 1;
+	        }
+	    }
 		if ( $isChange == 1 ) {
 			order_block( $bid[$i], $weight[$i], $visible[$i], $side[$i], $name[$i], $title[$i], $bmodule[$i], $bcachetime[$i] );
 		}
 	}
-    redirect_header( "admin.php?fct=blocksadmin", 1, _AM_DBUPDATED );
+	redirect_header( "admin.php?fct=blocksadmin", 1, _AM_DBUPDATED );
 	exit();
 }
 
