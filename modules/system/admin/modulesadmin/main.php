@@ -49,8 +49,6 @@ if ( in_array( $op, array( 'submit', 'install_ok', 'update_ok', 'uninstall_ok' )
 	}
 }
 
-echo $op;
-
 $myts = &MyTextsanitizer::getInstance();
 switch ( $op ) {
 	case 'list':
@@ -154,6 +152,7 @@ switch ( $op ) {
 				clearstatcache();
 				$file = trim( $file );
 				if ( !in_array( $file, $install_mods ) ) {
+
 					$module = &$module_handler->create();
 					$module->loadInfo( $file );
 					$toinstall_mods[$i]['name'] = $module->getInfo( 'name' );

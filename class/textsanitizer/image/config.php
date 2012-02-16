@@ -21,9 +21,9 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 return $config = array(
     // Click to open an image in a new window in full size using CaricFoto
-    'clickable' => 1,
+    'clickable' => 0,
     // Resize the image down to max_width set below
-    'resize' => 1,
+    'resize' => 0,
     // Maximum width of an image displayed on page, otherwise it will be resized
     'max_width' => 300);
 

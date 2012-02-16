@@ -138,7 +138,7 @@ $xoops->gzipCompression();
 /**
  * Start of Error Reportings.
  */
-if ( $xoopsConfig['debug_mode'] == 1 || $xoopsConfig['debug_mode'] == 2 ) {
+if ( $xoopsConfig['debug_mode'] == 1 || $xoopsConfig['debug_mode'] == 2 || $xoopsConfig['debug_mode'] == 4 ) {
 	xoops_loadLanguage( 'logger' );
 	error_reporting( E_ALL );
 	$xoopsLogger->enableRendering();

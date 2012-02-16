@@ -222,6 +222,7 @@ if ( $op == "update" ) {
 	$bcontent = isset( $bcontent ) ? $bcontent : '';
 	$bctype = isset( $bctype ) ? $bctype : '';
 	$bgroups = isset( $bgroups ) ? $bgroups : array();
+	$bmodule = isset( $bmodule ) ? $bmodule : -1;
 	update_block( $bid, $bside, $bweight, $bvisible, $bname, $btitle, $bdescription, $bcontent, $bctype, $bcachetime, $bmodule, $options, $bgroups );
 }
 

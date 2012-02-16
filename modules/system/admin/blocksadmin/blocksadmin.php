@@ -51,10 +51,10 @@ function list_blocks()
 	$generator_list = $gen_list;
 	unset( $gen_list );
 	// for custom blocks
-	$requests = array( "selmod" => - 1,
-		"selgen" => 1,
-		"selvis" => - 1,
-		"selgrp" => XOOPS_GROUP_USERS );
+	$requests = array( 'selmod' => - 1,
+		'selgen' => 1,
+		'selvis' => - 1,
+		'selgrp' => 1 );
 	foreach ( $requests as $req => $def ) {
 		if ( isset( $_GET[$req] ) ) {
 			$ {
@@ -81,17 +81,20 @@ function list_blocks()
 	$form = "<select size=\"1\" name=\"selmod\" onchange=\"location='" . XOOPS_URL . "/modules/system/admin.php?fct=blocksadmin&amp;selgen=$selgen&amp;selvis=$selvis&amp;selgrp=$selgrp&amp;selmod='+this.options[this.selectedIndex].value\">";
 	// $toponlyblock = false;
 	ksort( $display_list );
-	$display_list_spec[ - 2] = _AM_ALLPAGES;
+
+	$display_list_spec[0] = _AM_ALLPAGES;
 	$display_list_spec[ - 1] = _AM_TOPPAGE;
+	// $display_list_spec[-2] = _AM_TYPES;
 	$display_list_spec[ - 3] = _AM_UNASSIGNED;
-	// $display_list_spec[0] = 'This one';
+	$display_list = $display_list_spec + $display_list;
+
 	$display_list = $display_list_spec + $display_list;
 	foreach ( $display_list as $k => $v ) {
 		$form .= '<option value="' . $k . '"' . ( $k == $selmod ? ' selected="selected"' : '' ) . '>' . $v . '</option>';
 	}
 	$form .= '</select> '; //&nbsp;<input type="hidden" name="fct" value="blocksadmin" />';
 	printf( _AM_SVISIBLEIN, $form );
-	unset( $display_list[ - 2] );
+	// unset( $display_list[ - 2] );
 	// For selection of group access
 	$member_handler = &xoops_gethandler( 'member' );
 	$group_list[ - 1] = _AM_ALLGROUPS;
@@ -228,12 +231,10 @@ function list_blocks()
 					break;
 			}
 			echo "<div>" . _AM_NAME . ": <input type='text' name=name[$i] value='" . $name . "' size='30' /></div>";
-			echo '<div>' . _AM_MODULE . ': ' . $custom . '</div>';
+			echo '<div>' . $custom . '</div>';
 		} else {
-			echo "<div>" . _AM_NAME . ": " . $generator_list[$block_arr[$i]->getVar( 'mid' )] . " </div>
-				<input type='hidden' name='name[$i]' value='" . $block_arr[$i]->getVar( 'name' ) . "'/>
-
-		";
+			// echo "<div>" . _AM_MODULE . ": " . $generator_list[$block_arr[$i]->getVar( 'mid' )] . " </div><input type='hidden' name='name[$i]' value='" . $block_arr[$i]->getVar( 'name' ) . "'/>";
+			echo "<input type='hidden' name='name[$i]' value='" . $block_arr[$i]->getVar( 'name' ) . "'/>";
 		}
 		echo "</td><td class='$class'>" . $block_arr[$i]->getVar( 'description' ) . "</td>
         <td class='$class' align='center'>" . $generator_list[$block_arr[$i]->getVar( 'mid' )] . "</td>
@@ -326,7 +327,7 @@ function save_block( $bside, $bweight, $bvisible, $bname, $btitle, $bdescription
 		xoops_cp_footer();
 		exit();
 	}
-	$db = &Database::getInstance(); //&XoopsDatabaseFactory::getDatabaseConnection();
+	$db = &XoopsDatabaseFactory::getDatabaseConnection(); //&XoopsDatabaseFactory::getDatabaseConnection();
 	foreach ( $bmodule as $bmid ) {
 		$sql = 'INSERT INTO ' . $db->prefix( 'block_module_link' ) . ' (block_id, module_id) VALUES (' . $newid . ', ' . intval( $bmid ) . ')';
 		$db->query( $sql );
@@ -465,6 +466,7 @@ function update_block( $bid, $bside, $bweight, $bvisible, $bname, $btitle, $bdes
 			foreach ( $removed_groups as $groupid ) {
 				$criteria = new CriteriaCompo( new Criteria( 'gperm_name', 'block_read' ) );
 				$criteria->add( new Criteria( 'gperm_groupid', $groupid ) );
+
 				$criteria->add( new Criteria( 'gperm_itemid', $bid ) );
 				$criteria->add( new Criteria( 'gperm_modid', 1 ) );
 				$perm = $groupperm_handler->getObjects( $criteria );

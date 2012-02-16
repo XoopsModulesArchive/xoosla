@@ -30,7 +30,7 @@
 
 html { height: 100%;  overflow: -moz-scrollbars-vertical !important;}
 
-body { height: 100%; background-color: #142849; font-size: 11px; font-family: Verdana, tahoma, Helvetica, sans-serif; margin: 0; padding: 0; line-height: 1.2em }
+body { height: 100%; background-color: #142849; font-size: 12px; font-family: Verdana, tahoma, Helvetica, sans-serif; margin: 0; padding: 0; line-height: 1.2em }
 hr { height: 3px; border: 3px #e18a00 solid; width: 95% }
 ul { margin: 2px; padding: 2px; list-style: decimal inside; text-align: left }
 li { margin-left: 2px; list-style: square inside; color: #000000 }

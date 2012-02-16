@@ -92,6 +92,7 @@ if ( $block['is_custom'] ) {
 	if ( $block['edit_form'] != false ) {
 		$form->addElement( new XoopsFormLabel( _AM_OPTIONS, $block['edit_form'] ) );
 	}
+    $form->addElement( new XoopsFormHidden( 'bdescription', $block['description'] ) );
 }
 
 $form->addElement( new XoopsFormText( _AM_WEIGHT, 'bweight', 2, 5, $block['weight'] ) );

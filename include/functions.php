@@ -1110,6 +1110,37 @@ if ( !function_exists( 'print_r_html' ) ) {
 	}
 }
 
+/**
+ * system_CleanVars()
+ *
+ * @param mixed $global
+ * @param mixed $key
+ * @param string $default
+ * @param string $type
+ * @return
+ */
+function system_CleanVars( &$global, $key, $default = '', $type = 'int' )
+{
+	switch ( $type ) {
+		case 'array':
+			$ret = ( isset( $global[$key] ) && is_array( $global[$key] ) ) ? $global[$key] : $default;
+			break;
+		case 'date':
+			$ret = ( isset( $global[$key] ) ) ? strtotime( $global[$key] ) : $default;
+			break;
+		case 'string':
+			$ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_MAGIC_QUOTES ) : $default;
+			break;
+		case 'int':
+			$ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_NUMBER_INT ) : $default;
+			break;
+	}
+	if ( $ret === false ) {
+		return $default;
+	}
+	return $ret;
+}
+
 include_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'functions.encoding.php';
 include_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'functions.legacy.php';
 
