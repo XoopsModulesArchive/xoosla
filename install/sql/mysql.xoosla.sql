@@ -13,7 +13,7 @@ CREATE TABLE `avatar` (
   `avatar_type` char(1) NOT NULL DEFAULT '',
   PRIMARY KEY (`avatar_id`),
   KEY `avatar_type` (`avatar_type`,`avatar_display`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `avatar`
@@ -54,12 +54,11 @@ CREATE TABLE `banner` (
   PRIMARY KEY (`bid`),
   KEY `idxbannercid` (`cid`),
   KEY `idxbannerbidcid` (`bid`,`cid`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `banner`
 #
-
 
 # ############################
 
@@ -77,14 +76,13 @@ CREATE TABLE `bannerclient` (
   `extrainfo` text,
   PRIMARY KEY (`cid`),
   KEY `login` (`login`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `bannerclient`
 #
 
 # ############################
-
 #
 # Table structure for table `bannerfinish`
 #
@@ -129,6 +127,7 @@ INSERT INTO `block_module_link` (`block_id`, `module_id`) VALUES
 (10, 0),
 (11, 0),
 (12, 0);
+(13, 0);
 
 # ############################
 
@@ -164,7 +163,7 @@ CREATE TABLE `config` (
   PRIMARY KEY (`conf_id`),
   KEY `conf_mod_cat_id` (`conf_modid`,`conf_catid`),
   KEY `conf_order` (`conf_order`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `config`
@@ -207,7 +206,7 @@ INSERT INTO `config` (`conf_id`, `conf_modid`, `conf_catid`, `conf_name`, `conf_
 (36, 0, 2, 'maxuname', '_MD_AM_MAXUNAME', '10', '_MD_AM_MAXUNAMEDSC', 'textbox', 'int', 3),
 (37, 0, 1, 'bad_ips', '_MD_AM_BADIPS', 'a:1:{i:0;s:9:"127.0.0.1";}', '_MD_AM_BADIPSDSC', 'textarea', 'array', 42),
 (38, 0, 3, 'meta_keywords', '_MD_AM_METAKEY', 'xoosla, web applications, web 2.0, sns, news, technology, headlines, linux, software, download, downloads, free, community, forum, bulletin board, bbs, php, survey, polls, kernel, comment, comments, portal, odp, open source, opensource, FreeSoftware, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site, blog, wiki, module, modules, theme, themes, cms, content management', '_MD_AM_METAKEYDSC', 'textarea', 'text', 0),
-(39, 0, 3, 'footer', '_MD_AM_FOOTER', 'Powered by xoosla &#169; 2001-2012 <a href="http://xoosla.sourceforge.net" rel="external" title="The xoosla Project">The xoosla Project</a>', '_MD_AM_FOOTERDSC', 'textarea', 'text', 20),
+(39, 0, 3, 'footer', '_MD_AM_FOOTER', 'Powered by Xoosla © 2012 <a href="http://xoosla.sourceforge.net" rel="external" title="Xoosla CMS">Xoosla CMS</a>', '_MD_AM_FOOTERDSC', 'textarea', 'text', 20),
 (40, 0, 4, 'censor_enable', '_MD_AM_DOCENSOR', '0', '_MD_AM_DOCENSORDSC', 'yesno', 'int', 0),
 (41, 0, 4, 'censor_words', '_MD_AM_CENSORWRD', 'a:2:{i:0;s:4:"fuck";i:1;s:4:"shit";}', '_MD_AM_CENSORWRDDSC', 'textarea', 'array', 1),
 (42, 0, 4, 'censor_replace', '_MD_AM_CENSORRPLC', '#OOPS#', '_MD_AM_CENSORRPLCDSC', 'textbox', 'text', 2),
@@ -313,7 +312,7 @@ CREATE TABLE `configcategory` (
   `confcat_name` varchar(255) NOT NULL DEFAULT '',
   `confcat_order` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`confcat_id`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `configcategory`
@@ -330,6 +329,9 @@ INSERT INTO `configcategory` (`confcat_id`, `confcat_name`, `confcat_order`) VAL
 
 # ############################
 
+#
+# Table structure for table `configoption`
+#
 
 CREATE TABLE `configoption` (
   `confop_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -340,9 +342,9 @@ CREATE TABLE `configoption` (
   KEY `conf_id` (`conf_id`)
 ) DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `x632_configoption`
---
+#
+# Dumping data for table `configoption`
+#
 
 INSERT INTO `configoption` (`confop_id`, `confop_name`, `confop_value`, `conf_id`) VALUES
 (0, '_MD_AM_DEBUGMODE0', '0', 13),
@@ -412,7 +414,7 @@ CREATE TABLE `groups` (
   `group_type` varchar(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`groupid`),
   KEY `group_type` (`group_type`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `groups`
@@ -435,7 +437,7 @@ CREATE TABLE `groups_users_link` (
   `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`linkid`),
   KEY `groupid_uid` (`groupid`,`uid`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `groups_users_link`
@@ -461,7 +463,7 @@ CREATE TABLE `group_permission` (
   KEY `groupid` (`gperm_groupid`),
   KEY `itemid` (`gperm_itemid`),
   KEY `gperm_modid` (`gperm_modid`,`gperm_name`(10))
-)  DEFAULT CHARSET=utf8 ;
+) DEFAULT CHARSET=utf8 ;
 
 #
 # Dumping data for table `group_permission`
@@ -525,7 +527,9 @@ INSERT INTO `group_permission` (`gperm_id`, `gperm_groupid`, `gperm_itemid`, `gp
 (55, 1, 12, 1, 'block_read'),
 (56, 2, 12, 1, 'block_read'),
 (57, 3, 12, 1, 'block_read');
-
+(58, 1, 13, 1, 'block_read'),
+(59, 2, 13, 1, 'block_read'),
+(59, 3, 13, 1, 'block_read'),
 # ############################
 
 #
@@ -590,7 +594,7 @@ CREATE TABLE `imgset` (
   `imgset_refid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`imgset_id`),
   KEY `imgset_refid` (`imgset_refid`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `imgset`
@@ -663,7 +667,7 @@ CREATE TABLE `modules` (
   KEY `isactive` (`isactive`),
   KEY `weight` (`weight`),
   KEY `hascomments` (`hascomments`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `modules`
@@ -673,25 +677,6 @@ INSERT INTO `modules` (`mid`, `name`, `version`, `last_update`, `weight`, `isact
 (1, 'System', 210, CURRENT_TIMESTAMP, 0, 1, 'system', 0, 1, 0, 0, 0, 0);
 
 # ############################
-
-#
-# Table structure for table `newblocks`
-#
-
-INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `description`, `content`, `side`, `weight`, `visible`, `block_type`, `c_type`, `isactive`, `dirname`, `func_file`, `show_func`, `edit_func`, `template`, `bcachetime`, `last_modified`) VALUES
-(1, 1, 0, '', 'User Menu', 'User Menu2', 'Shows user block', '', 0, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_user_show', '', 'system_block_user.html', 0, CURRENT_TIMESTAMP),
-(2, 1, 2, '', 'Login', 'Login2', 'Shows login form', '', 0, 1, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_login_show', '', 'system_block_login.html', 0, CURRENT_TIMESTAMP),
-(3, 1, 3, '', 'Search', 'Search', 'Shows search form block', '', 1, 0, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_search_show', '', 'system_block_search.html', 0, CURRENT_TIMESTAMP),
-(4, 1, 4, '', 'Waiting Contents', 'Waiting Contents', 'Shows contents waiting for approval', '', 0, 3, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_waiting_show', '', 'system_block_waiting.html', 0, CURRENT_TIMESTAMP),
-(5, 1, 5, '', 'Main Menu', 'Main Menu', 'Shows the main navigation menu of the site', '', 0, 2, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_main_show', '', 'system_block_mainmenu.html', 0, CURRENT_TIMESTAMP),
-(6, 1, 6, '320|190|s_poweredby.gif|1', 'Site Info', 'Site Info', 'Shows basic info about the site and a link to Recommend Us pop up window', '', 0, 4, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_info_show', 'b_system_info_edit', 'system_block_siteinfo.html', 0, CURRENT_TIMESTAMP),
-(7, 1, 7, '', 'Who is Online', 'Who is Online', 'Displays users/guests currently online', '', 0, 5, 1, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_online_show', '', 'system_block_online.html', 0, CURRENT_TIMESTAMP),
-(8, 1, 8, '10|1', 'Top Posters', 'Top Posters', 'Top posters', '', 0, 6, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_topposters_show', 'b_system_topposters_edit', 'system_block_topusers.html', 0, CURRENT_TIMESTAMP),
-(9, 1, 9, '10|1', 'New Members', 'New Members', 'Shows most recent users', '', 0, 7, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_newmembers_show', 'b_system_newmembers_edit', 'system_block_newusers.html', 0, CURRENT_TIMESTAMP),
-(10, 1, 10, '10', 'Recent Comments', 'Recent Comments', 'Shows most recent comments', '', 0, 8, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_comments_show', 'b_system_comments_edit', 'system_block_comments.html', 0, CURRENT_TIMESTAMP),
-(11, 1, 11, '', 'Notification Options', 'Notification Options', 'Shows notification options', '', 0, 9, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_notification_show', '', 'system_block_notification.html', 0, CURRENT_TIMESTAMP),
-(12, 1, 12, '0|80', 'Themes', 'Themes', 'Shows theme selection box', '', 0, 10, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_themes_show', 'b_system_themes_edit', 'system_block_themes.html', 0, CURRENT_TIMESTAMP),
-(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'Welcome to Xoosla', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP),
 
 #
 # Dumping data for table `newblocks`
@@ -742,8 +727,7 @@ INSERT INTO `newblocks` (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `
 (10, 1, 10, '10', 'Recent Comments', 'Recent Comments', 'Shows most recent comments', '', 0, 8, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_comments_show', 'b_system_comments_edit', 'system_block_comments.html', 0, CURRENT_TIMESTAMP),
 (11, 1, 11, '', 'Notification Options', 'Notification Options', 'Shows notification options', '', 0, 9, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_notification_show', '', 'system_block_notification.html', 0, CURRENT_TIMESTAMP),
 (12, 1, 12, '0|80', 'Themes', 'Themes', 'Shows theme selection box', '', 0, 10, 0, 'S', 'H', 1, 'system', 'system_blocks.php', 'b_system_themes_show', 'b_system_themes_edit', 'system_block_themes.html', 0, CURRENT_TIMESTAMP),
-(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'werwerwerwerwe', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP);
-
+(13, 0, 0, '', 'Xoosla Welcome', 'Welcome To Your New Xoosla Webportal', 'Welcome Block', 'Thank-you for choosing Xoosla CMS for your web portal and we hope that you continue to use it for a long time to come. \r\n\r\n[b]So what''s next? [/b]\r\n\r\nWe suggest that you update your configuration settings to better suit your own needs. Click on the administration button in the user menu to get you started. Remember to change the meta tags as well or you will be giving Xoosla plenty hits in the search engine department :)\r\n\r\nInstall some modules and a theme to help get you started.\r\n\r\n[b]Can I still Use Xoops Modules and Themes? [/b]\r\n\r\nFor the time being yes, but we do plan on changing/updating modules and themes in the very near future, and we are unsure how long compatibility will last. However, we can assure you that you will be giving plenty of warning what we are going to change, how these changes will affect you and how you can update your modules or themes.\r\n\r\nXoosla Team!', 5, 0, 1, 'C', 'S', 1, '', '', '', '', '', 0, CURRENT_TIMESTAMP);
 
 # ############################
 
@@ -805,7 +789,7 @@ CREATE TABLE `ranks` (
   KEY `rank_max` (`rank_max`),
   KEY `rankminrankmaxranspecial` (`rank_min`,`rank_max`,`rank_special`),
   KEY `rankspecial` (`rank_special`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `ranks`
@@ -852,7 +836,7 @@ CREATE TABLE `smiles` (
   `emotion` varchar(75) NOT NULL DEFAULT '',
   `display` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `smiles`
@@ -862,7 +846,6 @@ INSERT INTO `smiles` (`id`, `code`, `smile_url`, `emotion`, `display`) VALUES
 (1, ':-D', 'smilies/biggrin.gif', 'Very Happy', 1),
 (2, ':-)', 'smilies/smile.gif', 'Smile', 1),
 (3, ':-(', 'smilies/sad.gif', 'Sad', 1),
-
 (4, ':-o', 'smilies/ohmy.gif', 'OH MY GAWD!', 1),
 (5, ':unsure:', 'smilies/unsure.gif', 'Confused', 1),
 (6, '8-)', 'smilies/cool.gif', 'Cool', 1),
@@ -877,8 +860,8 @@ INSERT INTO `smiles` (`id`, `code`, `smile_url`, `emotion`, `display`) VALUES
 (15, ':pint:', 'smilies/pint.gif', 'Another pint of beer', 1),
 (16, ':hammer:', 'smilies/tooltime.gif', 'ToolTimes at work', 1),
 (17, ':idea:', 'smilies/idea.gif', 'I have an idea', 1),
-(19, ':yes:', 'smilies/yes.gif', 'Yes!', 1),
 (18, ':blush:', 'smilies/blush.gif', 'Blushing', 1),
+(19, ':yes:', 'smilies/yes.gif', 'Yes!', 1),
 (20, ':whistle:', 'smilies/whistle.gif', 'Whistle', 1),
 (22, ':grin:', 'smilies/grin.gif', 'Grin', 1),
 (23, ':wave:', 'smilies/bye.gif', 'Wave', 1),
@@ -909,7 +892,7 @@ CREATE TABLE `tplfile` (
   PRIMARY KEY (`tpl_id`),
   KEY `tpl_refid` (`tpl_refid`,`tpl_type`),
   KEY `tpl_tplset` (`tpl_tplset`,`tpl_file`(10))
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `tplfile`
@@ -980,7 +963,7 @@ CREATE TABLE `tplset` (
   `tplset_credits` text,
   `tplset_created` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`tplset_id`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `tplset`
@@ -1049,7 +1032,7 @@ CREATE TABLE `users` (
   KEY `uiduname` (`uid`,`uname`),
   KEY `unamepass` (`uname`,`pass`),
   KEY `level` (`level`)
-)  DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 #
 # Dumping data for table `users`
