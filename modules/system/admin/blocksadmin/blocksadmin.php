@@ -57,14 +57,11 @@ function list_blocks()
 		'selgrp' => 1 );
 	foreach ( $requests as $req => $def ) {
 		if ( isset( $_GET[$req] ) ) {
-			$ {
-				$req} = intval( $_GET[$req] );
+			${$req} = intval( $_GET[$req] );
 		} elseif ( isset( $_COOKIE[$req] ) ) {
-			$ {
-				$req} = intval( $_COOKIE[$req] );
+			${$req} = intval( $_COOKIE[$req] );
 		} else {
-			$ {
-				$req} = $def;
+			${$req} = $def;
 		}
 	}
 	// echo "<h4>" . _AM_BADMIN . "</h4>";
@@ -82,12 +79,10 @@ function list_blocks()
 	// $toponlyblock = false;
 	ksort( $display_list );
 
-	$display_list_spec[0] = _AM_ALLPAGES;
-	$display_list_spec[ - 1] = _AM_TOPPAGE;
-	// $display_list_spec[-2] = _AM_TYPES;
-	$display_list_spec[ - 3] = _AM_UNASSIGNED;
-	$display_list = $display_list_spec + $display_list;
-
+	$display_list_spec[0] = _AM_SYSTEM_BLOCKS_ALLPAGES;
+	$display_list_spec[-1] = _AM_SYSTEM_BLOCKS_TOPPAGE;
+	$display_list_spec[-2] = _AM_SYSTEM_BLOCKS_TYPES;
+	$display_list_spec[-3] = _AM_UNASSIGNED;
 	$display_list = $display_list_spec + $display_list;
 	foreach ( $display_list as $k => $v ) {
 		$form .= '<option value="' . $k . '"' . ( $k == $selmod ? ' selected="selected"' : '' ) . '>' . $v . '</option>';
