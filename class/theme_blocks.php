@@ -80,8 +80,8 @@ class xos_logos_PageBuilder {
 			list ( $mid, $dirname ) = array( $GLOBALS['xoopsModule']->getVar( 'mid' ), $GLOBALS['xoopsModule']->getVar( 'dirname' ) );
 			$isStart = ( substr( $_SERVER['PHP_SELF'], - 9 ) == 'index.php' && $xoopsConfig['startpage'] == $dirname && empty( $_SERVER['QUERY_STRING'] ) );
 			if ( $isStart && empty( $_SERVER['QUERY_STRING'] ) ) {
-			    $mid = 0;
-            }
+				$mid = 0;
+			}
 		} else {
 			list ( $mid, $dirname ) = array( 0, 'system' );
 			$isStart = !empty( $GLOBALS['xoopsOption']['show_cblock'] );

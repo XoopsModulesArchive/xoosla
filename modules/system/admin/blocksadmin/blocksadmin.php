@@ -52,16 +52,19 @@ function list_blocks()
 	unset( $gen_list );
 	// for custom blocks
 	$requests = array( 'selmod' => - 1,
-		'selgen' => 1,
+		'selgen' => - 2,
 		'selvis' => - 1,
 		'selgrp' => 1 );
 	foreach ( $requests as $req => $def ) {
 		if ( isset( $_GET[$req] ) ) {
-			${$req} = intval( $_GET[$req] );
+			$ {
+				$req} = intval( $_GET[$req] );
 		} elseif ( isset( $_COOKIE[$req] ) ) {
-			${$req} = intval( $_COOKIE[$req] );
+			$ {
+				$req} = intval( $_COOKIE[$req] );
 		} else {
-			${$req} = $def;
+			$ {
+				$req} = $def;
 		}
 	}
 	// echo "<h4>" . _AM_BADMIN . "</h4>";
@@ -79,19 +82,20 @@ function list_blocks()
 	// $toponlyblock = false;
 	ksort( $display_list );
 
-	$display_list_spec[0] = _AM_SYSTEM_BLOCKS_ALLPAGES;
-	$display_list_spec[-1] = _AM_SYSTEM_BLOCKS_TOPPAGE;
-	$display_list_spec[-2] = _AM_SYSTEM_BLOCKS_TYPES;
-	$display_list_spec[-3] = _AM_UNASSIGNED;
+	$display_list_spec[ - 2] = _AM_ALL;
+	$display_list_spec[ - 1] = _AM_TOPONLY;
+	$display_list_spec[0] = _AM_ALLPAGES;
+	$display_list_spec[ - 3] = _AM_UNASSIGNED;
 	$display_list = $display_list_spec + $display_list;
 	foreach ( $display_list as $k => $v ) {
 		$form .= '<option value="' . $k . '"' . ( $k == $selmod ? ' selected="selected"' : '' ) . '>' . $v . '</option>';
 	}
 	$form .= '</select> '; //&nbsp;<input type="hidden" name="fct" value="blocksadmin" />';
 	printf( _AM_SVISIBLEIN, $form );
-	// unset( $display_list[ - 2] );
+	unset( $display_list[ - 2] );
 	// For selection of group access
-	$member_handler = &xoops_gethandler( 'member' );
+
+    $member_handler = &xoops_gethandler( 'member' );
 	$group_list[ - 1] = _AM_ALLGROUPS;
 	$groups = $member_handler->getGroupList();
 	foreach ( $groups as $k => $v ) {
@@ -134,13 +138,15 @@ function list_blocks()
 
 	$order_block = ( isset( $selvis ) ? "" : "b.visible DESC, " ) . "b.side,b.weight,b.bid";
 	$vis_block = ( $selvis == - 1 ) ? null : $selvis;
-	$mod_block = ( $selmod == - 2 ) ? null : $selmod;
+	// $mod_block = ( $selmod == - 2 ) ? null : $selmod;
+	$mod_block = $selmod;
+
 	if ( $selgrp == 0 ) {
 		// get blocks that are not assigned to any groups
 		$block_arr = XoopsBlock::getNonGroupedBlocks( $mod_block, $toponlyblock = false, $vis_block, $order_block );
 	} else {
 		$grp_block = ( $selgrp == - 1 ) ? null : $selgrp;
-		$block_arr = XoopsBlock::getAllByGroupModule( $grp_block, $mod_block, $toponlyblock = false, $vis_block, $order_block );
+		$block_arr = XoopsBlock::getAllByGroupModule( $grp_block, $mod_block, $toponlyblock, $vis_block, $order_block );
 	}
 	if ( $selgen >= 0 ) {
 		foreach ( array_keys( $block_arr ) as $bid ) {
@@ -205,6 +211,8 @@ function list_blocks()
 		}
 		$title = $block_arr[$i]->getVar( 'title' );
 		$name = $block_arr[$i]->getVar( 'name' );
+
+		//unset( $module_options[-2] );
 
 		echo "<tr valign='top'>
         <td class='$class' align='center'>" . $block_arr[$i]->getVar( 'bid' ) . "</td>

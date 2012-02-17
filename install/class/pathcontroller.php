@@ -86,7 +86,7 @@ class PathController {
 			$this->xoopsPath['lib'] = dirname( $path ) . '/' . ( $this->xoopsPathDefault['lib'] );
 			// If the folder is not created, re-locate Xoosla lib folder inside Xoosla root folder
 			if ( !is_dir( $this->xoopsPath['lib'] ) ) {
-				$this->xoopsPath['lib'] = $path . '/' . ( $this->xoopsPathDefault['lib'] );
+				$this->xoopsPath['lib'] = $path. '/' . ( $this->xoopsPathDefault['lib'] );
 			}
 			// Firstly, locate Xoosla data folder out of Xoosla root folder
 			$this->xoopsPath['data'] = dirname( $path ) . '/' . ( $this->xoopsPathDefault['data'] );
@@ -211,6 +211,7 @@ class PathController {
 			if ( is_dir( $this->xoopsPath[$path] ) && is_readable( $this->xoopsPath[$path] ) ) {
 				$this->validPath[$path] = 1;
 			}
+
 			$ret *= $this->validPath[$path];
 		}
 		return $ret;

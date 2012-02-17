@@ -40,11 +40,7 @@ $module_handler = &xoops_gethandler( 'module' );
 $criteria = new CriteriaCompo( new Criteria( 'hasmain', 1 ) );
 $criteria->add( new Criteria( 'isactive', 1 ) );
 
-$module_list[ - 1] = _AM_TOPPAGE;
-$module_list[0] = _AM_ALLPAGES;
-$module_list[ - 3] = _AM_TOPPAGE;
-
-$display_list_spec[ - 1] = _AM_TOPPAGE;
+$display_list_spec[ - 1] = _AM_TOPONLY;
 $display_list_spec[ - 2] = _AM_ALLPAGES;
 $display_list_spec[ - 3] = _AM_UNASSIGNED;
 
@@ -52,9 +48,7 @@ $module_list = $module_handler->getList( $criteria );
 $module_list = $display_list_spec + $module_list;
 foreach ( $module_list as $k => $v ) {
 	$m_list[$k] = $v;
-	// $form .= '<option value="' . $k . '"' . ( $k == $selmod ? ' selected="selected"' : '' ) . '>' . $v . '</option>';
 }
-//ksort( $module_list );
 $mod_select->addOptionArray( $module_list );
 $form->addElement( $mod_select );
 

@@ -66,6 +66,8 @@ CREATE TABLE `banner` (
 # Table structure for table `bannerclient`
 #
 
+
+
 CREATE TABLE `bannerclient` (
   `cid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL DEFAULT '',
@@ -115,19 +117,19 @@ CREATE TABLE `block_module_link` (
 #
 
 INSERT INTO `block_module_link` (`block_id`, `module_id`) VALUES
-(1, 0),
-(2, 0),
-(3, 0),
-(4, 0),
-(5, 0),
-(6, 0),
-(7, 0),
-(8, 0),
-(9, 0),
-(10, 0),
-(11, 0),
-(12, 0);
-(13, 0);
+(1, -1),
+(2, -1),
+(3, -1),
+(4, -1),
+(5, -1),
+(6, -1),
+(7, -1),
+(8, -1),
+(9, -1),
+(10, -1),
+(11, -1),
+(12, -1),
+(13, -1);
 
 # ############################
 
@@ -238,6 +240,7 @@ INSERT INTO `config` (`conf_id`, `conf_modid`, `conf_catid`, `conf_name`, `conf_
 (68, 0, 6, 'sendmailpath', '_MD_AM_SENDMAILPATH', '/usr/sbin/sendmail', '_MD_AM_SENDMAILPATHDESC', 'textbox', 'text', 5),
 (69, 0, 6, 'from', '_MD_AM_MAILFROM', '', '_MD_AM_MAILFROMDESC', 'textbox', 'text', 1),
 (70, 0, 6, 'fromname', '_MD_AM_MAILFROMNAME', '', '_MD_AM_MAILFROMNAMEDESC', 'textbox', 'text', 2),
+
 (71, 0, 1, 'sslloginlink', '_MD_AM_SSLLINK', 'https://', '_MD_AM_SSLLINKDSC', 'textbox', 'text', 33),
 (72, 0, 1, 'theme_set_allowed', '_MD_AM_THEMEOK', 'a:1:{i:0;s:7:"default";}', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13),
 (73, 0, 6, 'fromuid', '_MD_AM_MAILFROMUID', '1', '_MD_AM_MAILFROMUIDDESC', 'user', 'int', 3),
@@ -345,6 +348,7 @@ CREATE TABLE `configoption` (
 #
 # Dumping data for table `configoption`
 #
+
 
 INSERT INTO `configoption` (`confop_id`, `confop_name`, `confop_value`, `conf_id`) VALUES
 (0, '_MD_AM_DEBUGMODE0', '0', 13),
@@ -526,10 +530,11 @@ INSERT INTO `group_permission` (`gperm_id`, `gperm_groupid`, `gperm_itemid`, `gp
 (54, 3, 11, 1, 'block_read'),
 (55, 1, 12, 1, 'block_read'),
 (56, 2, 12, 1, 'block_read'),
-(57, 3, 12, 1, 'block_read');
+(57, 3, 12, 1, 'block_read'),
 (58, 1, 13, 1, 'block_read'),
 (59, 2, 13, 1, 'block_read'),
-(59, 3, 13, 1, 'block_read'),
+(60, 3, 13, 1, 'block_read');
+
 # ############################
 
 #

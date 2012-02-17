@@ -28,14 +28,14 @@
 defined( 'XOOSLA_INSTALL' ) or die( 'Direct Access To This File Not Allowed!' );
 
 $ctrl = new PathController( $wizard->configs['xoopsPathDefault'], $wizard->configs['dataPath'] );
-/*
-if ( $_SERVER['REQUEST_METHOD'] == 'GET' && $_POST['var'] && $_POST['action'] == 'checkpath' ) {
+
+if ( $_SERVER['REQUEST_METHOD'] == 'GET' && @$_POST['var'] && $_POST['action'] == 'checkpath' ) {
 	$path = $_GET['var'];
 	$ctrl->xoopsPath[$path] = htmlspecialchars( trim( $_GET['path'] ) );
 	echo genPathCheckHtml( $path, $ctrl->checkPath( $path ) );
 	exit();
 }
-*/
+
 $ctrl->execute( $errors );
 
 foreach ( $wizard->configs['extensions'] as $ext => $value ) {
@@ -117,8 +117,8 @@ xoShowErrors( $errors );
 
 xoFormField( 'root', $ctrl->xoopsPath['root'], INSTALL_ROOT_PATH_LABEL, INSTALL_ROOT_PATH_HELP, issetError( $errors['root'] ) );
 xoFormField( 'lib', $ctrl->xoopsPath['lib'], INSTALL_LIB_PATH_LABEL, INSTALL_LIB_PATH_HELP, issetError( $errors['lib'] ) );
-xoFormField( 'data', $ctrl->xoopsPath['data'], INSTALL_URL_LABEL, INSTALL_DATA_PATH_HELP, issetError( $errors['data'] ) );
-xoFormField( 'URL', $ctrl->xoopsUrl, INSTALL_DATA_PATH_LABEL, INSTALL_URL_HELP );
+xoFormField( 'data', $ctrl->xoopsPath['data'], INSTALL_DATA_PATH_LABEL, INSTALL_DATA_PATH_HELP, issetError( $errors['data'] ) );
+xoFormField( 'URL', $ctrl->xoopsUrl, INSTALL_URL_LABEL, INSTALL_URL_HELP );
 
 ?>
 </fieldset>
