@@ -1,0 +1,8 @@
+LANGUAGE DIFFERENCES
+=====================
+
+Below are language differences from each varsions of Xoosla
+
+===============================
+Feb 17th 2012: Version 1.0.0.0 RC1
+===============================
