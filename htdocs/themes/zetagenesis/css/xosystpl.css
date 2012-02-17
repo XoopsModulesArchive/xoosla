@@ -1,0 +1,71 @@
+/* ===== main menu block ===== */
+#mainmenu a, #system-block_mainmenu a {
+	display: 						block;
+	margin: 						0;
+	padding: 						2px;
+	font-weight: 					500;
+}
+
+#mainmenu a:hover, #system-block_mainmenu a:hover {
+	text-decoration:				none !important;
+}
+
+#mainmenu a.menuTop, #mainmenu a.menuMain, #system-block_mainmenu a.menuTop, #system-block_mainmenu a.menuMain {
+    padding-left:                   8px;
+}
+
+#mainmenu a.menuSub, #system-block_mainmenu a.menuSub {
+	background-color:				inherit;
+	padding-left: 					20px;
+	color:							#294d9f !important;
+	font-size:						.8em;
+	font-style: 					normal;
+}
+
+#mainmenu a.menuSub:hover, #system-block_mainmenu a.menuSub:hover {
+	background-color: 			    inherit;
+	color:							#000;
+	text-decoration: 				underline !important;
+}
+#xo-back {text-align:center;}
+/* ===== user menu block ===== */
+#system-block_usermenu {}
+#usermenu a, #system-block_usermenu a {
+	display:                        block;
+	padding-bottom: 				2px;
+	font-size: 						.9em;
+	font-style: 					normal;
+}
+
+#usermenu a:hover, #system-block_usermenu a:hover {}
+#usermenu a.menuTop, #system-block_usermenu a.menuTop {}
+#usermenu a.highlight, #system-block_usermenu .highlight {
+	background-color: 			    #333;
+	color: 							#ff0000;
+}
+
+#system-search {
+    text-align:                     center;
+}
+
+#system-search fieldset {
+    margin:                         .5em;
+    padding:                        0;
+}
+
+#system-search input[type=text] {
+	width:                          120px;
+	margin:                         0;
+}
+
+#system-login {
+    text-align:                     center;
+}
+
+#system-login input {
+    width:                          120px;
+}
+/*=========== Règles nécessaires pour les anciens templates des modules ============*/
+#usermenu a, #mainmenu a {	display: block;}
+.xo-canvas-column .menuSub { padding-left: 1em;}
+

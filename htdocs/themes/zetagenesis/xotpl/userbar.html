@@ -1,0 +1,30 @@
+<div id="xo-userbar">
+	<{if !$xoops_isuser}>
+		<form method="post" action="<{xoAppUrl /user.php op=login}>">
+			<{$smarty.const._LOGIN}>&nbsp;
+		<input name="uname" type="text" />&nbsp;&nbsp;<input name="pass" type="password"/>
+		<input type="hidden" name="xoops_redirect" value="<{$smarty.server.REQUEST_URI}>" />
+		
+		<{if $lang_siteclosemsg}>
+		<input type="hidden" name="xoops_login" value="1" />
+		<{/if}>
+		<button type="submit"><img src="<{xoImgUrl icons/users/home.png}>" alt="<{$smarty.const._LOGIN}>" /></button>
+		</form>
+		&nbsp;+&nbsp;<a href="<{xoAppUrl /register.php}>" class="register" title="">Register</a>
+	<{else}>
+		<{xoInboxCount assign=pmcount}>
+		<a href="<{xoAppUrl viewpmsg.php}>" title="Show your inbox content">
+		<{if $pmcount}>
+			<img src="<{xoImgUrl icons/users/inbox-full.png}>" alt="Inbox (<{$pmcount}>)"/>
+		<{else}>
+			<img src="<{xoImgUrl icons/users/inbox.png}>" alt="Show your inbox content"/>
+		<{/if}>
+		</a>
+		<a href="<{xoAppUrl /user.php}>" title="View your profile"><img src="<{xoImgUrl icons/users/profile.png}>" alt="My profile"/></a>
+
+		<{if $xoops_isadmin}>
+			<a href="<{xoAppUrl /admin.php}>" title="Display site administration"><img src="<{xoImgUrl icons/users/configuration.png}>" alt="Admin" /></a>
+		<{/if}>
+		<a href="<{xoAppUrl /user.php op=logout}>" title="Click to logout" ><img src="<{xoImgUrl icons/users/exit.png}>" alt="Logout"/></a>
+	<{/if}>
+</div>

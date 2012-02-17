@@ -1,0 +1,32 @@
+#<set a custom error page>
+ErrorDocument 400 /errors/index.php?error=400
+ErrorDocument 401 /errors/index.php?error=401
+ErrorDocument 402 /errors/index.php?error=402
+ErrorDocument 403 /errors/index.php?error=403
+ErrorDocument 404 /errors/index.php?error=404
+ErrorDocument 405 /errors/index.php?error=405
+ErrorDocument 406 /errors/index.php?error=406
+ErrorDocument 407 /errors/index.php?error=407
+ErrorDocument 408 /errors/index.php?error=408
+ErrorDocument 409 /errors/index.php?error=409
+ErrorDocument 411 /errors/index.php?error=411
+ErrorDocument 412 /errors/index.php?error=412
+ErrorDocument 413 /errors/index.php?error=413
+ErrorDocument 414 /errors/index.php?error=414
+ErrorDocument 415 /errors/index.php?error=415
+ErrorDocument 417 /errors/index.php?error=417
+ErrorDocument 500 /errors/index.php?error=500
+ErrorDocument 501 /errors/index.php?error=501
+ErrorDocument 502 /errors/index.php?error=502
+ErrorDocument 503 /errors/index.php?error=503
+ErrorDocument 504 /errors/index.php?error=504
+ErrorDocument 505 /errors/index.php?error=505
+
+<FilesMatch "\.(gif|jpe?g|png|css|js|cgi)$">
+  ErrorDocument 404 default
+</FilesMatch>
+
+#<Set some php settings off>
+php_value session.auto_start              0
+php_value magic_quotes_gpc                on
+php_value register_globals                0
