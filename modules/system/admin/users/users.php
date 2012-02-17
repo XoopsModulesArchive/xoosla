@@ -1,5 +1,5 @@
 <?php
-// $Id: users.php 8066 2011-11-06 05:09:33Z beckmi $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

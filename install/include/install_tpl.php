@@ -26,7 +26,7 @@
  * @author Kris <kris@frxoops.org>
  * @author DuGris (aka L. JEN) <dugris@frxoops.org>
  * @author John Neill (aka Zaquria) <zaquria@xoosla.com>
- * @version $Id: install_tpl.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  */
 defined( 'XOOSLA_INSTALL' ) or die( 'Direct Access To This File Not Allowed!' );
 /**

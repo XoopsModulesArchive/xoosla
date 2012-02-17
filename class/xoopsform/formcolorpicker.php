@@ -15,7 +15,7 @@
  * @subpackage      form
  * @since           2.0.0
  * @author          Zoullou <webmaster@zoullou.org>
- * @version         $Id: formcolorpicker.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
@@ -25,7 +25,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  * @author 		Zoullou <webmaster@zoullou.org>
  * @author 		John Neill <catzwolf@xoops.org>
  * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/ 
- * @version 	$Id: formcolorpicker.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version 	$Id$
  * @package 	Kernel
  * @access 		public
  */

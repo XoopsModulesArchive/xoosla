@@ -14,7 +14,7 @@
  * @package         profile
  * @since           2.3.0
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: changemail.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 $xoopsOption['pagetype'] = "user";

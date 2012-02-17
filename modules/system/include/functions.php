@@ -11,7 +11,7 @@
  * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package system
- * @version $Id: functions.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  */
 
 

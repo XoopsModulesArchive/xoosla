@@ -15,7 +15,7 @@
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Andricq Nicolas (AKA MusS)
  * @package     system
- * @version     $Id: cookie.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version     $Id$
  */
 
 class Cookie

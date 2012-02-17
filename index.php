@@ -16,7 +16,7 @@
  * @author          Kazumi Ono <webmaster@myweb.ne.jp>
  * @author          Skalpa Keo <skalpa@xoops.org>
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: index.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'mainfile.php';

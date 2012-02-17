@@ -1,5 +1,5 @@
 <?php
-// $Id: xmlrpcparser.php 8066 2011-11-06 05:09:33Z beckmi $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -43,7 +43,7 @@ require_once XOOPS_ROOT_PATH.'/class/xml/xmltaghandler.php';
 * @package   class
 * @copyright Copyright (c) 2001 xoops.org. All rights reserved.
 * @author    Kazumi Ono <onokazu@xoops.org>
-* @version   $Id: xmlrpcparser.php 8066 2011-11-06 05:09:33Z beckmi $
+* @version   $Id$
 * @access    public
 */
 

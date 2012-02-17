@@ -17,7 +17,7 @@
  * @package         kernel
  * @since           2.3.0
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: locale.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  * @todo            To be handled by i18n/l10n
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');

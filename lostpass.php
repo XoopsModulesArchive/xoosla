@@ -13,7 +13,7 @@
  * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @package         core
  * @since           2.0.0
- * @version         $Id: lostpass.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'mainfile.php';

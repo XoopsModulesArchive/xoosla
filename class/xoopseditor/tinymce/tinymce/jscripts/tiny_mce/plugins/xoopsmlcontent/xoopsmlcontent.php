@@ -10,7 +10,7 @@
  * @author          ralf57
  * @author          luciorota <lucio.rota@gmail.com>
  * @author          Laurent JEN <dugris@frxoops.org>
- * @version         $Id: xoopsmlcontent.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 // load mainfile.php - start

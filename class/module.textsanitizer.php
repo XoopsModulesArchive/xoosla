@@ -16,7 +16,7 @@
  * @author Kazumi Ono (http://www.myweb.ne.jp/, http://jp.xoops.org/)
  * @author Goghs Cheng (http://www.eqiao.com, http://www.devbeez.com/)
  * @author Taiwen Jiang <phppp@users.sourceforge.net>
- * @version $Id: module.textsanitizer.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  */
 
 /**

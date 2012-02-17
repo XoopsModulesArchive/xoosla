@@ -1,5 +1,5 @@
 /**
- * @version     $Id: en.js 3146 2009-04-16 17:50:38Z luciorota $
+ * @version     $Id$
  */
 
 tinyMCE.addI18n('en.xoopsimagemanager',{

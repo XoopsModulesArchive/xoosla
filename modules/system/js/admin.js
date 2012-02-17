@@ -10,7 +10,7 @@
  * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package     system
- * @version     $Id:$
+ * @version     $Id$
  */
 
 /**

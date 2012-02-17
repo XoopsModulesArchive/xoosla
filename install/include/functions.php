@@ -22,7 +22,7 @@
  * @author Skalpa Keo <skalpa@xoops.org>
  * @author Taiwen Jiang <phppp@users.sourceforge.net>
  * @author DuGris (aka L. JEN) <dugris@frxoops.org>
- * @version $Id: functions.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  */
 
 /**

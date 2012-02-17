@@ -25,7 +25,7 @@ xoops_load( 'gui', 'system' );
  * @author      BitC3R0     <BitC3R0@gmail.com>
  * @author      trabis      <lusopoemas@gmail.com>
  * @version     1.2
- * @version     $Id: default.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version     $Id$
  */
 
 class XoopsGuiDefault extends XoopsSystemGui {

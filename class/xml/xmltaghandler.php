@@ -1,5 +1,5 @@
 <?php
-// $Id: xmltaghandler.php 8066 2011-11-06 05:09:33Z beckmi $
+// $Id$
 /*******************************************************************************
     Location: <strong>xml/XmlTagHandler</strong><br>
      <br>

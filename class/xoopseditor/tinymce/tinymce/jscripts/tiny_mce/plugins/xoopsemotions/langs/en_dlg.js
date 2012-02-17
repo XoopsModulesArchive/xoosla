@@ -1,5 +1,5 @@
 /**
- * @version     $Id: en_dlg.js 2804 2009-02-16 01:16:49Z dugris $
+ * @version     $Id$
  */
 
 tinyMCE.addI18n('en.xoopsemotions_dlg',{

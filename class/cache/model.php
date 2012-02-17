@@ -15,7 +15,7 @@
  * @subpackage      cache
  * @since           2.3.0
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: model.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
@@ -39,9 +39,9 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  * @package cake
  * @subpackage cake.cake.libs.cache
  * @since CakePHP(tm) v 1.2.0.4933
- * @version $Revision: 8066 $
- * @modifiedby $LastChangedBy: beckmi $
- * @lastmodified $Date: 2011-11-06 01:09:33 -0400 (Sun, 06 Nov 2011) $
+ * @version $Revision$
+ * @modifiedby $LastChangedBy$
+ * @lastmodified $Date$
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -183,7 +183,7 @@ class XoopsCacheModel extends XoopsCacheEngine
  * @package
  * @author John
  * @copyright Copyright (c) 2009
- * @version $Id: model.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  * @access public
  */
 class XoopsCacheModelObject extends XoopsObject
@@ -208,7 +208,7 @@ class XoopsCacheModelObject extends XoopsObject
  * @package
  * @author John
  * @copyright Copyright (c) 2009
- * @version $Id: model.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  * @access public
  */
 class XoopsCacheModelHandler extends XoopsPersistableObjectHandler

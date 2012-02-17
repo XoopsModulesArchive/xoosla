@@ -14,7 +14,7 @@
  * @package         kernel
  * @subpackage      form
  * @since           2.0.0
- * @version         $Id: tableform.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 defined('XOOPS_ROOT_PATH') or die('Restricted access');

@@ -2,7 +2,7 @@
  * @author          ralf57
  * @author          luciorota (lucio.rota@gmail.com)
  * @author          dugris (dugris@frxoops.fr)
- * @version         $Id: editor_plugin.js 2809 2009-02-16 18:29:22Z dugris $
+ * @version         $Id$
  */
 
 (function() {

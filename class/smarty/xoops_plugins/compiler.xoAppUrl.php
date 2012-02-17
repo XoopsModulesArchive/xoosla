@@ -11,7 +11,7 @@
  * @package		xos_opal
  * @subpackage	xos_opal_Smarty
  * @since       2.0.14
- * @version		$Id: compiler.xoAppUrl.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version		$Id$
  */
 
 /**

@@ -5,7 +5,7 @@
  * @license http://www.fsf.org/copyleft/gpl.html GNU public license
  * _LANGCODE    en
  * _CHARSET     UTF-8
- * @version $Id: preferences.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  */
 // dont change
 define( '_AM_DBUPDATED', _AM_SYSTEM_DBUPDATED );

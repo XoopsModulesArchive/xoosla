@@ -15,7 +15,7 @@
  * @subpackage      form
  * @since           2.0.0
  * @author          Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
- * @version         $Id: formelementtray.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
  
 defined('XOOPS_ROOT_PATH') or die('Restricted access');

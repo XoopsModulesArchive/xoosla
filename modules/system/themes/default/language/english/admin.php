@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 8066 2011-11-06 05:09:33Z beckmi $
+// $Id$
 define( '_OXYGEN_SYSOPTIONS', 'System Options' );
 define( '_OXYGEN_INSTALLEDMODULES', 'Installed Modules' );
 define( '_OXYGEN_XOOPSTHEMES', 'Xoosla!Themes' );

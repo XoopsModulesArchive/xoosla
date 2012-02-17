@@ -15,7 +15,7 @@
  * @subpackage      mail
  * @since           2.0.0
  * @author          Author: Jochen Büînagel (job@buennagel.com)
- * @version         $Id: xoopsmultimailer.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 /**

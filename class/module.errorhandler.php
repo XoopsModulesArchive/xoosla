@@ -14,7 +14,7 @@
  * @package         kernel
  * @since           1.0.0
  * @author          Goghs (http://www.eqiao.com/)
- * @version         $Id: module.errorhandler.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  * @deprecated
  */
 

@@ -18,7 +18,7 @@
  * @subpackage Xoops Logger Language
  * @since 2.4.0
  * @author trabis <lusopoemas@gmail.com>
- * @version $Id: logger.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  */
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 

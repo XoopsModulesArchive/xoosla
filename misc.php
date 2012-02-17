@@ -13,7 +13,7 @@
  * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @package         core
  * @since           2.0.0
- * @version         $Id: misc.php 8287 2011-11-14 19:43:44Z trabis $
+ * @version         $Id$
  */
 
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'mainfile.php';

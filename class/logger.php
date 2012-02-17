@@ -14,7 +14,7 @@
  * @package kernel
  * @subpackage logger
  * @since 2.0.0
- * @version $Id: logger.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version $Id$
  * @deprecated
  */
 

@@ -15,7 +15,7 @@
  * @subpackage      editor
  * @since           2.3.0
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: sampleform.inc.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 

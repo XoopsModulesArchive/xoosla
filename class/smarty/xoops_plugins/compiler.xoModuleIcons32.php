@@ -15,7 +15,7 @@
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author		Andricq Nicolas (AKA MusS) 
  * @since       2.5.2
- * @version		$Id: compiler.xoModuleIcons32.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version		$Id$
  */
 
 function smarty_compiler_xoModuleIcons32($argStr, &$smarty)

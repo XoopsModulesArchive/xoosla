@@ -14,7 +14,7 @@
  * @package         kernel
  * @since           2.0.0
  * @author          Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
- * @version         $Id: privmessage.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
@@ -129,7 +129,7 @@ class XoopsPrivmessage extends XoopsObject
  * @author		Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 The XOOPS Project (http://www.xoops.org)
  *
- * @version		$Revision: 8066 $ - $Date: 2011-11-06 01:09:33 -0400 (Sun, 06 Nov 2011) $
+ * @version		$Revision$ - $Date$
  */
 class XoopsPrivmessageHandler extends XoopsObjectHandler
 {

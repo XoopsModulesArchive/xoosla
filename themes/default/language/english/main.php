@@ -9,7 +9,7 @@
  * @author John Neill <catzwolf@xoosla.com>
  * @copyright : Copyright (C) 2010 Xoosla CMS. All rights reserved.
  * @license : GNU/GPL, see docs/license.txt
- * @version : $Id: main.php 0000 08/08/2010 12:44 Catzwolf $
+ * @version : $Id$
  */
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 

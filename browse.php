@@ -14,7 +14,7 @@
  * @package         core
  * @since           2.4.0
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: browse.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);

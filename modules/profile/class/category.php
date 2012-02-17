@@ -15,7 +15,7 @@
  * @since           2.3.0
  * @author          Jan Pedersen
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: category.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 
 defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");

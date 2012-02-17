@@ -23,7 +23,7 @@
  * @author      BitC3R0     <BitC3R0@gmail.com>
  * @author      trabis      <lusopoemas@gmail.com>
  * @version     1.2
- * @version     $Id: menu.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version     $Id$
  */
 
 $groups = $GLOBALS['xoopsUser']->getGroups();

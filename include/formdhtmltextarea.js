@@ -1,4 +1,4 @@
-/* $Id: formdhtmltextarea.js 7381 2011-08-29 05:36:17Z beckmi $ */
+/* $Id$ */
 
 function xoopsCodeUrl(id, enterUrlPhrase, enterWebsitePhrase)
 {

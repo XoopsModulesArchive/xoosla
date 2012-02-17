@@ -2,7 +2,7 @@
  * @author          ralf57
  * @author          luciorota (lucio.rota@gmail.com)
  * @author          dugris (dugris@frxoops.fr)
- * @version         $Id: xoopsmlcontent.js 2810 2009-02-16 18:30:37Z dugris $
+ * @version         $Id$
  */
 
 tinyMCEPopup.requireLangPack();

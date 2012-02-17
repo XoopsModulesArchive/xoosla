@@ -1,5 +1,5 @@
 /**
- * @version     $Id: en.js 2805 2009-02-16 01:39:10Z dugris $
+ * @version     $Id$
  */
 
 tinyMCE.addI18n('en.xoopsmlcontent',{

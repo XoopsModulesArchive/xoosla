@@ -20,7 +20,7 @@
  * @package         core
  * @since           2.0.0
  * @author          Kazumi Ono <webmaster@myweb.ne.jp>
- * @version         $Id: userinfo.php 8066 2011-11-06 05:09:33Z beckmi $
+ * @version         $Id$
  */
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'mainfile.php';
 $xoopsPreload =& XoopsPreload::getInstance();

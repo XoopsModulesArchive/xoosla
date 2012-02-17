@@ -12,7 +12,7 @@
  * @license      GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @author       Skalpa Keo <skalpa@xoops.org>
  * @since        2.0.9.3
- * $Id: mimetypes.inc.php 8066 2011-11-06 05:09:33Z beckmi $
+ * $Id$
  * @deprecated
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
