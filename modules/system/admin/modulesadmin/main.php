@@ -1,37 +1,29 @@
 <?php
 // $Id$
-// ------------------------------------------------------------------------ //
-// XOOPS - PHP Content Management System                      //
-// Copyright (c) 2000 XOOPS.org                           //
-// <http://www.xoops.org/>                             //
-// ------------------------------------------------------------------------ //
-// This program is free software; you can redistribute it and/or modify     //
-// it under the terms of the GNU General Public License as published by     //
-// the Free Software Foundation; either version 2 of the License, or        //
-// (at your option) any later version.                                      //
-// //
-// You may not change or alter any portion of this comment or credits       //
-// of supporting developers from this source code or any supporting         //
-// source code which is considered copyrighted (c) material of the          //
-// original comment or credit authors.                                      //
-// //
-// This program is distributed in the hope that it will be useful,          //
-// but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-// GNU General Public License for more details.                             //
-// //
-// You should have received a copy of the GNU General Public License        //
-// along with this program; if not, write to the Free Software              //
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-// ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-// Check users rights
-if ( !is_object( $xoopsUser ) || !is_object( $xoopsModule ) || !$xoopsUser->isAdmin( $xoopsModule->mid() ) ) exit( _NOPERM );
+/**
+ * Xoosla
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
+/**
+ *
+ * @copyright The Xoosla Project http://sourceforge.net/projects/xoosla/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package main.php
+ * @since 1.0.0.0
+ * @author John Neill <zaquria@xoosla.com>
+ * @version main.php 26 2012-02-17 09:16:15Z catzwolf $Id:
+ */
+if ( !is_object( $xoopsUser ) || !is_object( $xoopsModule ) || !$xoopsUser->isAdmin( $xoopsModule->mid() ) ) {
+	die( 'Restricted access' );
+}
+
 include_once XOOPS_ROOT_PATH . '/modules/system/admin/modulesadmin/modulesadmin.php';
 
 if ( isset( $_POST ) ) {
@@ -40,6 +32,7 @@ if ( isset( $_POST ) ) {
 			$k} = $v;
 	}
 }
+
 // Get Action type
 $op = system_CleanVars ( $_REQUEST, 'op', 'list', 'string' );
 $module = system_CleanVars ( $_REQUEST, 'module', '', 'string' );
@@ -49,7 +42,7 @@ if ( in_array( $op, array( 'submit', 'install_ok', 'update_ok', 'uninstall_ok' )
 	}
 }
 
-$myts = &MyTextsanitizer::getInstance();
+$myts = MyTextsanitizer::getInstance();
 switch ( $op ) {
 	case 'list':
 		// Define main template
@@ -70,7 +63,7 @@ switch ( $op ) {
 		$xoBreadCrumb->addTips( _AM_SYSTEM_MODULES_TIPS );
 		$xoBreadCrumb->render();
 		// Get Module Handler
-		$module_handler = &xoops_gethandler( 'module' );
+		$module_handler = xoops_gethandler( 'module' );
 		$criteria = new CriteriaCompo();
 		$criteria->setOrder( 'weight' );
 		// Get all installed modules
@@ -101,6 +94,7 @@ switch ( $op ) {
 		$dirlist = XoopsLists::getModulesList();
 		$toinstall_mods = array();
 		$i = 0;
+
 		foreach ( $dirlist as $file ) {
 			if ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $file . '/xoops_version.php' ) ) {
 				clearstatcache();
@@ -137,7 +131,7 @@ switch ( $op ) {
 		$xoBreadCrumb->addTips( _AM_SYSTEM_MODULES_TIPS );
 		$xoBreadCrumb->render();
 		// Get Module Handler
-		$module_handler = &xoops_gethandler( 'module' );
+		$module_handler = xoops_gethandler( 'module' );
 		// Get all installed modules
 		$installed_mods = $module_handler->getObjects();
 		foreach ( $installed_mods as $module ) {
@@ -152,8 +146,7 @@ switch ( $op ) {
 				clearstatcache();
 				$file = trim( $file );
 				if ( !in_array( $file, $install_mods ) ) {
-
-					$module = &$module_handler->create();
+					$module = $module_handler->create();
 					$module->loadInfo( $file );
 					$toinstall_mods[$i]['name'] = $module->getInfo( 'name' );
 					$toinstall_mods[$i]['dirname'] = $module->getInfo( 'dirname' );
@@ -178,7 +171,7 @@ switch ( $op ) {
 
 	case 'order':
 		// Get Module Handler
-		$module_handler = &xoops_gethandler( 'module' );
+		$module_handler = xoops_gethandler( 'module' );
 		if ( isset( $_POST['mod'] ) ) {
 			$i = 1;
 			foreach ( $_POST['mod'] as $order ) {
@@ -242,10 +235,10 @@ switch ( $op ) {
 
 	case 'display':
 		// Get module handler
-		$module_handler = &xoops_gethandler( 'module' );
+		$module_handler = xoops_gethandler( 'module' );
 		$module_id = system_CleanVars ( $_POST, 'mid', 0, 'int' );
 		if ( $module_id > 0 ) {
-			$module = &$module_handler->get( $module_id );
+			$module = $module_handler->get( $module_id );
 			$old = $module->getVar( 'isactive' );
 			// Set value
 			$module->setVar( 'isactive', !$old );
@@ -265,10 +258,10 @@ switch ( $op ) {
 
 	case 'display_in_menu':
 		// Get module handler
-		$module_handler = &xoops_gethandler( 'module' );
+		$module_handler = xoops_gethandler( 'module' );
 		$module_id = system_CleanVars ( $_POST, 'mid', 0, 'int' );
 		if ( $module_id > 0 ) {
-			$module = &$module_handler->get( $module_id );
+			$module = $module_handler->get( $module_id );
 			$old = $module->getVar( 'weight' );
 			// Set value
 			$module->setVar( 'weight', !$old );
@@ -300,7 +293,6 @@ switch ( $op ) {
 		}
 		if ( $write ) {
 			// Flush cache files for cpanel GUIs
-			xoops_load( 'cpanel', 'system' );
 			XoopsSystemCpanel::flush();
 		}
 		// Set active modules in cache folder
@@ -326,8 +318,8 @@ switch ( $op ) {
 	case 'install':
 		$module = $myts->htmlspecialchars( $module );
 		// Get module handler
-		$module_handler = &xoops_gethandler( 'module' );
-		$mod = &$module_handler->create();
+		$module_handler = xoops_gethandler( 'module' );
+		$mod = $module_handler->create();
 		$mod->loadInfoAsVar( $module );
 		// Construct message
 		if ( $mod->getInfo( 'image' ) != false && trim( $mod->getInfo( 'image' ) ) != '' ) {
@@ -353,7 +345,6 @@ switch ( $op ) {
 		$ret = array();
 		$ret[] = xoops_module_install( $module );
 		// Flush cache files for cpanel GUIs
-		xoops_load( 'cpanel', 'system' );
 		XoopsSystemCpanel::flush();
 		// Set active modules in cache folder
 		xoops_setActiveModules();
@@ -382,8 +373,8 @@ switch ( $op ) {
 	case 'uninstall':
 		$module = $myts->htmlspecialchars( $module );
 		// Get module handler
-		$module_handler = &xoops_gethandler( 'module' );
-		$mod = &$module_handler->getByDirname( $module );
+		$module_handler = xoops_gethandler( 'module' );
+		$mod = $module_handler->getByDirname( $module );
 		// Construct message
 		if ( $mod->getInfo( 'image' ) != false && trim( $mod->getInfo( 'image' ) ) != '' ) {
 			$msgs = '<img src="' . XOOPS_URL . '/modules/' . $mod->getVar( 'dirname', 'n' ) . '/' . trim( $mod->getInfo( 'image' ) ) . '" alt="" />';
@@ -408,7 +399,6 @@ switch ( $op ) {
 		$ret = array();
 		$ret[] = xoops_module_uninstall( $module );
 		// Flush cache files for cpanel GUIs
-		xoops_load( "cpanel", "system" );
 		XoopsSystemCpanel::flush();
 		// Set active modules in cache folder
 		xoops_setActiveModules();
@@ -437,8 +427,8 @@ switch ( $op ) {
 	case 'update':
 		$module = $myts->htmlspecialchars( $module );
 		// Get module handler
-		$module_handler = &xoops_gethandler( 'module' );
-		$mod = &$module_handler->getByDirname( $module );
+		$module_handler = xoops_gethandler( 'module' );
+		$mod = $module_handler->getByDirname( $module );
 		// Construct message
 		if ( $mod->getInfo( 'image' ) != false && trim( $mod->getInfo( 'image' ) ) != '' ) {
 			$msgs = '<img src="' . XOOPS_URL . '/modules/' . $mod->getVar( 'dirname', 'n' ) . '/' . trim( $mod->getInfo( 'image' ) ) . '" alt="" />';
@@ -461,8 +451,8 @@ switch ( $op ) {
 
 	case 'update_ok':
 		$dirname = $myts->htmlspecialchars( trim( $dirname ) );
-		$module_handler = &xoops_gethandler( 'module' );
-		$module = &$module_handler->getByDirname( $dirname );
+		$module_handler = xoops_gethandler( 'module' );
+		$module = $module_handler->getByDirname( $dirname );
 		// Save current version for use in the update function
 		$prev_version = $module->getVar( 'version' );
 		$clearTpl = new XoopsTpl();
@@ -501,7 +491,7 @@ switch ( $op ) {
 			}
 			$msgs[] = '</div><div class="logger">';
 			$msgs[] = _AM_SYSTEM_MODULES_MODULE_DATA_UPDATE;
-			$tplfile_handler = &xoops_gethandler( 'tplfile' );
+			$tplfile_handler = xoops_gethandler( 'tplfile' );
 			$deltpl = $tplfile_handler->find( 'default', 'module', $module->getVar( 'mid' ) );
 			$delng = array();
 			if ( is_array( $deltpl ) ) {
@@ -520,8 +510,8 @@ switch ( $op ) {
 					$tpl['file'] = trim( $tpl['file'] );
 					if ( !in_array( $tpl['file'], $delng ) ) {
 						$type = ( isset( $tpl['type'] ) ? $tpl['type'] : 'module' );
-						$tpldata = &xoops_module_gettemplate( $dirname, $tpl['file'], $type );
-						$tplfile = &$tplfile_handler->create();
+						$tpldata = xoops_module_gettemplate( $dirname, $tpl['file'], $type );
+						$tplfile = $tplfile_handler->create();
 						$tplfile->setVar( 'tpl_refid', $newmid );
 						$tplfile->setVar( 'tpl_lastimported', 0 );
 						$tplfile->setVar( 'tpl_lastmodified', time() );
@@ -592,7 +582,7 @@ switch ( $op ) {
 								if ( $template != '' ) {
 									$tplfile = $tplfile_handler->find( 'default', 'block', $fblock['bid'] );
 									if ( count( $tplfile ) == 0 ) {
-										$tplfile_new = &$tplfile_handler->create();
+										$tplfile_new = $tplfile_handler->create();
 										$tplfile_new->setVar( 'tpl_module', $dirname );
 										$tplfile_new->setVar( 'tpl_refid', $fblock['bid'] );
 										$tplfile_new->setVar( 'tpl_tplset', 'default' );
@@ -639,9 +629,9 @@ switch ( $op ) {
 								} else {
 									$groups = array( XOOPS_GROUP_ADMIN );
 								}
-								$gperm_handler = &xoops_gethandler( 'groupperm' );
+								$gperm_handler = xoops_gethandler( 'groupperm' );
 								foreach ( $groups as $mygroup ) {
-									$bperm = &$gperm_handler->create();
+									$bperm = $gperm_handler->create();
 									$bperm->setVar( 'gperm_groupid', $mygroup );
 									$bperm->setVar( 'gperm_itemid', $newbid );
 									$bperm->setVar( 'gperm_name', 'block_read' );
@@ -654,7 +644,7 @@ switch ( $op ) {
 								}
 
 								if ( $template != '' ) {
-									$tplfile = &$tplfile_handler->create();
+									$tplfile = $tplfile_handler->create();
 									$tplfile->setVar( 'tpl_module', $dirname );
 									$tplfile->setVar( 'tpl_refid', $newbid );
 									$tplfile->setVar( 'tpl_source', $content, true );
@@ -713,7 +703,7 @@ switch ( $op ) {
 			// reset compile_id
 			$xoopsTpl->setCompileId();
 			// first delete all config entries
-			$config_handler = &xoops_gethandler( 'config' );
+			$config_handler = xoops_gethandler( 'config' );
 			$configs = $config_handler->getConfigs( new Criteria( 'conf_modid', $module->getVar( 'mid' ) ) );
 			$confcount = count( $configs );
 			$config_delng = array();
@@ -736,14 +726,14 @@ switch ( $op ) {
 			$configs = $module->getInfo( 'config' );
 			if ( $configs != false ) {
 				if ( $module->getVar( 'hascomments' ) != 0 ) {
-					include_once( XOOPS_ROOT_PATH . '/include/comment_constants.php' );
+					include_once( XOOPS_ROOT_PATH . '/include/comment/comment_constants.php' );
 					array_push( $configs, array( 'name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => array( '_CM_COMNOCOM' => XOOPS_COMMENT_APPROVENONE, '_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN ) ) );
 					array_push( $configs, array( 'name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0 ) );
 				}
 			} else {
 				if ( $module->getVar( 'hascomments' ) != 0 ) {
 					$configs = array();
-					include_once( XOOPS_ROOT_PATH . '/include/comment_constants.php' );
+					include_once( XOOPS_ROOT_PATH . '/include/comment/comment_constants.php' );
 					$configs[] = array( 'name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => array( '_CM_COMNOCOM' => XOOPS_COMMENT_APPROVENONE, '_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN ) );
 					$configs[] = array( 'name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0 );
 				}
@@ -754,8 +744,8 @@ switch ( $op ) {
 					$configs = array();
 				}
 				// Main notification options
-				include_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
-				include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
+				include_once XOOPS_ROOT_PATH . '/include/notification/notification_constants.php';
+				include_once XOOPS_ROOT_PATH . '/include/notification/notification_functions.php';
 				$options = array();
 				$options['_NOT_CONFIG_DISABLE'] = XOOPS_NOTIFICATION_DISABLE;
 				$options['_NOT_CONFIG_ENABLEBLOCK'] = XOOPS_NOTIFICATION_ENABLEBLOCK;
@@ -767,9 +757,9 @@ switch ( $op ) {
 				// FIXME: for some reason the default doesn't come up properly
 				// initially is ok, but not when 'update' module..
 				$options = array();
-				$categories = &notificationCategoryInfo( '', $module->getVar( 'mid' ) );
+				$categories = notificationCategoryInfo( '', $module->getVar( 'mid' ) );
 				foreach ( $categories as $category ) {
-					$events = &notificationEvents ( $category['name'], false, $module->getVar( 'mid' ) );
+					$events = notificationEvents ( $category['name'], false, $module->getVar( 'mid' ) );
 					foreach ( $events as $event ) {
 						if ( !empty( $event['invisible'] ) ) {
 							continue;
@@ -785,12 +775,12 @@ switch ( $op ) {
 
 			if ( $configs != false ) {
 				$msgs[] = 'Adding module config data...';
-				$config_handler = &xoops_gethandler( 'config' );
+				$config_handler = xoops_gethandler( 'config' );
 				$order = 0;
 				foreach ( $configs as $config ) {
 					// only insert ones that have been deleted previously with success
 					if ( !in_array( $config['name'], $config_delng ) ) {
-						$confobj = &$config_handler->createConfig();
+						$confobj = $config_handler->createConfig();
 						$confobj->setVar( 'conf_modid', $newmid );
 						$confobj->setVar( 'conf_catid', 0 );
 						$confobj->setVar( 'conf_name', $config['name'] );
@@ -810,7 +800,7 @@ switch ( $op ) {
 						$confop_msgs = '';
 						if ( isset( $config['options'] ) && is_array( $config['options'] ) ) {
 							foreach ( $config['options'] as $key => $value ) {
-								$confop = &$config_handler->createConfigOption();
+								$confop = $config_handler->createConfigOption();
 								$confop->setVar( 'confop_name', $key, true );
 								$confop->setVar( 'confop_value', $value, true );
 								$confobj->setConfOptions( $confop );
@@ -855,7 +845,6 @@ switch ( $op ) {
 		// Call Footer
 		xoops_cp_footer();
 		// Flush cache files for cpanel GUIs
-		xoops_load( "cpanel", "system" );
 		XoopsSystemCpanel::flush();
 
 		require_once XOOPS_ROOT_PATH . '/modules/system/class/maintenance.php';

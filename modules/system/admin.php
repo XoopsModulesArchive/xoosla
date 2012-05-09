@@ -1,36 +1,26 @@
 <?php
 // $Id$
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
 
-// Include header
+/**
+ * Xoosla admin.php
+ *
+ * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package
+ * @subpackage
+ * @since 1.0
+ * @author catzwolf@xoosla.com
+ * @version $Id$
+ */
 include 'header.php';
 
 if ( isset($fct) && $fct == 'users' ) {
@@ -47,7 +37,7 @@ if ($admintest != 0) {
             // Include Configuration file
             require XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar( 'dirname', 'n' ) . '/admin/' . $fct . '/xoops_version.php';
             // Get System permission handler
-            $sysperm_handler =& xoops_gethandler('groupperm');
+            $sysperm_handler = xoops_gethandler('groupperm');
 
             $category = !empty($modversion['category']) ? intval($modversion['category']) : 0;
             unset($modversion);
@@ -81,8 +71,8 @@ if ($admintest != 0) {
 }
 
 if (false != $error) {
-
     $op = system_CleanVars ( $_REQUEST, 'op', '', 'string' );
+
     if ( $op == 'system_avtivate') {
         $part = system_CleanVars ( $_REQUEST, 'type', '', 'string' );
         $config_handler = xoops_gethandler('config');
@@ -118,7 +108,6 @@ if (false != $error) {
         $all_ok = true;
     }
 
-    xoops_load('xoopslists');
     $admin_dir = XOOPS_ROOT_PATH . '/modules/system/admin';
     $dirlist = XoopsLists::getDirListAsArray($admin_dir);
     $inactive_section = array( 'blocksadmin', 'groups', 'modulesadmin', 'preferences', 'tplsets');

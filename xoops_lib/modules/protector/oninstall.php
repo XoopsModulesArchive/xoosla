@@ -105,8 +105,8 @@ function protector_oninstall_base( $module , $mydirname )
 		}
 		closedir( $handler ) ;
 	}
-	include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
-	include_once XOOPS_ROOT_PATH.'/class/template.php' ;
+	//include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
+	//include_once XOOPS_ROOT_PATH.'/class/template.php' ;
 	xoops_template_clear_module_cache( $mid ) ;
 
 	return true ;

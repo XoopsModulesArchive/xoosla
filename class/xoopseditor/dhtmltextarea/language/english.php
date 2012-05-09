@@ -1,16 +1,24 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
+
 /**
- * XOOPS editor
+ * Xoosla Language
  *
- * @copyright The XOOPS project http://www.xoops.org/
- * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @author Taiwen Jiang (phppp or D.J.) <php_pp@hotmail.com>
- * @since 2.3.0
+ * @copyright Xoosla http://sourceforge.net/projects/xoosla/
+ * @license http://www.fsf.org/licensing/licenses/gpl.html GNU General Public License
+ * @package Language
+ * @since v1.0.0
+ * @author John
  * @version $Id$
- * @package xoopseditor
- */
-/**
- * Assocated with editor_registry.php
  */
 define( '_XOOPS_EDITOR_DHTMLTEXTAREA', 'DHTML Form with xCode' );
 

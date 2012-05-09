@@ -12,23 +12,37 @@
 /**
  * TextSanitizer extension
  *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @package         class
- * @subpackage      textsanitizer
- * @since           2.3.0
- * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id$
+ * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package class
+ * @subpackage textsanitizer
+ * @since 2.3.0
+ * @author Taiwen Jiang <phppp@users.sourceforge.net>
+ * @version $Id$
  */
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-class MytsWiki extends MyTextSanitizerExtension
-{
-    function encode($textarea_id)
-    {
-        $config = parent::loadConfig(dirname(__FILE__));
-        $code = "<img src='{$this->image_path}/wiki.gif' alt='" . _XOOPS_FORM_ALTWIKI . "' onclick='xoopsCodeWiki(\"{$textarea_id}\",\"" . htmlspecialchars(_XOOPS_FORM_ENTERWIKITERM, ENT_QUOTES) . "\");'  onmouseover='style.cursor=\"hand\"'/>&nbsp;";
-        $javascript = <<<EOH
+/**
+ * MytsWiki
+ *
+ * @package
+ * @author John
+ * @copyright Copyright (c) 2012
+ * @version $Id$
+ * @access public
+ */
+class MytsWiki extends MyTextSanitizerExtension {
+	/**
+	 * MytsWiki::encode()
+	 *
+	 * @param mixed $textarea_id
+	 * @return
+	 */
+	public function encode( $textarea_id )
+	{
+		$config = parent::loadConfig( dirname( __FILE__ ) );
+		$code = "<img src='{$this->image_path}/wiki.gif' alt='" . _XOOPS_FORM_ALTWIKI . "' onclick='xoopsCodeWiki(\"{$textarea_id}\",\"" . htmlspecialchars( _XOOPS_FORM_ENTERWIKITERM, ENT_QUOTES ) . "\");'  onmouseover='style.cursor=\"hand\"'/>&nbsp;";
+		$javascript = <<<EOH
             function xoopsCodeWiki(id, enterWikiPhrase){
                 if (enterWikiPhrase == null) {
                     enterWikiPhrase = "Enter the word to be linked to Wiki:";
@@ -47,27 +61,38 @@ class MytsWiki extends MyTextSanitizerExtension
                 domobj.focus();
             }
 EOH;
-        return array(
-            $code ,
-            $javascript);
-    }
+		return array( $code ,
+			$javascript );
+	}
 
-    function load(&$ts)
-    {
-        $ts->patterns[] = "/\[\[([^\]]*)\]\]/esU";
-        $ts->replacements[] = __CLASS__ . "::decode( '\\1' )";
-    }
+	/**
+	 * MytsWiki::load()
+	 *
+	 * @param MyTextSanitizer $ts
+	 * @return
+	 */
+	public function load( MyTextSanitizer &$ts )
+	{
+		$ts->patterns[] = '/\[\[([^\]]*)\]\]/esU';
+		$ts->replacements[] = __CLASS__ . '::decode( "\\1" )';
+	}
 
-    function decode($text)
-    {
-        $config = parent::loadConfig(dirname(__FILE__));
-        if (empty($text) || empty($config['link'])) {
-            return $text;
-        }
-        $charset = !empty($config['charset']) ? $config['charset'] : "UTF-8";
-        xoops_load('XoopsLocal');
-        $ret = "<a href='" . sprintf($config['link'], urlencode(XoopsLocal::convert_encoding($text, $charset))) . "' rel='external' title=''>{$text}</a>";
-        return $ret;
-    }
+	/**
+	 * MytsWiki::decode()
+	 *
+	 * @param mixed $text
+	 * @return
+	 */
+	function decode( $text )
+	{
+		$config = parent::loadConfig( dirname( __FILE__ ) );
+		if ( empty( $text ) || empty( $config['link'] ) ) {
+			return $text;
+		}
+		$charset = !empty( $config['charset'] ) ? $config['charset'] : 'UTF-8';
+		$ret = '<a href="' . sprintf( $config['link'], urlencode( XoopsLocal::convert_encoding( $text, $charset ) ) ) . '" rel="external" title="">'.$text.'</a>';
+		return $ret;
+	}
 }
+
 ?>

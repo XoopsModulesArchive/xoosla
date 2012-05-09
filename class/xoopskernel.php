@@ -1,15 +1,18 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * XOOPS kernel
  *
  * !IMPORTANT: The file should have not been created and will be removed
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
@@ -18,16 +21,24 @@
  * @version $Id$
  * @deprecated
  */
-
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-class xos_kernel_Xoops2 {
-	var $paths = array( 'XOOPS' => array(), 'www' => array(), 'var' => array(), 'lib' => array(), 'modules' => array(), 'themes' => array() );
+/**
+ * xos_kernel_Xoops2
+ *
+ * @package
+ * @author John
+ * @copyright Copyright (c) 2012
+ * @version $Id$
+ * @access public
+ */
+class XoopsKernel {
+	public $paths = array( 'XOOPS' => array(), 'www' => array(), 'var' => array(), 'lib' => array(), 'modules' => array(), 'themes' => array() );
 
 	/**
 	 * Actual Xoops OS
 	 */
-	function xos_kernel_Xoops2()
+	public function __Construct()
 	{
 		$this->paths['XOOPS'] = array( XOOPS_PATH, XOOPS_URL . 'browse.php' );
 		$this->paths['www'] = array( XOOPS_ROOT_PATH, XOOPS_URL );
@@ -40,7 +51,7 @@ class xos_kernel_Xoops2 {
 	/**
 	 * Convert a XOOPS path to a physical one
 	 */
-	function path( $url, $virtual = false )
+	public function path( $url, $virtual = false )
 	{
 		// removed , $error_type = E_USER_WARNING
 		$path = '';
@@ -59,7 +70,7 @@ class xos_kernel_Xoops2 {
 	/**
 	 * Convert a XOOPS path to an URL
 	 */
-	function url( $url )
+	public function url( $url )
 	{
 		return ( false !== strpos( $url, '://' ) ? $url : $this->path( $url, true ) );
 	}
@@ -67,7 +78,7 @@ class xos_kernel_Xoops2 {
 	/**
 	 * Build an URL with the specified request params
 	 */
-	function buildUrl( $url, $params = array() )
+	public function buildUrl( $url, $params = array() )
 	{
 		if ( $url == '.' ) {
 			$url = $_SERVER['REQUEST_URI'];
@@ -92,7 +103,7 @@ class xos_kernel_Xoops2 {
 	 *
 	 * @return
 	 */
-	function pathExists( $path, $error_type )
+	public function pathExists( $path, $error_type )
 	{
 		if ( file_exists( $path ) ) {
 			return $path;
@@ -107,7 +118,7 @@ class xos_kernel_Xoops2 {
 	 *
 	 * @return
 	 */
-	function gzipCompression()
+	public function gzipCompression()
 	{
 		/**
 		 * Disable gzip compression if PHP is run under CLI mode and needs refactored to work correctly
@@ -129,16 +140,16 @@ class xos_kernel_Xoops2 {
 	 *
 	 * @return
 	 */
-	function pathTranslation()
+	public function pathTranslation()
 	{
 		/**
 		 * *#@+
 		 * Host abstraction layer
 		 */
 		if ( !isset( $_SERVER['PATH_TRANSLATED'] ) && isset( $_SERVER['SCRIPT_FILENAME'] ) ) {
-			$_SERVER['PATH_TRANSLATED'] = &$_SERVER['SCRIPT_FILENAME']; // For Apache CGI
+			$_SERVER['PATH_TRANSLATED'] = $_SERVER['SCRIPT_FILENAME']; // For Apache CGI
 		} else if ( isset( $_SERVER['PATH_TRANSLATED'] ) && !isset( $_SERVER['SCRIPT_FILENAME'] ) ) {
-			$_SERVER['SCRIPT_FILENAME'] = &$_SERVER['PATH_TRANSLATED']; // For IIS/2K now I think :-(
+			$_SERVER['SCRIPT_FILENAME'] = $_SERVER['PATH_TRANSLATED']; // For IIS/2K now I think :-(
 		}
 		/**
 		 * User Mulitbytes
@@ -159,7 +170,7 @@ class xos_kernel_Xoops2 {
 	 *
 	 * @return
 	 */
-	function themeSelect()
+	public function themeSelect()
 	{
 		if ( !empty( $_POST['xoops_theme_select'] ) && in_array( $_POST['xoops_theme_select'], xoops_getConfigOption( 'theme_set_allowed' ) ) ) {
 			xoops_setConfigOption( 'theme_set', $_POST['xoops_theme_select'] );

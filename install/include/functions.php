@@ -39,12 +39,12 @@ function install_acceptUser( $hash = '' )
 	if ( empty( $uname ) || empty( $hash_login ) ) {
 		return false;
 	}
-	$memebr_handler = &xoops_gethandler( 'member' );
+	$memebr_handler = xoops_gethandler( 'member' );
 	$user = array_pop( $memebr_handler->getUsers( new Criteria( 'uname', $uname ) ) );
 	if ( $hash_login != md5( $user->getVar( 'pass' ) . XOOPS_DB_NAME . XOOPS_DB_PASS . XOOPS_DB_PREFIX ) ) {
 		return false;
 	}
-	$myts = &MyTextsanitizer::getInstance();
+	$myts = MyTextsanitizer::getInstance();
 	if ( is_object( $GLOBALS['xoops'] ) && method_exists( $GLOBALS['xoops'], 'acceptUser' ) ) {
 		$res = $GLOBALS['xoops']->acceptUser( $uname, true, $msg );
 		return $res;
@@ -82,7 +82,7 @@ function install_finalize( $installer_modified )
  */
 function xoFormField( $name, $value, $label, $help = '', $parms = '' )
 {
-	$myts = &MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	$name = $myts->htmlspecialchars( $name, ENT_QUOTES, _INSTALL_CHARSET, false );
 	$value = $myts->htmlspecialchars( $value, ENT_QUOTES );
 
@@ -119,7 +119,7 @@ function xoFormField( $name, $value, $label, $help = '', $parms = '' )
  */
 function xoSelectField( $name, $value, $label, $help = '', $parms = '' )
 {
-	$myts = &MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	$name = $myts->htmlspecialchars( $name, ENT_QUOTES, _INSTALL_CHARSET, false );
 	$value = $myts->htmlspecialchars( $value, ENT_QUOTES );
 
@@ -156,7 +156,7 @@ function xoSelectField( $name, $value, $label, $help = '', $parms = '' )
  */
 function xoPassField( $name, $value, $label, $help = '', $parms = '' )
 {
-	$myts = &MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	$name = $myts->htmlspecialchars( $name, ENT_QUOTES, _INSTALL_CHARSET, false );
 	$value = $myts->htmlspecialchars( $value, ENT_QUOTES );
 
@@ -193,7 +193,7 @@ function xoPassField( $name, $value, $label, $help = '', $parms = '' )
  */
 function xoCheckBoxField( $name, $value, $label, $help = '', $parms = '' )
 {
-	$myts = &MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	$name = $myts->htmlspecialchars( $name, ENT_QUOTES, _INSTALL_CHARSET, false );
 	$value = $myts->htmlspecialchars( $value, ENT_QUOTES );
 
@@ -243,7 +243,7 @@ function xoDivBoxes( $left, $right )
  */
 function xoFormHiddenField( $name, $value )
 {
-	$myts = &MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	$name = $myts->htmlspecialchars( $name, ENT_QUOTES, _INSTALL_CHARSET, false );
 	$value = $myts->htmlspecialchars( $value, ENT_QUOTES );
 	echo '<input type="hidden" name="' . $name . '" value="' . $value . '" />' . NEWLINE;;
@@ -699,7 +699,7 @@ function xoDisplayErrorImg( $parm )
  */
 function xoCreateMainFile( &$errors )
 {
-	$vars = &$_SESSION['settings'];
+	$vars = $_SESSION['settings'];
 	if ( empty( $vars['VAR_PATH'] ) ) {
 		$wizard->redirectToPage( 'page1' );
 		exit();
@@ -781,7 +781,7 @@ function xoCreateMainFile( &$errors )
  */
 function xoCreateTableData( &$errors )
 {
-	$vars = &$_SESSION['settings'];
+	$vars = $_SESSION['settings'];
 	if ( empty( $vars['ROOT_PATH'] ) || empty( $vars['DB_HOST'] ) ) {
 		$GLOBALS['wizard']->redirectToPage( 'page4' );
 		exit();
@@ -879,7 +879,7 @@ function xoGetSupports()
 			foreach ( $temps as $temp ) {
 				include './language/' . $temp . '/support.php';
 				if ( is_array( $xoSupport ) ) {
-					$supports = &$xoSupport;
+					$supports = $xoSupport;
 				}
 			}
 		}
@@ -904,7 +904,7 @@ function getSupportHtml()
 				$supportSelection .= '>' . $v['title'] . '</option>';
 			}
 			$supportSelection .= '</select>';
-			$langSelect = &$supportSelection;
+			$langSelect = $supportSelection;
 		}
 	}
 	return $langSelect;
@@ -964,7 +964,7 @@ function xoGetSelectLanguages()
 			$selectBox .= '<option value="' . $k . '"' . $selected . '>' . $v . '</option>' . NEWLINE;
 		}
 		$selectBox .= '</select>';
-		$select_languages = &$selectBox;
+		$select_languages = $selectBox;
 	}
 	return $select_languages;
 }

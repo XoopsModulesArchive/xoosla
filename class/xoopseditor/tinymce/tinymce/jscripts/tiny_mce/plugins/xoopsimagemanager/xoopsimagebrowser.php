@@ -19,7 +19,9 @@ if ( DIRECTORY_SEPARATOR != "/" ) {
     $current_path = str_replace( DIRECTORY_SEPARATOR, "/", $current_path);
 }
 $xoops_root_path = substr($current_path, 0, strpos(strtolower($current_path), "/class/xoopseditor/tinymce/"));
+
 include_once $xoops_root_path . "/mainfile.php";
+
 if (!defined("XOOPS_ROOT_PATH")) exit();
 
 // get current filename
@@ -29,10 +31,6 @@ $current_file = basename(__FILE__);
 xoops_loadLanguage("admin", "system");
 xoops_loadLanguage("/admin/images", "system");
 
-
-// include
-xoops_load( "xoopsformloader" );
-xoops_load( "xoopsmodule" );
 include_once XOOPS_ROOT_PATH . "/include/cp_functions.php";
 include_once XOOPS_ROOT_PATH."/modules/system/constants.php";
 
@@ -41,14 +39,14 @@ global $xoopsConfig;
 // check user/group - start
 $isadmin = false;
 
-$gperm_handler =& xoops_gethandler('groupperm');
+$gperm_handler = xoops_gethandler('groupperm');
 $groups = is_object( $GLOBALS["xoopsUser"] ) ? $GLOBALS["xoopsUser"]->getGroups() : array( XOOPS_GROUP_ANONYMOUS );
 $isadmin = $gperm_handler->checkRight( 'system_admin', XOOPS_SYSTEM_IMAGE, $groups );
 
 // check categories readability/writability
-$imgcat_handler =& xoops_gethandler('imagecategory');
-$catreadlist =& $imgcat_handler->getList($groups, 'imgcat_read', 1);    // get readable categories
-$catwritelist =& $imgcat_handler->getList($groups, 'imgcat_write', 1);  // get writable categories
+$imgcat_handler = xoops_gethandler('imagecategory');
+$catreadlist = $imgcat_handler->getList($groups, 'imgcat_read', 1);    // get readable categories
+$catwritelist = $imgcat_handler->getList($groups, 'imgcat_write', 1);  // get writable categories
 
 $catreadcount = count($catreadlist);        // count readable categories
 $catwritecount = count($catwritelist);      // count writable categories
@@ -94,10 +92,10 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
         }
         $count = count($image_id);
         if ($count > 0) {
-            $image_handler =& xoops_gethandler("image");
+            $image_handler = xoops_gethandler("image");
             $error = array();
             for ($i = 0; $i < $count; $i++) {
-                $image =& $image_handler->get($image_id[$i]);
+                $image = $image_handler->get($image_id[$i]);
                 if (!is_object($image)) {
                     $error[] = sprintf(_FAILGETIMG, $image_id[$i]);
                     continue;
@@ -124,12 +122,11 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
         if (!$GLOBALS["xoopsSecurity"]->check()) {
             redirect_header($current_file . "?target=" . $target, 3, implode("<br />", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
-        $imgcat =& $imgcat_handler->get(intval($imgcat_id));
+        $imgcat = $imgcat_handler->get(intval($imgcat_id));
         if (!is_object($imgcat)) {
             redirect_header($current_file . "?target=" . $target, 3);
         }
-        include_once XOOPS_ROOT_PATH."/class/uploader.php";
-
+        
         $uploader = new XoopsMediaUploader(XOOPS_UPLOAD_PATH, array("image/gif", "image/jpeg", "image/pjpeg", "image/x-png", "image/png", "image/bmp"), $imgcat->getVar("imgcat_maxsize"), $imgcat->getVar("imgcat_maxwidth"), $imgcat->getVar("imgcat_maxheight"));
         $uploader->setPrefix("img");
         $err = array();
@@ -139,8 +136,8 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
                 if (!$uploader->upload()) {
                     $err[] = $uploader->getErrors();
                 } else {
-                    $image_handler =& xoops_gethandler("image");
-                    $image =& $image_handler->create();
+                    $image_handler = xoops_gethandler("image");
+                    $image = $image_handler->create();
                     $image->setVar("image_name", $uploader->getSavedFileName());
                     $image->setVar("image_nicename", $image_nicename);
                     $image->setVar("image_mimetype", $uploader->getMediaType());
@@ -177,8 +174,8 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
         if (!$GLOBALS["xoopsSecurity"]->check()) {
             redirect_header($current_file . "?target=" . $target, 3, implode("<br />", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
-        $imgcat_handler =& xoops_gethandler("imagecategory");
-        $imagecategory =& $imgcat_handler->create();
+        $imgcat_handler = xoops_gethandler("imagecategory");
+        $imagecategory = $imgcat_handler->create();
         $imagecategory->setVar("imgcat_name", $imgcat_name);
         $imagecategory->setVar("imgcat_maxsize", $imgcat_maxsize);
         $imagecategory->setVar("imgcat_maxwidth", $imgcat_maxwidth);
@@ -192,7 +189,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             redirect_header($current_file . "?target=" . $target, 3);
         }
         $newid = $imagecategory->getVar("imgcat_id");
-        $imagecategoryperm_handler =& xoops_gethandler("groupperm");
+        $imagecategoryperm_handler = xoops_gethandler("groupperm");
         if (!isset($readgroup)) {
             $readgroup = array();
         }
@@ -200,7 +197,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             array_push($readgroup, XOOPS_GROUP_ADMIN);
         }
         foreach ($readgroup as $rgroup) {
-            $imagecategoryperm =& $imagecategoryperm_handler->create();
+            $imagecategoryperm = $imagecategoryperm_handler->create();
             $imagecategoryperm->setVar("gperm_groupid", $rgroup);
             $imagecategoryperm->setVar("gperm_itemid", $newid);
             $imagecategoryperm->setVar("gperm_name", 'imgcat_read');
@@ -215,7 +212,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             array_push($writegroup, XOOPS_GROUP_ADMIN);
         }
         foreach ($writegroup as $wgroup) {
-            $imagecategoryperm =& $imagecategoryperm_handler->create();
+            $imagecategoryperm = $imagecategoryperm_handler->create();
             $imagecategoryperm->setVar("gperm_groupid", $wgroup);
             $imagecategoryperm->setVar("gperm_itemid", $newid);
             $imagecategoryperm->setVar("gperm_name", 'imgcat_write');
@@ -233,7 +230,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             redirect_header($current_file . "?target=" . $target, 3, implode("<br />", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         $imgcat_handler = xoops_gethandler("imagecategory");
-        $imagecategory =& $imgcat_handler->get($imgcat_id);
+        $imagecategory = $imgcat_handler->get($imgcat_id);
         if (!is_object($imagecategory)) {
             redirect_header($current_file . "?target=" . $target, 3);
         }
@@ -247,7 +244,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
         if (!$imgcat_handler->insert($imagecategory)) {
             redirect_header($current_file . "?target=" . $target, 3);
         }
-        $imagecategoryperm_handler =& xoops_gethandler("groupperm");
+        $imagecategoryperm_handler = xoops_gethandler("groupperm");
         $criteria = new CriteriaCompo(new Criteria("gperm_itemid", $imgcat_id));
         $criteria->add(new Criteria("gperm_modid", 1));
         $criteria2 = new CriteriaCompo(new Criteria("gperm_name", 'imgcat_write'));
@@ -261,7 +258,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             array_push($readgroup, XOOPS_GROUP_ADMIN);
         }
         foreach ($readgroup as $rgroup) {
-            $imagecategoryperm =& $imagecategoryperm_handler->create();
+            $imagecategoryperm = $imagecategoryperm_handler->create();
             $imagecategoryperm->setVar("gperm_groupid", $rgroup);
             $imagecategoryperm->setVar("gperm_itemid", $imgcat_id);
             $imagecategoryperm->setVar("gperm_name", 'imgcat_read');
@@ -276,7 +273,7 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             array_push($writegroup, XOOPS_GROUP_ADMIN);
         }
         foreach ($writegroup as $wgroup) {
-            $imagecategoryperm =& $imagecategoryperm_handler->create();
+            $imagecategoryperm = $imagecategoryperm_handler->create();
             $imagecategoryperm->setVar("gperm_groupid", $wgroup);
             $imagecategoryperm->setVar("gperm_itemid", $imgcat_id);
             $imagecategoryperm->setVar("gperm_name", 'imgcat_write');
@@ -308,15 +305,15 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
             redirect_header($current_file . "?target=" . $target, 3);
         }
         $imgcat_handler = xoops_gethandler("imagecategory");
-        $imagecategory =& $imgcat_handler->get($imgcat_id);
+        $imagecategory = $imgcat_handler->get($imgcat_id);
         if (!is_object($imagecategory)) {
             redirect_header($current_file . "?target=" . $target, 3);
         }
         if ($imagecategory->getVar("imgcat_type") != "C") {
             redirect_header($current_file . "?target=" . $target, 3, _MD_SCATDELNG);
         }
-        $image_handler =& xoops_gethandler("image");
-        $images =& $image_handler->getObjects(new Criteria("imgcat_id", $imgcat_id), true, false);
+        $image_handler = xoops_gethandler("image");
+        $images = $image_handler->getObjects(new Criteria("imgcat_id", $imgcat_id), true, false);
         $errors = array();
         foreach (array_keys($images) as $i) {
             if (!$image_handler->delete($images[$i])) {
@@ -358,8 +355,8 @@ if ( ($isadmin) || ($catreadcount > 0) || ($catwritecount > 0) ) {
        if ($image_id <= 0) {
            redirect_header($current_file . "?target=" . $target, 3);
        }
-       $image_handler =& xoops_gethandler("image");
-       $image =& $image_handler->get($image_id);
+       $image_handler = xoops_gethandler("image");
+       $image = $image_handler->get($image_id);
        if (!is_object($image)) {
            redirect_header($current_file . "?target=" . $target, 3);
        }
@@ -416,9 +413,9 @@ echo '<div class="panel_wrapper">';
         if (!empty($catreadlist)) {
             echo '<table width="100%" class="outer" cellspacing="1">';
             // get all categories
-            $imagecategories =& $imgcat_handler->getObjects();
+            $imagecategories = $imgcat_handler->getObjects();
             $catcount = count($imagecategories);
-            $image_handler =& xoops_gethandler('image');
+            $image_handler = xoops_gethandler('image');
             for ($i = 0; $i < $catcount; $i++) {
                 echo '<tr valign="top" align="left"><td class="head">';
                 if ( in_array($imagecategories[$i]->getVar('imgcat_id'), array_keys($catreadlist)) ) {
@@ -449,7 +446,7 @@ echo '<div class="panel_wrapper">';
             redirect_header($current_file . '?target=' . $target, 1);
         }
         $imgcat_handler = xoops_gethandler('imagecategory');
-        $imagecategory =& $imgcat_handler->get($imgcat_id);
+        $imagecategory = $imgcat_handler->get($imgcat_id);
         if (!is_object($imagecategory)) {
             redirect_header($current_file . '?target=' . $target, 1);
         }
@@ -460,7 +457,7 @@ echo '<div class="panel_wrapper">';
         $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
         $criteria->setStart($start);
         $criteria->setLimit(20);
-        $images =& $image_handler->getObjects($criteria, true, false);
+        $images = $image_handler->getObjects($criteria, true, false);
 
         echo '<a href="' . $current_file . '?target=' . $target . '">' . _MD_IMGMAIN . '</a>&nbsp;<span style="font-weight:bold;">&gt;</span>&nbsp;'.$imagecategory->getVar('imgcat_name');
         echo '<br /><br /><strong>{#xoopsimagebrowser_dlg.select_image}</strong>';
@@ -525,7 +522,6 @@ echo '<div class="panel_wrapper">';
 
         if ($imgcount > 0) {
             if ($imgcount > 20) {
-                include_once XOOPS_ROOT_PATH.'/class/pagenav.php';
                 $nav = new XoopsPageNav($imgcount, 20, $start, 'start', 'op=listimg&amp;target='.$target.'&amp;imgcat_id='.$imgcat_id);
                 echo '<div text-align="right">'.$nav->renderNav().'</div>';
             }
@@ -543,12 +539,12 @@ echo '<div class="panel_wrapper">';
             redirect_header($current_file . '?target=' . $target, 1);
         }
         $imgcat_handler = xoops_gethandler('imagecategory');
-        $imagecategory =& $imgcat_handler->get($imgcat_id);
+        $imagecategory = $imgcat_handler->get($imgcat_id);
         if (!is_object($imagecategory)) {
             redirect_header($current_file . '?target=' . $target, 1);
         }
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-        $imagecategoryperm_handler =& xoops_gethandler('groupperm');
+        $imagecategoryperm_handler = xoops_gethandler('groupperm');
         $form = new XoopsThemeForm(_MD_EDITIMGCAT, 'imagecat_form', ''.$current_file.'?target='.$target.'', 'post', true);
         $form->addElement(new XoopsFormText(_MD_IMGCATNAME, 'imgcat_name', 50, 255, $imagecategory->getVar('imgcat_name')), true);
         $form->addElement(new XoopsFormSelectGroup(_MD_IMGCATRGRP, 'readgroup', true, $imagecategoryperm_handler->getGroupIds('imgcat_read', $imgcat_id), 5, true));

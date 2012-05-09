@@ -2,15 +2,15 @@
 
 <{if $old_avatar}>
     <div class="pad10 center">
-        <h4 class="bold red"><{$smarty.const._US_OLDDELETED}></h4>
-        <img src="<{$old_avatar}>" alt="" />
+        <img src="<{$old_avatar}>" alt="" /><br />
+        <div class="bold red"><{$smarty.const._US_OLDDELETED}></div>
     </div>
 <{/if}>
 
 <{if $uploadavatar}>
 <{$uploadavatar.javascript}>
 <form name="<{$uploadavatar.name}>" action="<{$uploadavatar.action}>" method="<{$uploadavatar.method}>" <{$uploadavatar.extra}>>
-  <table class="outer" cellspacing="1">
+  <table class="outer">
     <tr>
     <th colspan="2"><{$uploadavatar.title}></th>
     </tr>
@@ -36,9 +36,8 @@
 <{/if}>
 
 <br />
-<{$chooseavatar.javascript}>
 <form name="<{$chooseavatar.name}>" action="<{$chooseavatar.action}>" method="<{$chooseavatar.method}>" <{$chooseavatar.extra}>>
-  <table class="outer" cellspacing="1">
+  <table class="outer">
     <tr>
     <th colspan="2"><{$chooseavatar.title}></th>
     </tr>
@@ -46,7 +45,8 @@
     <{foreach item=element from=$chooseavatar.elements}>
       <{if $element.hidden != true}>
       <tr>
-        <td class="head"><{$element.caption}>
+        <td class="head width30">
+        <{$element.caption}>
         <{if $element.description}>
         	<div style="font-weight: normal"><{$element.description}></div>
         <{/if}>
@@ -57,6 +57,10 @@
       <{$element.body}>
       <{/if}>
     <{/foreach}>
+    <tr class="footer">
+        <td colspan="2">&nbsp;</td>
+    </tr>
     <!-- end of form elements loop -->
   </table>
 </form>
+<{$chooseavatar.javascript}>

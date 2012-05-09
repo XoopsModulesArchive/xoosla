@@ -34,7 +34,7 @@ if( ! empty( $_POST['action'] ) ) {
 
 	// Ticket check
 	if ( ! $xoopsGTicket->check( true , 'protector_admin' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+		redirect_header(XOOPS_URL,1,$xoopsGTicket->getErrors());
 	}
 
 	if( $_POST['action'] == 'update_ips' ) {
@@ -65,7 +65,7 @@ if( ! empty( $_POST['action'] ) ) {
 		}
 
 		$redirect_msg = $error_msg ? $error_msg : _AM_MSG_IPFILESUPDATED ;
-		redirect_header( "center.php?page=center" , 2 , $redirect_msg ) ;
+		redirect_header( "center.php?page=center" , 1 , $redirect_msg ) ;
 		exit ;
 
 	} else if( $_POST['action'] == 'delete' && isset( $_POST['ids'] ) && is_array( $_POST['ids'] ) ) {
@@ -74,13 +74,13 @@ if( ! empty( $_POST['action'] ) ) {
 			$lid = intval( $lid ) ;
 			$db->query( "DELETE FROM $log_table WHERE lid='$lid'" ) ;
 		}
-		redirect_header( "center.php?page=center" , 2 , _AM_MSG_REMOVED ) ;
+		redirect_header( "center.php?page=center" , 1 , _AM_MSG_REMOVED ) ;
 		exit ;
 
 	} else if( $_POST['action'] == 'deleteall' ) {
 		// remove all records
 		$db->query( "DELETE FROM $log_table" ) ;
-		redirect_header( "center.php?page=center" , 2 , _AM_MSG_REMOVED ) ;
+		redirect_header( "center.php?page=center" , 1 , _AM_MSG_REMOVED ) ;
 		exit ;
 
 	} else if( $_POST['action'] == 'compactlog' ) {
@@ -96,7 +96,7 @@ if( ! empty( $_POST['action'] ) ) {
 			}
 		}
 		$db->query( "DELETE FROM $log_table WHERE lid IN (".implode(',',$ids).")" ) ;
-		redirect_header( "center.php?page=center" , 2 , _AM_MSG_REMOVED ) ;
+		redirect_header( "center.php?page=center" , 1 , _AM_MSG_REMOVED ) ;
 		exit ;
 	}
 }

@@ -1,13 +1,16 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
- * xos_logos_PageBuilder component class file
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * XooslaPageBuilder component class file
  *
  * @copyright The XOOPS project http://sourceforge.net/projects/xoops/
  * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
@@ -22,23 +25,20 @@
  */
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-include_once $GLOBALS['xoops']->path( 'class/xoopsblock.php' );
-include_once $GLOBALS['xoops']->path( 'class/template.php' );
-
 /**
- * xos_logos_PageBuilder main class
+ * XooslaPageBuilder main class
  *
  * @package xos_logos
- * @subpackage xos_logos_PageBuilder
+ * @subpackage XooslaPageBuilder
  * @author Skalpa Keo
  * @since 2.3.0
  */
-class xos_logos_PageBuilder {
+class XooslaPageBuilder {
 	var $theme = false;
 	var $blocks = array();
 
 	/**
-	 * xos_logos_PageBuilder::xoInit()
+	 * XooslaPageBuilder::xoInit()
 	 *
 	 * @param array $options
 	 * @return
@@ -66,14 +66,14 @@ class xos_logos_PageBuilder {
 	}
 
 	/**
-	 * xos_logos_PageBuilder::retrieveBlocks()
+	 * XooslaPageBuilder::retrieveBlocks()
 	 *
 	 * @return
 	 */
 	function retrieveBlocks()
 	{
 		global $xoopsConfig;
-		$xoopsPreload = &XoopsPreload::getInstance();
+		$xoopsPreload = XoopsPreload::getInstance();
 
 		$startMod = ( $xoopsConfig['startpage'] == '--' ) ? 'system' : $xoopsConfig['startpage'];
 		if ( isset( $GLOBALS['xoopsModule'] ) && is_object( $GLOBALS['xoopsModule'] ) ) {
@@ -87,8 +87,7 @@ class xos_logos_PageBuilder {
 			$isStart = !empty( $GLOBALS['xoopsOption']['show_cblock'] );
 		}
 
-		$groups = ( isset( $GLOBALS['xoopsUser'] ) && is_object( $GLOBALS['xoopsUser'] ) ) ? $GLOBALS['xoopsUser']->getGroups() : array(
-			XOOPS_GROUP_ANONYMOUS );
+		$groups = ( isset( $GLOBALS['xoopsUser'] ) && is_object( $GLOBALS['xoopsUser'] ) ) ? $GLOBALS['xoopsUser']->getGroups() : array( XOOPS_GROUP_ANONYMOUS );
 
 		$oldzones = array(
 			XOOPS_SIDEBLOCK_LEFT => 'canvas_left' ,
@@ -103,7 +102,7 @@ class xos_logos_PageBuilder {
 			$this->blocks[$zone] = array();
 		}
 		if ( $this->theme ) {
-			$template = &$this->theme->template;
+			$template = $this->theme->template;
 			$backup = array( $template->caching ,
 				$template->cache_lifetime );
 		} else {
@@ -117,7 +116,7 @@ class xos_logos_PageBuilder {
 		foreach ( $block_arr as $block ) {
 			$side = $oldzones[$block->getVar( 'side' )];
 			if ( $var = $this->buildBlock( $block, $template ) ) {
-				$this->blocks[$side][$var["id"]] = $var;
+				$this->blocks[$side][$var['id']] = $var;
 			}
 		}
 		if ( $this->theme ) {
@@ -126,7 +125,7 @@ class xos_logos_PageBuilder {
 	}
 
 	/**
-	 * xos_logos_PageBuilder::generateCacheId()
+	 * XooslaPageBuilder::generateCacheId()
 	 *
 	 * @param mixed $cache_id
 	 * @return
@@ -140,7 +139,7 @@ class xos_logos_PageBuilder {
 	}
 
 	/**
-	 * xos_logos_PageBuilder::buildBlock()
+	 * XooslaPageBuilder::buildBlock()
 	 *
 	 * @param mixed $xobject
 	 * @param mixed $template
@@ -166,10 +165,10 @@ class xos_logos_PageBuilder {
 			$template->cache_lifetime = $bcachetime;
 		}
 		$template->setCompileId( $xobject->getVar( 'dirname', 'n' ) );
-		$tplName = ( $tplName = $xobject->getVar( 'template' ) ) ? "db:$tplName" : 'db:system_block_dummy.html';
+		$tplName = ( $tplName = $xobject->getVar( 'template' ) ) ? 'db:'.$tplName : 'db:system_block_dummy.html';
 		$cacheid = $this->generateCacheId( 'blk_' . $xobject->getVar( 'bid' ) );
 
-		$xoopsLogger = &XoopsLogger::getInstance();
+		$xoopsLogger = XoopsLogger::getInstance();
 		if ( !$bcachetime || !$template->is_cached( $tplName, $cacheid ) ) {
 			// Get theme metas
 			if ( $this->theme && $bcachetime ) {
@@ -195,8 +194,7 @@ class xos_logos_PageBuilder {
 					}
 				}
 				if ( count( $metas ) ) {
-					xoops_load( 'xoopscache' );
-					$cache = &XoopsCache::getInstance();
+					$cache = XoopsCache::getInstance();
 					$cache->write( $cacheid, $metas );
 				}
 			}
@@ -206,8 +204,7 @@ class xos_logos_PageBuilder {
 		}
 		// add block cached metas
 		if ( $this->theme && $bcachetime ) {
-			xoops_load( 'xoopscache' );
-			$cache = &XoopsCache::getInstance();
+			$cache = XoopsCache::getInstance();
 			if ( $metas = $cache->read( $cacheid ) ) {
 				foreach ( $metas as $type => $value ) {
 					$this->theme->metas[$type] = array_merge( $this->theme->metas[$type], $metas[$type] );

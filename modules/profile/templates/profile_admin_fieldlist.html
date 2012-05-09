@@ -1,4 +1,5 @@
 <div><a href="field.php?op=new"><{$smarty.const._ADD}> <{$smarty.const._PROFILE_AM_FIELD}></a></div>
+
 <form action="field.php" method="post" id="fieldform">
     <table>
         <th><{$smarty.const._PROFILE_AM_NAME}></th>
@@ -16,25 +17,25 @@
                     <td><{$field.field_description}></td>
                     <td><{$field.fieldtype}></td>
                     <td>
-                        <{if $field.canEdit}>
-                            <select name="category[<{$field.field_id}>]"><{html_options options=$categories selected=$field.cat_id}></select>
-                        <{/if}>
+                    <{if $field.canEdit}>
+                        <select name="category[<{$field.field_id}>]"><{html_options options=$categories selected=$field.cat_id}></select>
+                    <{/if}>
                     </td>
                     <td>
-                        <{if $field.canEdit}>
-                            <input type="text" name="weight[<{$field.field_id}>]" size="5" maxlength="5" value="<{$field.field_weight}>" />
-                        <{/if}>
+                    <{if $field.canEdit}>
+                        <input type="text" name="weight[<{$field.field_id}>]" size="5" maxlength="5" value="<{$field.field_weight}>" />
+                    <{/if}>
                     </td>
                     <td align= "center">
-                        <{if $field.canEdit}>
-                            <input type="hidden" name="oldweight[<{$field.field_id}>]" value="<{$field.field_weight}>" />
-                            <input type="hidden" name="oldcat[<{$field.field_id}>]" value="<{$field.cat_id}>" />
-                            <input type="hidden" name="field_ids[]" value="<{$field.field_id}>" />
-                            <a href="field.php?id=<{$field.field_id}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
-                        <{/if}>
-                        <{if $field.canDelete}>
-                            &nbsp;<a href="field.php?op=delete&amp;id=<{$field.field_id}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>"</a>
-                        <{/if}>
+                    <{if $field.canEdit}>
+                        <input type="hidden" name="oldweight[<{$field.field_id}>]" value="<{$field.field_weight}>" />
+                        <input type="hidden" name="oldcat[<{$field.field_id}>]" value="<{$field.cat_id}>" />
+                        <input type="hidden" name="field_ids[]" value="<{$field.field_id}>" />
+                        <a href="field.php?id=<{$field.field_id}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+                    <{/if}>
+                    <{if $field.canDelete}>
+                        &nbsp;<a href="field.php?op=delete&amp;id=<{$field.field_id}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>"</a>
+                    <{/if}>
                     </td>
                 </tr>
             <{/foreach}>

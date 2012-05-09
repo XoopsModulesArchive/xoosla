@@ -11,11 +11,11 @@
  * @version         $Id
 */
 #xo-nav-options {
-	background: #e7e7e7;
-	border-top: 1px solid #FFFFFF;
-	border-bottom: 1px solid #CCCCCC;
-	padding: 0 5px 0 5px;
-	height: 40px;
+   background: #ededed;
+   border-top: 1px solid #FFFFFF;
+   border-bottom: 1px solid #CCCCCC;
+   padding: 0 5px 0 5px;
+   height: 40px;
 }
 
 #xo-nav-options a {
@@ -31,25 +31,27 @@
 }
 
 #xo-nav-options a:hover {
-	background-color: #E7F4F7;
-	border-color: #ADD8E6;
+   background-color: #dcdcdc;
 }
 
 #xo-nav-options .modname {
 	color: #606060;
+	   
 }
 
 #xo-modname {
-	float: left;
-	font-size: 18px;
-	font-weight: bold;
-	margin-top: 8px;
-	margin-left: 2px;
-	color : #142849;
+   float: left;
+   font-size: 18px;
+   font-weight: normal;
+   line-height: 36px;
+   color : #142849;
+   margin-left: 10px;
+   text-shadow: 0px 1px 0px rgba(0,0,0, .35);
 }
 
 #xo-toolbar {
 	float: right;
 	margin-left: 30px;
-	margin-right: 30px;
+	margin-right: 10px;
+	padding-top: 2px;
 } 

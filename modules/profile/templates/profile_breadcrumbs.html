@@ -1,3 +1,5 @@
+<h2><{$smarty.const._US_USERPROFILE}></h2>
+
 <div class="breadcrumbs">
     <{foreach item=itm from=$xoBreadcrumbs name=bcloop}>
         <span class="item">
@@ -7,10 +9,7 @@
             <{$itm.title}>
         <{/if}>
         </span>
-
-        <{if !$smarty.foreach.bcloop.last}>
-            <span class="delimiter">&raquo;</span>
-        <{/if}>
+        <{if !$smarty.foreach.bcloop.last}><span class="delimiter">&raquo;</span><{/if}>
     <{/foreach}>
 </div>
 <br class="clear"/>

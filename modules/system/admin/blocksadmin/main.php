@@ -1,35 +1,32 @@
 <?php
-// ------------------------------------------------------------------------ //
-// XOOPS - PHP Content Management System                      //
-// Copyright (c) 2000 XOOPS.org                           //
-// <http://www.xoops.org/>                             //
-// ------------------------------------------------------------------------ //
-// This program is free software; you can redistribute it and/or modify     //
-// it under the terms of the GNU General Public License as published by     //
-// the Free Software Foundation; either version 2 of the License, or        //
-// (at your option) any later version.                                      //
-// //
-// You may not change or alter any portion of this comment or credits       //
-// of supporting developers from this source code or any supporting         //
-// source code which is considered copyrighted (c) material of the          //
-// original comment or credit authors.                                      //
-// //
-// This program is distributed in the hope that it will be useful,          //
-// but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-// GNU General Public License for more details.                             //
-// //
-// You should have received a copy of the GNU General Public License        //
-// along with this program; if not, write to the Free Software              //
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-// ------------------------------------------------------------------------ //
+/**
+ * Xoosla
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ *
+ * @copyright The Xoosla Project http://sourceforge.net/projects/xoosla/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package main.php
+ * @since 1.0.0.0
+ * @author John Neill <zaquria@xoosla.com>
+ * @version main.php 00 27/02/2012 04:47 Catzwolf $Id:
+ */
 if ( !is_object( $xoopsUser ) || !is_object( $xoopsModule ) || !$xoopsUser->isAdmin( $xoopsModule->mid() ) ) {
-	exit( "Access Denied" );
+	die( 'Restricted access' );
 }
+
 include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 include XOOPS_ROOT_PATH . '/modules/system/admin/blocksadmin/blocksadmin.php';
 
-$op = "list";
+$op = 'list';
 if ( isset( $_POST ) ) {
 	foreach ( $_POST as $k => $v ) {
 		$$k = $v;
@@ -37,7 +34,7 @@ if ( isset( $_POST ) ) {
 }
 
 if ( isset( $_GET['op'] ) ) {
-	if ( $_GET['op'] == "edit" || $_GET['op'] == "add" || $_GET['op'] == "delete" || $_GET['op'] == "delete_ok" || $_GET['op'] == "clone" ) {
+	if ( $_GET['op'] == 'edit' || $_GET['op'] == 'add' || $_GET['op'] == 'delete' || $_GET['op'] == 'delete_ok' || $_GET['op'] == 'clone' ) {
 		$op = $_GET['op'];
 		$bid = isset( $_GET['bid'] ) ? intval( $_GET['bid'] ) : 0;
 	}
@@ -52,7 +49,7 @@ foreach ( $requests as $req ) {
 
 if ( isset( $previewblock ) ) {
 	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		redirect_header( "admin.php?fct=blocksadmin", 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
 		exit();
 	}
 	xoops_cp_header();
@@ -72,14 +69,14 @@ if ( isset( $previewblock ) ) {
 		$myblock = new XoopsBlock();
 		$myblock->setVar( 'block_type', 'C' );
 	}
-	$myts = &MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	$myblock->setVar( 'title', $myts->stripSlashesGPC( $btitle ) );
 	$myblock->setVar( 'content', $myts->stripSlashesGPC( $bcontent ) );
 	$dummyhtml = '<html><head><meta http-equiv="content-type" content="text/html; charset=' . _CHARSET . '" />';
 	$dummyhtml .= '<meta http-equiv="content-language" content="' . _LANGCODE . '" /><title>' . $xoopsConfig['sitename'] . '</title>';
 	$dummyhtml .= '<link rel="stylesheet" type="text/css" media="all" href="' . xoops_getcss( $xoopsConfig['theme_set'] ) . '" />';
 	$dummyhtml .= '</head><body><table><tr><th>' . $myblock->getVar( 'title' ) . '</th></tr><tr><td>';
-	$dummyhtml .= $myblock->getContent( 'S', $bctype ) . '</td></tr></table></body></html>';
+	$dummyhtml .= $myblock->getContent( 's', $bctype ) . '</td></tr></table></body></html>';
 
 	$block['groups'] = $bgroups;
 	$block['edit_form'] = false;
@@ -88,10 +85,10 @@ if ( isset( $previewblock ) ) {
 	$block['side'] = $bside;
 	$block['weight'] = $bweight;
 	$block['visible'] = $bvisible;
-	$block['name'] = $myblock->getVar( 'name', 'E' );
-	$block['title'] = $myblock->getVar( 'title', 'E' );
-	$block['content'] = $myblock->getVar( 'content', 'E' );
-	$block['modules'] = &$bmodule;
+	$block['name'] = $myblock->getVar( 'name', 'e' );
+	$block['title'] = $myblock->getVar( 'title', 'e' );
+	$block['content'] = $myblock->getVar( 'content', 'e' );
+	$block['modules'] = $bmodule;
 	$block['ctype'] = isset( $bctype ) ? $bctype : $myblock->getVar( 'c_type' );
 	$block['is_custom'] = true;
 	$block['cachetime'] = intval( $bcachetime );
@@ -102,8 +99,8 @@ if ( isset( $previewblock ) ) {
 	echo '<script type="text/javascript">
     <!--//
     win = openWithSelfMain("", "popup", 250, 200, true);
-    win.document.clear();
-    ';
+    win.document.clear();';
+
 	$lines = preg_split( "/(\r\n|\r|\n)( *)/", $dummyhtml );
 	foreach ( $lines as $line ) {
 		echo 'win.document.writeln("' . str_replace( '"', '\"', $line ) . '");';
@@ -116,8 +113,7 @@ if ( isset( $previewblock ) ) {
 	exit();
 }
 
-if ( $op == "list" ) {
-	xoops_cp_header();
+if ( $op == 'list' ) {
 	// Define main template
 	$xoopsOption['template_main'] = 'system_blocks.html';
 	// Call Header
@@ -165,9 +161,9 @@ if ( $op == "list" ) {
 	exit();
 }
 
-if ( $op == "order" ) {
+if ( $op == 'order' ) {
 	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		redirect_header( 'admin.php?fct=blocksadmin', 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
 		exit();
 	}
 
@@ -183,28 +179,46 @@ if ( $op == "order" ) {
 	foreach ( array_keys( $bid ) as $i ) {
 		$isChange = 0 ;
 		$list = array( 'name', 'title', 'weight', 'visible', 'side', 'bcachetime', 'bmodule' );
-	    foreach ($list as $each) {
-            if ( isset(${$each}[$i]) && is_array(${$each}[$i]) ) {
-	            if ( count(${$each}[$i]) != count(${'old'.$each}[$i]) ) {
-	                $isChange = 1;
-	            } elseif ( array_diff(${$each}[$i], ${'old'.$each}[$i]) ) {
-	                $isChange = 1;
-	            }
-	        } elseif ( isset(${$each}[$i]) && ( trim(${'old'.$each}[$i]) != trim(${$each}[$i]) ) ) {
-	            $isChange = 1;
-	        }
-	    }
-        if ( $isChange == 1 ) {
+		foreach ( $list as $each ) {
+			if ( isset( $ {
+						$each}
+					[$i] ) && is_array( $ {
+						$each}
+					[$i] ) ) {
+				if ( count( $ {
+							$each}
+						[$i] ) != count( $ {
+							'old' . $each}
+						[$i] ) ) {
+					$isChange = 1;
+				} elseif ( array_diff( $ {
+							$each}
+						[$i], $ {
+							'old' . $each}
+						[$i] ) ) {
+					$isChange = 1;
+				}
+			} elseif ( isset( $ {
+						$each}
+					[$i] ) && ( trim( $ {
+							'old' . $each}
+						[$i] ) != trim( $ {
+							$each}
+						[$i] ) ) ) {
+				$isChange = 1;
+			}
+		}
+		if ( $isChange == 1 ) {
 			order_block( $bid[$i], $weight[$i], $visible[$i], $side[$i], $name[$i], $title[$i], $bmodule[$i], $bcachetime[$i] );
 		}
 	}
-	redirect_header( "admin.php?fct=blocksadmin", 1, _AM_DBUPDATED );
+	redirect_header( 'admin.php?fct=blocksadmin', 1, _AM_DBUPDATED );
 	exit();
 }
 
-if ( $op == "save" ) {
+if ( $op == 'save' ) {
 	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		redirect_header( 'admin.php?fct=blocksadmin', 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
 		exit();
 	}
 	$bgroups = isset( $bgroups ) ? $bgroups : array();
@@ -212,9 +226,9 @@ if ( $op == "save" ) {
 	exit();
 }
 
-if ( $op == "update" ) {
+if ( $op == 'update' ) {
 	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		redirect_header( 'admin.php?fct=blocksadmin', 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
 		exit();
 	}
 	$bcachetime = isset( $bcachetime ) ? intval( $bcachetime ) : 0;
@@ -222,20 +236,20 @@ if ( $op == "update" ) {
 	$bcontent = isset( $bcontent ) ? $bcontent : '';
 	$bctype = isset( $bctype ) ? $bctype : '';
 	$bgroups = isset( $bgroups ) ? $bgroups : array();
-	$bmodule = isset( $bmodule ) ? $bmodule : -1;
+	$bmodule = isset( $bmodule ) ? $bmodule : - 1;
 	update_block( $bid, $bside, $bweight, $bvisible, $bname, $btitle, $bdescription, $bcontent, $bctype, $bcachetime, $bmodule, $options, $bgroups );
 }
 
-if ( $op == "delete_ok" ) {
+if ( $op == 'delete_ok' ) {
 	if ( !$GLOBALS['xoopsSecurity']->check() ) {
-		redirect_header( "admin.php?fct=blocksadmin", 3, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
+		redirect_header( 'admin.php?fct=blocksadmin', 1, implode( '<br />', $GLOBALS['xoopsSecurity']->getErrors() ) );
 		exit();
 	}
 	delete_block_ok( $bid );
 	exit();
 }
 
-if ( $op == "delete" ) {
+if ( $op == 'delete' ) {
 	// Define main template
 	$xoopsOption['template_main'] = 'system_blocks.html';
 	// Call Header
@@ -280,7 +294,7 @@ if ( $op == "edit" ) {
 	exit();
 }
 
-if ( $op == "add" ) {
+if ( $op == 'add' ) {
 	// Define main template
 	$xoopsOption['template_main'] = 'system_blocks.html';
 	// Call Header
@@ -291,7 +305,6 @@ if ( $op == "add" ) {
 	// Define scripts
 	$xoTheme->addScript( 'browse.php?Frameworks/jquery/jquery.js' );
 	$xoTheme->addScript( 'browse.php?Frameworks/jquery/plugins/jquery.ui.js' );
-
 	$xoTheme->addScript( 'browse.php?Frameworks/jquery/plugins/jquery.form.js' );
 	$xoTheme->addScript( 'browse.php?modules/system/js/admin.js' );
 	$xoTheme->addScript( 'browse.php?modules/system/js/blocks.js' );

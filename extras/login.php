@@ -7,7 +7,9 @@ include $path . '/mainfile.php';
 if ( !defined( 'XOOPS_ROOT_PATH' ) ) {
 	exit();
 }
-include_once XOOPS_ROOT_PATH . '/language/' . $xoopsConfig['language'] . '/user.php';
+
+xoops_loadLanguage( 'user' );
+
 $op = ( isset( $_POST['op'] ) && $_POST['op'] == 'dologin' ) ? 'dologin' : 'login';
 
 $username = isset( $_POST['username'] ) ? trim( $_POST['username'] ) : '';
@@ -37,12 +39,12 @@ echo '
 ';
 
 if ( $op == 'dologin' ) {
-	$member_handler = &xoops_gethandler( 'member' );
-	$myts = &MyTextsanitizer::getInstance();
-	$user = &$member_handler->loginUser( addslashes( $myts->stripSlashesGPC( $username ) ), addslashes( $myts->stripSlashesGPC( $password ) ) );
+	$member_handler = xoops_gethandler( 'member' );
+	$myts = MyTextsanitizer::getInstance();
+	$user = $member_handler->loginUser( addslashes( $myts->stripSlashesGPC( $username ) ), addslashes( $myts->stripSlashesGPC( $password ) ) );
 	if ( is_object( $user ) ) {
 		if ( 0 == $user->getVar( 'level' ) ) {
-			redirect_header( XOOPS_URL . '/index.php', 5, _US_NOACTTPADM );
+			redirect_header( XOOPS_URL . '/index.php', 1, _US_NOACTTPADM );
 			exit();
 		}
 		if ( $xoopsConfig['closesite'] == 1 ) {

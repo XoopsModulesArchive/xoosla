@@ -1,4 +1,14 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * System functions
  *
@@ -13,7 +23,7 @@
  * @package system
  * @version $Id$
  */
-
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
 /**
  * System language loader wrapper
@@ -42,6 +52,13 @@ function system_loadLanguage( $name, $domain = '', $language = null )
 	return $ret;
 }
 
+/**
+ * system_adminVersion()
+ *
+ * @param mixed $version
+ * @param string $value
+ * @return
+ */
 function system_adminVersion( $version, $value = '' )
 {
 	static $tblVersion = array();
@@ -58,6 +75,12 @@ function system_adminVersion( $version, $value = '' )
 	}
 }
 
+/**
+ * system_AdminIcons()
+ *
+ * @param mixed $img
+ * @return
+ */
 function system_AdminIcons( $img )
 {
 	$style = 'default';
@@ -66,6 +89,12 @@ function system_AdminIcons( $img )
 	return $url;
 }
 
+/**
+ * system_loadTemplate()
+ *
+ * @param mixed $name
+ * @return
+ */
 function system_loadTemplate( $name )
 {
 	global $sysTpl, $xoopsModule;
@@ -74,10 +103,18 @@ function system_loadTemplate( $name )
 	if ( file_exists( $path ) ) {
 		echo $sysTpl->fetch( $path );
 	} else {
-		echo "Unable to read " . $name;
+		echo 'Unable to read ' . $name;
 	}
 }
 
+/**
+ * modify_chmod()
+ *
+ * @param mixed $value_chmod
+ * @param mixed $path_file
+ * @param mixed $id
+ * @return
+ */
 function modify_chmod( $value_chmod, $path_file, $id )
 {
 	$chmod = '<div id="loading_' . $id . '" align="center" style="display:none;">'

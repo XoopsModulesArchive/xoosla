@@ -37,7 +37,7 @@ include_once XOOPS_ROOT_PATH."/modules/system/constants.php";
 
 // check user/group
 $groups = is_object( $GLOBALS["xoopsUser"] ) ? $GLOBALS["xoopsUser"]->getGroups() : array( XOOPS_GROUP_ANONYMOUS );
-$gperm_handler =& xoops_gethandler('groupperm');
+$gperm_handler = xoops_gethandler('groupperm');
 $admin = $gperm_handler->checkRight( 'system_admin', XOOPS_SYSTEM_SMILE, $groups );
 
 $op = '';
@@ -47,14 +47,14 @@ if (!empty($_GET['op'])) {
     $op = trim( $_POST['op'] );
 }
 
-$myts =& MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 
 if ( $admin && $op == 'SmilesAdd' ) {
     if (!$GLOBALS['xoopsSecurity']->check()) {
         redirect_header($current_file, 3, implode('<br />', $GLOBALS['xoopsSecurity']->getErrors()));
     }
-    $db =& XoopsDatabaseFactory::getDatabaseConnection();
-    include_once XOOPS_ROOT_PATH.'/class/uploader.php';
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+//    include_once XOOPS_ROOT_PATH.'/class/uploader.php';
     $uploader = new XoopsMediaUploader(XOOPS_UPLOAD_PATH, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png'), 100000, 120, 120);
     $uploader->setPrefix('smil');
     if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
@@ -168,7 +168,7 @@ if ( !$_SESSION['XoopsEmotions'] && !$admin) {
     <div id="emotionsadmin_panel" class="panel" style="overflow:auto;">
         <?php
         if ($admin) {
-            include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+//            include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 
             $smile_form = new XoopsThemeForm(_AM_ADDSMILE, 'smileform', $current_file, 'post', true);
             $smile_form->setExtra('enctype="multipart/form-data"');

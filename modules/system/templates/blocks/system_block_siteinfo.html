@@ -1,20 +1,20 @@
-<table class="outer collapse">
+<table>
   <{if $block.showgroups == true}>
   <!-- start group loop -->
   <{foreach item=group from=$block.groups}>
   <tr>
-    <th colspan="2"><{$group.name}></th>
+    <td colspan="3"><{$group.name}></td>
   </tr>
   <!-- start group member loop -->
   <{foreach item=user from=$group.users}>
   <tr>
-    <td class="even txtcenter alignmiddle">
-        <img style="width:32px;" src="<{$user.avatar}>" alt="<{$user.name}>" /><br />
+    <td class="txtcenter alignmiddle">
+        <img style="width:32px;" src="<{$user.avatar}>" alt="<{$user.name}>" />
+    </td>
+    <td class="txtcenter alignmiddle">
         <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" title="<{$user.name}>"><{$user.name}></a>
     </td>
-    <td class="odd width20 txtright alignmiddle">
-        <{$user.msglink}>
-    </td>
+    <td class="width20 txtright alignmiddle"><{$user.msglink}></td>
   </tr>
   <{/foreach}>
   <!-- end group member loop -->
@@ -22,6 +22,4 @@
   <!-- end group loop -->
   <{/if}>
 </table>
-<div class="txtcenter marg3">
-  <{$block.recommendlink}>
-</div>
+<div class="txtcenter marg3"><{$block.recommendlink}></div>

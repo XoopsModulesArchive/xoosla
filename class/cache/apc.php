@@ -1,23 +1,26 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * Cache engine For XOOPS
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @package         class
- * @subpackage      cache
- * @since           2.3.0
- * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id$
+ * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package class
+ * @subpackage cache
+ * @since 2.3.0
+ * @author Taiwen Jiang <phppp@users.sourceforge.net>
+ * @version $Id$
  */
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
 /**
  * APC storage engine for cache.
@@ -27,8 +30,8 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  *
  * CakePHP(tm) :  Rapid Development Framework <http://www.cakephp.org/>
  * Copyright 2005-2008, Cake Software Foundation, Inc.
- *                                  1785 E. Sahara Avenue, Suite 490-204
- *                                  Las Vegas, Nevada 89104
+ *                                    1785 E. Sahara Avenue, Suite 490-204
+ *                                    Las Vegas, Nevada 89104
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
@@ -51,73 +54,72 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  * @package cake
  * @subpackage cake.cake.libs.cache
  */
-class XoopsCacheApc extends XoopsCacheEngine
-{
-    /**
-     * Initialize the Cache Engine
-     *
-     * Called automatically by the cache frontend
-     * To reinitialize the settings call Cache::engine('EngineName', [optional] settings = array());
-     *
-     * @param array $setting array of setting for the engine
-     * @return boolean True if the engine has been successfully initialized, false if not
-     * @see CacheEngine::__defaults
-     * @access public
-     */
-    function init($settings = array())
-    {
-        parent::init($settings);
-        return function_exists('apc_cache_info');
-    }
+class XoopsCacheApc extends XoopsCacheEngine {
+	/**
+	 * Initialize the Cache Engine
+	 *
+	 * Called automatically by the cache frontend
+	 * To reinitialize the settings call Cache::engine('EngineName', [optional] settings = array());
+	 *
+	 * @param array $setting array of setting for the engine
+	 * @return boolean True if the engine has been successfully initialized, false if not
+	 * @see CacheEngine::__defaults
+	 * @access public
+	 */
+	public function init( $settings = array() )
+	{
+		parent::init( $settings );
+		return function_exists( 'apc_cache_info' );
+	}
 
-    /**
-     * Write data for key into cache
-     *
-     * @param string $key Identifier for the data
-     * @param mixed $value Data to be cached
-     * @param integer $duration How long to cache the data, in seconds
-     * @return boolean True if the data was succesfully cached, false on failure
-     * @access public
-     */
-    function write($key, &$value, $duration)
-    {
-        return apc_store($key, $value, $duration);
-    }
+	/**
+	 * Write data for key into cache
+	 *
+	 * @param string $key Identifier for the data
+	 * @param mixed $value Data to be cached
+	 * @param integer $duration How long to cache the data, in seconds
+	 * @return boolean True if the data was succesfully cached, false on failure
+	 * @access public
+	 */
+	public function write( $key, $value, $duration )
+	{
+		return apc_store( $key, $value, $duration );
+	}
 
-    /**
-     * Read a key from the cache
-     *
-     * @param string $key Identifier for the data
-     * @return mixed The cached data, or false if the data doesn't exist, has expired, or if there was an error fetching it
-     * @access public
-     */
-    function read($key)
-    {
-        return apc_fetch($key);
-    }
+	/**
+	 * Read a key from the cache
+	 *
+	 * @param string $key Identifier for the data
+	 * @return mixed The cached data, or false if the data doesn't exist, has expired, or if there was an error fetching it
+	 * @access public
+	 */
+	public function read( $key )
+	{
+		return apc_fetch( $key );
+	}
 
-    /**
-     * Delete a key from the cache
-     *
-     * @param string $key Identifier for the data
-     * @return boolean True if the value was succesfully deleted, false if it didn't exist or couldn't be removed
-     * @access public
-     */
-    function delete($key)
-    {
-        return apc_delete($key);
-    }
+	/**
+	 * Delete a key from the cache
+	 *
+	 * @param string $key Identifier for the data
+	 * @return boolean True if the value was succesfully deleted, false if it didn't exist or couldn't be removed
+	 * @access public
+	 */
+	public function delete( $key )
+	{
+		return apc_delete( $key );
+	}
 
-    /**
-     * Delete all keys from the cache
-     *
-     * @return boolean True if the cache was succesfully cleared, false otherwise
-     * @access public
-     */
-    function clear()
-    {
-        return apc_clear_cache('user');
-    }
+	/**
+	 * Delete all keys from the cache
+	 *
+	 * @return boolean True if the cache was succesfully cleared, false otherwise
+	 * @access public
+	 */
+	public function clear()
+	{
+		return apc_clear_cache( 'user' );
+	}
 }
 
 ?>

@@ -22,9 +22,6 @@
  */
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-// _LANGCODE: en
-// _CHARSET : UTF-8
-// Translator: XOOPS Translation Team
 define( '_LOGGER_DEBUG', 'Debug' );
 define( '_LOGGER_INCLUDED_FILES', 'Included files' );
 define( '_LOGGER_FILES', '%s files' );

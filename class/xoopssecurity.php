@@ -1,13 +1,16 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * XOOPS security handler
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
@@ -28,12 +31,12 @@ defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
  * @access public
  */
 class XoopsSecurity {
-	var $errors = array();
+	public $errors = array();
 
 	/**
 	 * Constructor
 	 */
-	function XoopsSecurity()
+	public function __Construct()
 	{
 	}
 
@@ -45,7 +48,7 @@ class XoopsSecurity {
 	 * @param string $name session name
 	 * @return bool
 	 */
-	function check( $clearIfValid = true, $token = false, $name = 'XOOPS_TOKEN' )
+	public function check( $clearIfValid = true, $token = false, $name = 'XOOPS_TOKEN' )
 	{
 		return $this->validateToken( $token, $clearIfValid, $name );
 	}
@@ -57,7 +60,7 @@ class XoopsSecurity {
 	 * @param string $name session name
 	 * @return string token value
 	 */
-	function createToken( $timeout = 0, $name = 'XOOPS_TOKEN' )
+	public function createToken( $timeout = 0, $name = 'XOOPS_TOKEN' )
 	{
 		$this->garbageCollection( $name );
 		if ( $timeout == 0 ) {
@@ -84,7 +87,7 @@ class XoopsSecurity {
 	 * @param string $name session name to validate
 	 * @return bool
 	 */
-	function validateToken( $token = false, $clearIfValid = true, $name = 'XOOPS_TOKEN' )
+	public function validateToken( $token = false, $clearIfValid = true, $name = 'XOOPS_TOKEN' )
 	{
 		global $xoopsLogger;
 		$token = ( $token !== false ) ? $token : ( isset( $_REQUEST[$name . '_REQUEST'] ) ? $_REQUEST[$name . '_REQUEST'] : '' );
@@ -93,7 +96,7 @@ class XoopsSecurity {
 			return false;
 		}
 		$validFound = false;
-		$token_data = &$_SESSION[$name . '_SESSION'];
+		$token_data = $_SESSION[$name . '_SESSION'];
 		foreach ( array_keys( $token_data ) as $i ) {
 			if ( $token === md5( $token_data[$i]['id'] . $_SERVER['HTTP_USER_AGENT'] . XOOPS_DB_PREFIX ) ) {
 				if ( $this->filterToken( $token_data[$i] ) ) {
@@ -122,7 +125,7 @@ class XoopsSecurity {
 	 *
 	 * @param string $name session name
 	 */
-	function clearTokens( $name = 'XOOPS_TOKEN' )
+	public function clearTokens( $name = 'XOOPS_TOKEN' )
 	{
 		$_SESSION[$name . '_SESSION'] = array();
 	}
@@ -133,7 +136,7 @@ class XoopsSecurity {
 	 * @param string $token
 	 * @return bool
 	 */
-	function filterToken( $token )
+	public function filterToken( $token )
 	{
 		return ( !empty( $token['expire'] ) && $token['expire'] >= time() );
 	}
@@ -144,7 +147,7 @@ class XoopsSecurity {
 	 * @param string $name session name
 	 * @return void
 	 */
-	function garbageCollection( $name = 'XOOPS_TOKEN' )
+	public function garbageCollection( $name = 'XOOPS_TOKEN' )
 	{
 		if ( isset( $_SESSION[$name . '_SESSION'] ) && count( $_SESSION[$name . '_SESSION'] ) > 0 ) {
 			$_SESSION[$name . '_SESSION'] = array_filter( $_SESSION[$name . '_SESSION'], array( $this ,
@@ -157,7 +160,7 @@ class XoopsSecurity {
 	 * @param int $docheck 0 to not check the referer (used with XML-RPC), 1 to actively check it
 	 * @return bool
 	 */
-	function checkReferer( $docheck = 1 )
+	public function checkReferer( $docheck = 1 )
 	{
 		$ref = xoops_getenv( 'HTTP_REFERER' );
 		if ( $docheck == 0 ) {
@@ -177,7 +180,7 @@ class XoopsSecurity {
 	 *
 	 * @return void
 	 */
-	function checkSuperglobals()
+	public function checkSuperglobals()
 	{
 		foreach( array(
 				'GLOBALS' ,
@@ -219,7 +222,7 @@ class XoopsSecurity {
 	 *
 	 * @return void
 	 */
-	function checkBadips()
+	public function checkBadips()
 	{
 		global $xoopsConfig;
 		if ( $xoopsConfig['enable_badips'] == 1 && isset( $_SERVER['REMOTE_ADDR'] ) && $_SERVER['REMOTE_ADDR'] != '' ) {
@@ -239,9 +242,8 @@ class XoopsSecurity {
 	 *
 	 * @return string
 	 */
-	function getTokenHTML( $name = 'XOOPS_TOKEN' )
+	public function getTokenHTML( $name = 'XOOPS_TOKEN' )
 	{
-		require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 		$token = new XoopsFormHiddenToken( $name );
 		return $token->render();
 	}
@@ -251,7 +253,7 @@ class XoopsSecurity {
 	 *
 	 * @param string $error
 	 */
-	function setErrors( $error )
+	public function setErrors( $error )
 	{
 		$this->errors[] = trim( $error );
 	}
@@ -262,7 +264,7 @@ class XoopsSecurity {
 	 * @param bool $ashtml Format using HTML?
 	 * @return array |string    Array of array messages OR HTML string
 	 */
-	function &getErrors( $ashtml = false )
+	public function getErrors( $ashtml = false )
 	{
 		if ( !$ashtml ) {
 			return $this->errors;

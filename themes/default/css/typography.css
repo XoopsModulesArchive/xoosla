@@ -128,6 +128,7 @@ dd { margin-left: 1.5em }
 .width30 { width: 30% }
 .width25 { width: 25% }
 .width20 { width: 20% }
+.width15 { width: 15% }
 .width10 { width: 10% }
 .width5{ width: 5% }
 .width3{ width: 3% }
@@ -225,16 +226,16 @@ dd { margin-left: 1.5em }
  */
 table { margin-bottom: 1.4em; width: 100% }
 th { font-weight: bold }
-thead th { background: #c3d9ff }
-th,td,caption { padding: 4px 10px 4px 5px }
+thead th { height: 24px; background-color: #20211f; -moz-border-top-right-radius: 5px; -moz-border-top-left-radius: 5px; border-top-right-radius: 5px; border-top-left-radius: 5px; color: #ffffff; line-height: 24px; padding-left: 10px;  padding: 4px 0 4px 5px;  }
+th,td,top,caption { padding: 4px 0 4px 5px }
 
 /*
   You can zebra-stripe your tables in outdated browsers by adding
   the class "even" to every other table row.
  */
-tbody tr:nth-child(even) td,
+/*tbody tr:nth-child(even) td,
 tbody tr.even td { background: #e5ecf9 }
-tfoot { font-style: italic }
+tfoot { font-style: italic }*/
 
 caption { background: #eeeeee }
 /* Misc classes
@@ -251,3 +252,8 @@ caption { background: #eeeeee }
 .last { margin-right: 0; padding-right: 0 }
 .top { margin-top: 0; padding-top: 0 }
 .bottom { margin-bottom: 0; padding-bottom: 0 }
+
+.breadcrumbs { font-size: 1.2em;  padding: 0px 2px 5px;}
+.breadcrumbs span { border: 0;  padding: 0 2px;}
+.breadcrumbs .item {}
+.breadcrumbs .delimiter { font-size: 1.2em;}

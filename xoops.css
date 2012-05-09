@@ -63,14 +63,15 @@ pre {overflow: auto;}
 /* For required elements in XOOPS form */
 .xoops-form-element-caption .caption-marker { display: none;}
 .xoops-form-element-caption-required .caption-marker {
-	background-color:   inherit;
-	padding-left: 	    2px;
-	color: 			    #ff0000;
+	background-color:    inherit;
+	padding-left: 	      2px;
+	color: 			      #ff0000;
 }
 .xoops-form-element-help {
-	font-size:		    .9em;
-    padding-top:        5px;
-    font-weight:        normal;
+   font-size:           smaller;
+   padding-top:         5px;
+   font-weight:         normal;
+   font-style:          italic;
 }
 /* forms basic style */
 fieldset { border:0;}
@@ -200,6 +201,7 @@ div.jGrowl div.jGrowl-closer {height: 15px; padding-top: 4px; padding-bottom: 4p
 .marg5 {margin: 5px;}
 .marg7 {margin: 8px;}
 .marg10 {margin: 10px;}
+
 /* Font */
 .verysmall, .xx-small { font-size : .7em;}
 .smallsmall, .x-small { font-size: .8em;}
@@ -219,6 +221,7 @@ div.jGrowl div.jGrowl-closer {height: 15px; padding-top: 4px; padding-bottom: 4p
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform:	lowercase; }
 .capitalize { text-transform:capitalize; }
+
 /*======== line-height ======== */
 .line100 { line-height: 1em;}
 .line120 { line-height: 1.2em;}

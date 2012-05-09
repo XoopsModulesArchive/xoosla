@@ -1,13 +1,16 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * Extended User Profile
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
@@ -20,31 +23,31 @@
 function xoops_module_update_profile(&$module, $oldversion = null)
 {
     if ( $oldversion < 162 ) {
-        $GLOBALS['xoopsDB']->queryF("UPDATE `" . $GLOBALS['xoopsDB']->prefix("profile_field") . " SET field_valuetype=2 WHERE field_name=umode");
+        $GLOBALS['xoopsDB']->queryF('UPDATE `' . $GLOBALS['xoopsDB']->prefix('profile_field') . ' SET field_valuetype=2 WHERE field_name=umode');
     }
 
     if ( $oldversion < 100 ) {
 
         // Drop old category table
-        $sql = "DROP TABLE " . $GLOBALS['xoopsDB']->prefix("profile_category");
+        $sql = 'DROP TABLE ' . $GLOBALS['xoopsDB']->prefix('profile_category');
         $GLOBALS['xoopsDB']->queryF($sql);
 
         // Drop old field-category link table
-        $sql = "DROP TABLE " . $GLOBALS['xoopsDB']->prefix("profile_fieldcategory");
+        $sql = 'DROP TABLE ' . $GLOBALS['xoopsDB']->prefix('profile_fieldcategory');
         $GLOBALS['xoopsDB']->queryF($sql);
 
         // Create new tables for new profile module
-        $GLOBALS['xoopsDB']->queryFromFile(XOOPS_ROOT_PATH . "/modules/" . $module->getVar('dirname', 'n') . "/sql/mysql.sql");
+        $GLOBALS['xoopsDB']->queryFromFile(XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname', 'n') . '/sql/mysql.sql');
 
-        include_once dirname(__FILE__) . "/install.php";
+        include_once dirname(__FILE__) . '/install.php';
         xoops_module_install_profile($module);
-        $goupperm_handler =& xoops_getHandler("groupperm");
+        $goupperm_handler =& xoops_getHandler('groupperm');
 
         $field_handler =& xoops_getModuleHandler('field', $module->getVar('dirname', 'n') );
         $skip_fields = $field_handler->getUserVars();
         $skip_fields[] = 'newemail';
         $skip_fields[] = 'pm_link';
-        $sql = "SELECT * FROM `" . $GLOBALS['xoopsDB']->prefix("user_profile_field") . "` WHERE `field_name` NOT IN ('" . implode("', '", $skip_fields) . "')";
+        $sql = 'SELECT * FROM `' . $GLOBALS["xoopsDB"]->prefix('user_profile_field') . '` WHERE `field_name` NOT IN ("' . implode('", "', $skip_fields) . '")';
         $result = $GLOBALS['xoopsDB']->query($sql);
         $fields = array();
         while ($myrow = $GLOBALS['xoopsDB']->fetchArray($result)  ) {
@@ -61,25 +64,23 @@ function xoops_module_update_profile(&$module, $oldversion = null)
             $field_handler->insert($object, true);
 
             $gperm_itemid = $object->getVar('field_id');
-            $sql = "UPDATE " . $GLOBALS['xoopsDB']->prefix("group_permission") . " SET gperm_itemid = " . $gperm_itemid .
-                    "   WHERE gperm_itemid = " . $myrow['fieldid'] .
-                    "       AND gperm_modid = " . $module->getVar('mid') .
-                    "       AND gperm_name IN ('profile_edit', 'profile_search')";
+            $sql = 'UPDATE ' . $GLOBALS['xoopsDB']->prefix('group_permission') . ' SET gperm_itemid = ' . $gperm_itemid .
+                    '   WHERE gperm_itemid = ' . $myrow['fieldid'] .
+                    '       AND gperm_modid = ' . $module->getVar('mid') .
+                    '       AND gperm_name IN (\'profile_edit\', \'profile_search\')';
             $GLOBALS['xoopsDB']->queryF($sql);
 
             $groups_visible = $goupperm_handler->getGroupIds("profile_visible", $myrow['fieldid'], $module->getVar('mid') );
             $groups_show = $goupperm_handler->getGroupIds("profile_show", $myrow['fieldid'], $module->getVar('mid') );
             foreach ($groups_visible as $ugid ) {
                 foreach ($groups_show as $pgid ) {
-                    $sql = "INSERT INTO " . $GLOBALS['xoopsDB']->prefix("profile_visibility") .
-                        " (field_id, user_group, profile_group) " .
-                        " VALUES " .
-                        " ({$gperm_itemid}, {$ugid}, {$pgid})";
+                    $sql = 'INSERT INTO ' . $GLOBALS['xoopsDB']->prefix('profile_visibility') .
+                        ' (field_id, user_group, profile_group) ' .
+                        ' VALUES ' .
+                        ' ('.$gperm_itemid.', '.$ugid.', '.$pgid.')';
                     $GLOBALS['xoopsDB']->queryF($sql);
                 }
             }
-
-            //profile_install_setPermissions($object->getVar('field_id'), $module->getVar('mid'), $canedit, $visible);
             unset($object);
         }
 
@@ -89,16 +90,16 @@ function xoops_module_update_profile(&$module, $oldversion = null)
         }
 
         // Drop old profile table
-        $sql = "DROP TABLE " . $GLOBALS['xoopsDB']->prefix("user_profile");
+        $sql = 'DROP TABLE ' . $GLOBALS['xoopsDB']->prefix('user_profile');
         $GLOBALS['xoopsDB']->queryF($sql);
 
         // Drop old field module
-        $sql = "DROP TABLE " . $GLOBALS['xoopsDB']->prefix("user_profile_field");
+        $sql = 'DROP TABLE ' . $GLOBALS['xoopsDB']->prefix('user_profile_field');
         $GLOBALS['xoopsDB']->queryF($sql);
 
         // Remove not used items
-        $sql =  "DELETE FROM " . $GLOBALS['xoopsDB']->prefix("group_permission") .
-                "   WHERE `gperm_modid` = " . $module->getVar('mid') . " AND `gperm_name` IN ('profile_show', 'profile_visible')";
+        $sql =  'DELETE FROM ' . $GLOBALS['xoopsDB']->prefix('group_permission') .
+                '   WHERE `gperm_modid` = ' . $module->getVar('mid') . ' AND `gperm_name` IN ( "profile_show", "profile_visible" )';
         $GLOBALS['xoopsDB']->queryF($sql);
     }
 
@@ -106,12 +107,12 @@ function xoops_module_update_profile(&$module, $oldversion = null)
         $GLOBALS['xoopsDB']->queryF("UPDATE `" . $GLOBALS['xoopsDB']->prefix("profile_field") . "` SET `field_valuetype`=1 WHERE `field_name`='umode'");
     }
 
-    $profile_handler =& xoops_getModuleHandler("profile", $module->getVar('dirname', 'n') );
-    $profile_handler->cleanOrphan($GLOBALS['xoopsDB']->prefix("users"), "uid", "profile_id");
+    $profile_handler =& xoops_getModuleHandler('profile', $module->getVar('dirname', 'n') );
+    $profile_handler->cleanOrphan($GLOBALS['xoopsDB']->prefix('users'), 'uid', 'profile_id');
     $field_handler =& xoops_getModuleHandler('field', $module->getVar('dirname', 'n') );
     $user_fields = $field_handler->getUserVars();
-    $criteria = new Criteria("field_name", "('" . implode("', '", $user_fields) . "')", "IN");
-    $field_handler->updateAll("field_config", 0, $criteria);
+    $criteria = new Criteria('field_name', '("' . implode('", "', $user_fields) . '")', 'IN');
+    $field_handler->updateAll('field_config', 0, $criteria);
 
     return true;
 }

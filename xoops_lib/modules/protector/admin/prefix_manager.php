@@ -10,7 +10,7 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 
 	// Ticket check
 	if ( ! $xoopsGTicket->check( true , 'protector_admin' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+		redirect_header(XOOPS_URL,1,$xoopsGTicket->getErrors());
 	}
 
 	$new_prefix = empty( $_POST['new_prefix'] ) ? 'x' . substr( md5( time() ) , -5 ) : $_POST['new_prefix'] ;
@@ -62,7 +62,7 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 
 	// Ticket check
 	if ( ! $xoopsGTicket->check( true , 'protector_admin' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+		redirect_header(XOOPS_URL,1,$xoopsGTicket->getErrors());
 	}
 
 	$prefix = $_POST['prefix'] ;
@@ -141,7 +141,7 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 
 	// Ticket check
 	if ( ! $xoopsGTicket->check( true , 'protector_admin' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+		redirect_header(XOOPS_URL,1,$xoopsGTicket->getErrors());
 	}
 
 	$prefix = $_POST['prefix'] ;

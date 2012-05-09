@@ -1,18 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>" />
-<meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" />
-<meta name="generator" content="Xoosla" />
-<link rel="shortcut icon" type="image/ico" href="<{xoAppUrl favicon.ico}>" />
-<title><{$xoops_sitename}></title>
-<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+    <!-- Theme name -->
+    <{assign var=theme_name value=$xoTheme->folderName}>
+    <!-- Directory html blocks files or additional html files by include -->
+    <{assign var=theme_name value=$xoTheme->folderName|cat:'/xotpl'}>
+    <!-- Directory html plugins files -->
+    <{assign var=theme_plugin value=$xoTheme->folderName|cat:'/xoplugins'}>
+    <!-- Metas, Titles, and Style Sheets -->
+    <{includeq file="$theme_name/xometas.html"}>
+    <meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" />
+    <!-- Additionals Scripts -->
+    <{includeq file="$theme_name/xoscripts.html"}>
 </head>
-<body>
-<div class="center bold" style="background-color: #ebebeb; border-top: 1px solid #fff; border-left: 1px solid #fff; border-right: 1px solid #aaa; border-bottom: 1px solid #aaa;">
-  <h4><{$message}></h4>
-  <p><{$lang_ifnotreload}></p>
-</div>
+
+<body id="<{$xoops_dirname}>" class="<{$xoops_langcode}>">
+	<div id="main" class="container_12">
+		<!-- Center Blocks -->
+		<{if $xoBlocks.canvas_left and $xoBlocks.canvas_right}>
+		<div class="grid_6">
+		<{else}><{if $xoBlocks.canvas_left or $xoBlocks.canvas_right}>
+		<div class="grid_9">
+		<{else}>
+		<div class="grid_12">
+		<{/if}><{/if}>
+			<!-- Content -->
+			<div class="content">
+				<div id="redirect">
+				<div class="redirect">
+				  <h2 class="center"><{$message}></h2>
+				  <div class="text center"><{$lang_ifnotreload}></div>
+				 </div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
 <{if $xoops_logdump != ''}><div><{$xoops_logdump}></div><{/if}>
 </body>
 </html>

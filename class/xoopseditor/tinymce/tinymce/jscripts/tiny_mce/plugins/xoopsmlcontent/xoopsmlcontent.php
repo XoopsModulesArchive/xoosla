@@ -29,20 +29,21 @@ function langDropdown() {
     $time = time();
     if ( !isset( $_SESSION['XoopsMLcontent'] ) && @$_SESSION['XoopsMLcontent_expire'] < $time ) {
 
-        include_once XOOPS_ROOT_PATH."/class/xoopsmodule.php";
-        $xlanguage =& XoopsModule::getByDirname("xlanguage");
-        if ( is_object($xlanguage) && $xlanguage->getVar('isactive') ) {
+        $xlanguage = XoopsModule::getByDirname("xlanguage");
+        
+	if ( is_object($xlanguage) && $xlanguage->getVar('isactive') ) {
             include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php');
             include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/functions.php');
-            $xlanguage_handler =& xoops_getmodulehandler('language', 'xlanguage');
+            
+	    $xlanguage_handler = xoops_getmodulehandler('language', 'xlanguage');
             $xlanguage_handler->loadConfig();
-            $lang_list =& $xlanguage_handler->getAllList();
+            $lang_list = $xlanguage_handler->getAllList();
 
             $content .= '<select name="mlanguages" id="mlanguages">';
             $content .= '<option value="">{#xoopsmlcontent_dlg.sellang}</option>';
             if ( is_array($lang_list)&&count( $lang_list ) > 0 ) {
                 foreach( array_keys($lang_list) as $lang_name ) {
-                    $lang =& $lang_list[$lang_name];
+                    $lang = $lang_list[$lang_name];
                     $content .= '<option value="' . $lang['base']->getVar('lang_code') . '">' . $lang['base']->getVar('lang_name') . '</option>';
                 }
             }

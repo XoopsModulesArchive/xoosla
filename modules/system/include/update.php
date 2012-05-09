@@ -1,54 +1,53 @@
 <?php
-// $Id$
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * Xoosla
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-function xoops_module_system_update(&$module) {
-    if ($module->getVar('version') == 100) {
-        $result = $xoopsDB->query("SELECT t1.tpl_id FROM ".$xoopsDB->prefix('tplfile')." t1, ".$xoopsDB->prefix('tplfile')." t2 WHERE t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_id > t2.tpl_id");
+/**
+ *
+ * @copyright The Xoosla Project http://sourceforge.net/projects/xoosla/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package update.php
+ * @since 1.0.0.0
+ * @author John Neill <zaquria@xoosla.com>
+ * @version update.php 26 2012-02-17 09:16:15Z catzwolf $Id:
+ */
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-        $tplids = array();
-        while (list($tplid) = $xoopsDB->fetchRow($result)) {
-            $tplids[] = $tplid;
-        }
-        if (count($tplids) > 0) {
-            $tplfile_handler =& xoops_gethandler('tplfile');
-            $duplicate_files = $tplfile_handler->getObjects(new Criteria('tpl_id', "(".implode(',', $tplids).")", "IN"));
+/**
+ * xoops_module_system_update()
+ *
+ * @param mixed $module
+ * @return
+ */
+function xoops_module_system_update( XoopsModule &$module )
+{
+	if ( $module->getVar( 'version' ) == 100 ) {
+		$result = $xoopsDB->query( 'SELECT t1.tpl_id FROM ' . $xoopsDB->prefix( "tplfile" ) . ' t1, ' . $xoopsDB->prefix( 'tplfile' ) . ' t2 WHERE t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_id > t2.tpl_id' );
 
-            if (count($duplicate_files) > 0) {
-                foreach (array_keys($duplicate_files) as $i) {
-                    $tplfile_handler->delete($duplicate_files[$i]);
-                }
-            }
-        }
-    }
-    return true;
+		$tplids = array();
+		while ( list( $tplid ) = $xoopsDB->fetchRow( $result ) ) {
+			$tplids[] = $tplid;
+		}
+		if ( count( $tplids ) > 0 ) {
+			$tplfile_handler = xoops_gethandler( 'tplfile' );
+			$duplicate_files = $tplfile_handler->getObjects( new Criteria( 'tpl_id', '(' . implode( ',', $tplids ) . ')', 'IN' ) );
+
+			if ( count( $duplicate_files ) > 0 ) {
+				foreach ( array_keys( $duplicate_files ) as $i ) {
+					$tplfile_handler->delete( $duplicate_files[$i] );
+				}
+			}
+		}
+	}
+	return true;
 }
 
 ?>

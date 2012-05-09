@@ -1,17 +1,28 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
+ * Xoosla Language
  *
- * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license http://www.fsf.org/copyleft/gpl.html GNU public license
- * _LANGCODE    en
- * _CHARSET     UTF-8
+ * @copyright Xoosla http://sourceforge.net/projects/xoosla/
+ * @license http://www.fsf.org/licensing/licenses/gpl.html GNU General Public License
+ * @package Language
+ * @since v1.0.0
+ * @author John
  * @version $Id$
  */
-// dont change
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
+
 define( '_AM_DBUPDATED', _AM_SYSTEM_DBUPDATED );
-// Nav
 define( '_AM_SYSTEM_PREFERENCES_NAV_MAIN', 'Preferences' );
-// Tips
 define( '_AM_SYSTEM_PREFERENCES_NAV_TIPS', '<ul><li>Manage all your website settings.</li></ul>' );
 define( '_MD_AM_SITEPREF', 'Site Preferences' );
 define( '_MD_AM_SITENAME', 'Site Name:' );
@@ -187,7 +198,6 @@ define( '_MD_AM_DTPLSET', 'Default template set' );
 define( '_MD_AM_DTPLSETDSC', '' );
 define( '_MD_AM_SSLLINK', 'URL where SSL login page is located' );
 define( '_MD_AM_SSLLINKDSC', '' );
-// added for mailer
 define( '_MD_AM_MAILER', 'Email Setup' );
 define( '_MD_AM_MAILER_MAIL', '' );
 define( '_MD_AM_MAILER_SENDMAIL', '' );
@@ -196,7 +206,6 @@ define( '_MD_AM_MAILFROM', 'FROM address' );
 define( '_MD_AM_MAILFROMDESC', '' );
 define( '_MD_AM_MAILFROMNAME', 'FROM name' );
 define( '_MD_AM_MAILFROMNAMEDESC', '' );
-// RMV-NOTIFY
 define( '_MD_AM_MAILFROMUID', 'FROM user' );
 define( '_MD_AM_MAILFROMUIDDESC', 'When the system sends a private message, which user should appear to have sent it?' );
 define( '_MD_AM_MAILERMETHOD', 'Email delivery method' );
@@ -211,7 +220,6 @@ define( '_MD_AM_SENDMAILPATH', 'Path to sendmail' );
 define( '_MD_AM_SENDMAILPATHDESC', 'Path to the sendmail program (or substitute) on the webserver.' );
 define( '_MD_AM_THEMEOK', 'Selectable themes' );
 define( '_MD_AM_THEMEOKDSC', 'Choose themes that users can select as the default theme' );
-// SOAP Clauses
 define( '_MD_AM_SOAP_CLIENT', 'SOAP - SOAP API' );
 define( '_MD_AM_SOAP_CLIENTDESC', 'This is the address of the soap server.' );
 define( '_MD_AM_SOAP_PROVISION', 'SOAP - Provision' );

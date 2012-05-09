@@ -1,8 +1,26 @@
 <?php
-// $Id$
-// _LANGCODE: en
-// _CHARSET : UTF-8
-// Translator: XOOPS Translation Team
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * Xoosla Language
+ *
+ * @copyright Xoosla http://sourceforge.net/projects/xoosla/
+ * @license http://www.fsf.org/licensing/licenses/gpl.html GNU General Public License
+ * @package Language
+ * @since v1.0.0
+ * @author John
+ * @version $Id$
+ */
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
+
 define( '_PLEASEWAIT', 'Please Wait' );
 define( '_FETCHING', 'Loading...' );
 define( '_TAKINGBACK', 'Taking you back to where you were....' );
@@ -47,7 +65,7 @@ define( '_WHOSONLINE', 'Who\'s Online' );
 define( '_GUESTS', 'Guests' );
 define( '_MEMBERS', 'Members' );
 define( '_ONLINEPHRASE', '<strong>%s</strong> user(s) are online' );
-define( '_ONLINEPHRASEX', '<strong>%s</strong> user(s) are browsing <strong>%s</strong>' );
+define( '_ONLINEPHRASEX', 'user(s)' );
 define( '_CLOSE', 'Close' ); // Close window
 // %%%%%%    File Name module.textsanitizer.php     %%%%%
 define( '_QUOTEC', 'Quote:' );
@@ -84,13 +102,15 @@ define( '_TITLE', 'Title' );
 define( '_OPTIONS', 'Options' );
 define( '_QUOTE', 'Quote' );
 define( '_LIST', 'List' );
-define( '_LOGIN', 'User Login' );
-define( '_USERNAME', 'Username: ' );
-define( '_PASSWORD', 'Password: ' );
+define( '_LOGIN', 'Login' );
+define( '_USERNAME', 'Username' );
+define( '_PASSWORD', 'Password' );
 define( '_SELECT', 'Select' );
 define( '_IMAGE', 'Image' );
 define( '_SEND', 'Send' );
 define( '_CANCEL', 'Cancel' );
+define( '_SAVE', 'Save' );
+define( '_UPDATE', 'Update' );
 define( '_ASCENDING', 'Ascending order' );
 define( '_DESCENDING', 'Descending order' );
 define( '_BACK', 'Back' );
@@ -113,7 +133,7 @@ define( '_MD_EDITIMGCAT', 'Images Settings' );
 define( '_IMGMANAGER', 'Image Manager' );
 define( '_NUMIMAGES', '%s images' );
 define( '_ADDIMAGE', 'Add Image File' );
-define( '_IMAGENAME', 'Name:' );
+define( '_IMAGENAME', 'Name' );
 define( '_IMGMAXSIZE', 'Max size allowed (bytes):' );
 define( '_IMGMAXWIDTH', 'Max width allowed (pixels):' );
 define( '_IMGMAXHEIGHT', 'Max height allowed (pixels):' );
@@ -153,6 +173,13 @@ define( '_ALLOWEDCHAR', 'Allowed max chars length: ' );
 define( '_CURRCHAR', 'Current chars length: ' );
 define( '_PLZCOMPLETE', 'Please complete the subject and message fields.' );
 define( '_MESSAGETOOLONG', 'Your message is too long.' );
+
+/**
+ * Additions to 2.4.0
+ */
+define( '_RESET', 'Reset' );
+define( '_RE', 'Re:' );
+
 /**
  * xoops smilie
  */
@@ -208,10 +235,7 @@ define( '_CHARSET', 'UTF-8' );
 define( '_LANGCODE', 'en' );
 // change 0 to 1 if this language is a multi-bytes language
 define( 'XOOPS_USE_MULTIBYTES', '0' );
-/**
- * Additions to 2.4.0
- */
-define( '_RESET', 'Reset' );
-define( '_RE', 'Re:' );
 
+
+define( '_HOME', 'Home' );
 ?>

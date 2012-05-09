@@ -1,31 +1,42 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * TextSanitizer extension
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @package         class
- * @subpackage      textsanitizer
- * @since           2.3.0
- * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id$
+ * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package class
+ * @subpackage textsanitizer
+ * @since 2.3.0
+ * @author Taiwen Jiang <phppp@users.sourceforge.net>
+ * @version $Id$
  */
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-class MytsMms extends MyTextSanitizerExtension
-{
-    function encode($textarea_id)
-    {
-        $config = parent::loadConfig(dirname(__FILE__));
-        $code = "<img src='{$this->image_path}/mmssrc.gif' alt='" . _XOOPS_FORM_ALTMMS . "' onclick='xoopsCodeMms(\"{$textarea_id}\",\"" . htmlspecialchars(_XOOPS_FORM_ENTERMMSURL, ENT_QUOTES) . "\",\"" . htmlspecialchars(_XOOPS_FORM_ENTERHEIGHT, ENT_QUOTES) . "\",\"" . htmlspecialchars(_XOOPS_FORM_ENTERWIDTH, ENT_QUOTES) . "\");'  onmouseover='style.cursor=\"hand\"'/>&nbsp;";
-        $javascript = <<<EOH
+/**
+ * MytsMms
+ */
+class MytsMms extends MyTextSanitizerExtension {
+	/**
+	 * MytsMms::encode()
+	 *
+	 * @param mixed $textarea_id
+	 * @return
+	 */
+	public function encode( $textarea_id )
+	{
+		$config = parent::loadConfig( dirname( __FILE__ ) );
+		$code = "<img src='{$this->image_path}/mmssrc.gif' alt='" . _XOOPS_FORM_ALTMMS . "' onclick='xoopsCodeMms(\"{$textarea_id}\",\"" . htmlspecialchars( _XOOPS_FORM_ENTERMMSURL, ENT_QUOTES ) . "\",\"" . htmlspecialchars( _XOOPS_FORM_ENTERHEIGHT, ENT_QUOTES ) . "\",\"" . htmlspecialchars( _XOOPS_FORM_ENTERWIDTH, ENT_QUOTES ) . "\");'  onmouseover='style.cursor=\"hand\"'/>&nbsp;";
+		$javascript = <<<EOH
             function xoopsCodeMms(id,enterMmsPhrase, enterMmsHeightPhrase, enterMmsWidthPhrase)
             {
                 var selection = xoopsGetSelect(id);
@@ -33,10 +44,11 @@ class MytsMms extends MyTextSanitizerExtension
                     var selection="mms://"+selection;
                     var text = selection;
                 } else {
-                    var text = prompt(enterMmsPhrase+"       mms or http", "mms://");
+                    var text = prompt(enterMmsPhrase+"mms or http", "mms://");
                 }
                 var domobj = xoopsGetElementById(id);
                 if ( text.length > 0 && text != "mms://") {
+
                     var text2 = prompt(enterMmsWidthPhrase, "480");
                     var text3 = prompt(enterMmsHeightPhrase, "330");
                     var result = "[mms="+text2+","+text3+"]" + text + "[/mms]";
@@ -45,44 +57,50 @@ class MytsMms extends MyTextSanitizerExtension
                 domobj.focus();
             }
 EOH;
-        return array(
-            $code,
-            $javascript);
-    }
+		return array( $code,
+			$javascript );
+	}
 
-    function load(&$ts)
-    {
-        $ts->patterns[] = "/\[mms=(['\"]?)([^\"']*),([^\"']*)\\1]([^\"]*)\[\/mms\]/sU";
-        $rp = "<OBJECT id=videowindow1 height='\\3' width='\\2' classid='CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6'>";
-        $rp .= "<PARAM NAME=\"URL\" VALUE=\"\\4\">";
-        $rp .= "<PARAM NAME=\"rate\" VALUE=\"1\">";
-        $rp .= "<PARAM NAME=\"balance\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"currentPosition\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"defaultFrame\" VALUE=\"\">";
-        $rp .= "<PARAM NAME=\"playCount\" VALUE=\"1\">";
-        $rp .= "<PARAM NAME=\"autoStart\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"currentMarker\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"invokeURLs\" VALUE=\"-1\">";
-        $rp .= "<PARAM NAME=\"baseURL\" VALUE=\"\">";
-        $rp .= "<PARAM NAME=\"volume\" VALUE=\"50\">";
-        $rp .= "<PARAM NAME=\"mute\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"uiMode\" VALUE=\"full\">";
-        $rp .= "<PARAM NAME=\"stretchToFit\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"windowlessVideo\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"enabled\" VALUE=\"-1\">";
-        $rp .= "<PARAM NAME=\"enableContextMenu\" VALUE=\"-1\">";
-        $rp .= "<PARAM NAME=\"fullScreen\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"SAMIStyle\" VALUE=\"\">";
-        $rp .= "<PARAM NAME=\"SAMILang\" VALUE=\"\">";
-        $rp .= "<PARAM NAME=\"SAMIFilename\" VALUE=\"\">";
-        $rp .= "<PARAM NAME=\"captioningID\" VALUE=\"\">";
-        $rp .= "<PARAM NAME=\"enableErrorDialogs\" VALUE=\"0\">";
-        $rp .= "<PARAM NAME=\"_cx\" VALUE=\"12700\">";
-        $rp .= "<PARAM NAME=\"_cy\" VALUE=\"8731\">";
-        $rp .= "</OBJECT>";
-        $ts->replacements[] = $rp;
+	/**
+	 * MytsMms::load()
+	 *
+	 * @param mixed $ts
+	 * @return
+	 */
+	public function load( MyTextSanitizer &$ts )
+	{
+		$ts->patterns[] = '/\[mms=([""]?)([^""]*),([^""]*)\\1]([^"]*)\[\/mms\]/su';
+		$rp = '<object id=videowindow1 height="\\3" width="\\2" classid="clsid:6bf52a52-394a-11d3-b153-00c04f79faa6">';
+		$rp .= '<param name="url" value="\\4">';
+		$rp .= '<param name="rate" value="1">';
+		$rp .= '<param name="balance" value="0">';
+		$rp .= '<param name="currentposition" value="0">';
+		$rp .= '<param name="defaultframe" value="">';
+		$rp .= '<param name="playcount" value="1">';
+		$rp .= '<param name="autostart" value="0">';
+		$rp .= '<param name="currentmarker" value="0">';
+		$rp .= '<param name="invokeurls" value="-1">';
+		$rp .= '<param name="baseurl" value="">';
+		$rp .= '<param name="volume" value="50">';
+		$rp .= '<param name="mute" value="0">';
+		$rp .= '<param name="uimode" value="full">';
+		$rp .= '<param name="stretchtofit" value="0">';
+		$rp .= '<param name="windowlessvideo" value="0">';
+		$rp .= '<param name="enabled" value="-1">';
+		$rp .= '<param name="enablecontextmenu" value="-1">';
+		$rp .= '<param name="fullscreen" value="0">';
+		$rp .= '<param name="samistyle" value="">';
+		$rp .= '<param name="samilang" value="">';
+		$rp .= '<param name="samifilename" value="">';
+		$rp .= '<param name="captioningid" value="">';
+		$rp .= '<param name="enableerrordialogs" value="0">';
+		$rp .= '<param name="_cx" value="12700">';
+		$rp .= '<param name="_cy" value="8731">';
+		$rp .= '</object>';
+		$ts->replacements[] = $rp;
 
-        return true;
-    }
+		return true;
+	}
 }
+
 ?>

@@ -27,7 +27,7 @@ require_once './include/common.inc.php';
 $page = ( isset( $_REQUEST['p'] ) && !empty( $_REQUEST['p'] ) ) ? strip_tags( $_REQUEST['p'] ) : 'page1';
 $pageHasForm = true;
 
-$vars = &$_SESSION['settings'];
+$vars = $_SESSION['settings'];
 $errors = array();
 switch ( $page ) {
 	case 'page1':

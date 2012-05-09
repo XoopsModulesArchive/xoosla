@@ -1,25 +1,34 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * XOOPS Form Class Elements
  *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/ 
- * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @package         kernel
- * @subpackage      form
- * @since           2.4.0
- * @author          John Neill <catzwolf@xoops.org>
- * @version         $Id$
- * 
+ * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package kernel
+ * @subpackage form
+ * @since 2.4.0
+ * @author John Neill <catzwolf@xoops.org>
+ * @version $Id$
  */
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
 /**
  * XoopsFormButtonTray
  *
- * @author 		John Neill <catzwolf@xoops.org>
- * @package 	kernel
- * @subpackage 	form
- * @access 		public
+ * @author John Neill <catzwolf@xoops.org>
+ * @package kernel
+ * @subpackage form
+ * @access public
  */
 class XoopsFormButtonTray extends XoopsFormElement {
 	/**
@@ -28,7 +37,7 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 * @var string
 	 * @access private
 	 */
-	var $_value;
+	private $_value;
 
 	/**
 	 * Type of the button. This could be either "button", "submit", or "reset"
@@ -36,7 +45,7 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 * @var string
 	 * @access private
 	 */
-	var $_type;
+	private $_type;
 
 	/**
 	 * XoopsFormButtonTray::XoopsFormButtonTray()
@@ -46,7 +55,8 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 * @param string $type
 	 * @param string $onclick
 	 */
-	function XoopsFormButtonTray( $name, $value = '', $type = '', $onclick = '', $showDelete = false ) {
+	public function __Construct( $name, $value = '', $type = '', $onclick = '', $showDelete = false )
+	{
 		$this->setName( $name );
 		$this->setValue( $value );
 		$this->_type = ( !empty( $type ) ) ? $type : 'submit';
@@ -63,7 +73,8 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 *
 	 * @return
 	 */
-	function getValue() {
+	public function getValue()
+	{
 		return $this->_value;
 	}
 
@@ -73,7 +84,8 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 * @param mixed $value
 	 * @return
 	 */
-	function setValue( $value ) {
+	public function setValue( $value )
+	{
 		$this->_value = $value;
 	}
 
@@ -82,7 +94,8 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 *
 	 * @return
 	 */
-	function getType() {
+	public function getType()
+	{
 		return $this->_type;
 	}
 
@@ -91,13 +104,16 @@ class XoopsFormButtonTray extends XoopsFormElement {
 	 *
 	 * @return
 	 */
-	function render() {
-		// onclick="this.form.elements.op.value=\'delfile\';
+	public function render()
+	{
 		$ret = '';
 		if ( $this->_showDelete ) {
-			$ret .= '<input type="submit" class="formbutton" name="delete" id="delete" value="' . _DELETE . '" onclick="this.form.elements.op.value=\'delete\'">&nbsp;';
+			$ret .= '<input type="submit" class="button" name="delete" id="delete" value="' . _DELETE . '" onclick="this.form.elements.op.value=\'delete\'">';
 		}
-		$ret .= '<input type="button" value="' . _CANCEL . '" onClick="history.go(-1);return true;" />&nbsp;<input type="reset" class="formbutton"  name="reset"  id="reset" value="' . _RESET . '" />&nbsp;<input type="' . $this->getType() . '" class="formbutton"  name="' . $this->getName() . '"  id="' . $this->getName() . '" value="' . $this->getValue() . '"' . $this->getExtra() . '  />';
+		$ret .= '
+            <input type="button" class="button" value="' . _CANCEL . '" onClick="history.go(-1);return true;" />
+            <input type="reset" class="button" name="reset"  id="reset" value="' . _RESET . '" />
+            <input type="' . $this->getType() . '" class="button" name="' . $this->getName() . '"  id="' . $this->getName() . '" value="' . $this->getValue() . '"' . $this->getExtra() . '  />';
 		return $ret;
 	}
 }

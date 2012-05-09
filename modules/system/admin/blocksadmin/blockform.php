@@ -1,29 +1,25 @@
 <?php
-// ------------------------------------------------------------------------ //
-// XOOPS - PHP Content Management System                      //
-// Copyright (c) 2000 XOOPS.org                           //
-// <http://www.xoops.org/>                             //
-// ------------------------------------------------------------------------ //
-// This program is free software; you can redistribute it and/or modify     //
-// it under the terms of the GNU General Public License as published by     //
-// the Free Software Foundation; either version 2 of the License, or        //
-// (at your option) any later version.                                      //
-// //
-// You may not change or alter any portion of this comment or credits       //
-// of supporting developers from this source code or any supporting         //
-// source code which is considered copyrighted (c) material of the          //
-// original comment or credit authors.                                      //
-// //
-// This program is distributed in the hope that it will be useful,          //
-// but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-// GNU General Public License for more details.                             //
-// //
-// You should have received a copy of the GNU General Public License        //
-// along with this program; if not, write to the Free Software              //
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-// ------------------------------------------------------------------------ //
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+/**
+ * Xoosla
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ *
+ * @copyright The Xoosla Project http://sourceforge.net/projects/xoosla/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package blockform.php
+ * @since 1.0.0.0
+ * @author John Neill <zaquria@xoosla.com>
+ * @version blockform.php 00 27/02/2012 04:47 Catzwolf $Id:
+ */
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
 $form = new XoopsThemeForm( $block['form_title'], 'blockform', 'admin.php', 'post', true );
 if ( isset( $block['name'] ) ) {
@@ -36,7 +32,7 @@ $side_select->addOptionArray( array( 0 => _AM_SBLEFT, 1 => _AM_SBRIGHT, 3 => _AM
 $form->addElement( $side_select );
 
 $mod_select = new XoopsFormSelect( _AM_VISIBLEIN, 'bmodule', $block['modules'], 5, true );
-$module_handler = &xoops_gethandler( 'module' );
+$module_handler = xoops_gethandler( 'module' );
 $criteria = new CriteriaCompo( new Criteria( 'hasmain', 1 ) );
 $criteria->add( new Criteria( 'isactive', 1 ) );
 
@@ -71,7 +67,7 @@ if ( $block['is_custom'] ) {
 	$form->addElement( $ctype_select );
 } else {
 	if ( $block['template'] != '' ) {
-		$tplfile_handler = &xoops_gethandler( 'tplfile' );
+		$tplfile_handler = xoops_gethandler( 'tplfile' );
 		$btemplate = $tplfile_handler->find( $GLOBALS['xoopsConfig']['template_set'], 'block', $block['bid'] );
 		if ( count( $btemplate ) > 0 ) {
 			$form->addElement( new XoopsFormLabel( _AM_CONTENT, '<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=tplsets&amp;op=edittpl&amp;id=' . $btemplate[0]->getVar( 'tpl_id' ) . '">' . _AM_EDITTPL . '</a>' ) );
@@ -86,7 +82,7 @@ if ( $block['is_custom'] ) {
 	if ( $block['edit_form'] != false ) {
 		$form->addElement( new XoopsFormLabel( _AM_OPTIONS, $block['edit_form'] ) );
 	}
-    $form->addElement( new XoopsFormHidden( 'bdescription', $block['description'] ) );
+	$form->addElement( new XoopsFormHidden( 'bdescription', $block['description'] ) );
 }
 
 $form->addElement( new XoopsFormText( _AM_WEIGHT, 'bweight', 2, 5, $block['weight'] ) );

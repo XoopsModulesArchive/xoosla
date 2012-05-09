@@ -1,13 +1,16 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * XOOPS Kernel Class
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
@@ -17,6 +20,9 @@
  * @version $Id$
  */
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
+
+
+xoops_loadLanguage( 'blocks' );
 
 /**
  * A block
@@ -30,14 +36,13 @@ class XoopsBlock extends XoopsObject {
 	 *
 	 * @param mixed $id
 	 */
-	function XoopsBlock( $id = null )
+	function __Construct( $id = null )
 	{
 		$this->initVar( 'bid', XOBJ_DTYPE_INT, null, false );
 		$this->initVar( 'mid', XOBJ_DTYPE_INT, 0, false );
 		$this->initVar( 'func_num', XOBJ_DTYPE_INT, 0, false );
 		$this->initVar( 'options', XOBJ_DTYPE_TXTBOX, null, false, 255 );
 		$this->initVar( 'name', XOBJ_DTYPE_TXTBOX, null, true, 150 );
-		// $this->initVar('position', XOBJ_DTYPE_INT, 0, false);
 		$this->initVar( 'title', XOBJ_DTYPE_TXTBOX, null, false, 150 );
 		$this->initVar( 'description', XOBJ_DTYPE_TXTAREA, null, false );
 		$this->initVar( 'content', XOBJ_DTYPE_TXTAREA, null, false );
@@ -59,8 +64,8 @@ class XoopsBlock extends XoopsObject {
 			if ( is_array( $id ) ) {
 				$this->assignVars( $id );
 			} else {
-				$blkhandler = &xoops_gethandler( 'block' );
-				$obj = &$blkhandler->get( $id );
+				$blkhandler = xoops_gethandler( 'block' );
+				$obj = $blkhandler->get( $id );
 				foreach( array_keys( $obj->getVars() ) as $i ) {
 					$this->assignVar( $i, $obj->getVar( $i, 'n' ) );
 				}
@@ -263,20 +268,20 @@ class XoopsBlock extends XoopsObject {
 		switch ( $format ) {
 			case 's':
 				if ( $c_type == 'H' ) {
-					return str_replace( '{X_SITEURL}', XOOPS_URL . '/', $this->getVar( 'content', 'n' ) );
+					return str_replace( '{X_SITEURL}', XOOPS_URL, $this->getVar( 'content', 'n' ) );
 				} else if ( $c_type == 'P' ) {
 					ob_start();
 					echo eval( $this->getVar( 'content', 'n' ) );
 					$content = ob_get_contents();
 					ob_end_clean();
-					return str_replace( '{X_SITEURL}', XOOPS_URL . '/', $content );
+					return str_replace( '{X_SITEURL}', XOOPS_URL, $content );
 				} else if ( $c_type == 'S' ) {
-					$myts = &MyTextSanitizer::getInstance();
-					$content = str_replace( '{X_SITEURL}', XOOPS_URL . '/', $this->getVar( 'content', 'n' ) );
+					$myts = MyTextSanitizer::getInstance();
+					$content = str_replace( '{X_SITEURL}', XOOPS_URL, $this->getVar( 'content', 'n' ) );
 					return $myts->displayTarea( $content, 0, 1 );
 				} else {
-					$myts = &MyTextSanitizer::getInstance();
-					$content = str_replace( '{X_SITEURL}', XOOPS_URL . '/', $this->getVar( 'content', 'n' ) );
+					$myts = MyTextSanitizer::getInstance();
+					$content = str_replace( '{X_SITEURL}', XOOPS_URL, $this->getVar( 'content', 'n' ) );
 					return $myts->displayTarea( $content, 0, 0 );
 				}
 				break;
@@ -302,11 +307,13 @@ class XoopsBlock extends XoopsObject {
 				return false;
 			}
 			if ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/blocks/' . $this->getVar( 'func_file' ) ) ) {
-				if ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/blocks.php' ) ) {
-					include_once XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/blocks.php';
-				} else if ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/english/blocks.php' ) ) {
-					include_once XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/english/blocks.php';
-				}
+				xoops_loadLanguage( 'admin',  $this->getVar( 'dirname' ) );
+
+				//if ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/blocks.php' ) ) {
+				//	include_once XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/blocks.php';
+				//} else if ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/english/blocks.php' ) ) {
+				//	include_once XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/language/english/blocks.php';
+				//}
 				include_once XOOPS_ROOT_PATH . '/modules/' . $this->getVar( 'dirname' ) . '/blocks/' . $this->getVar( 'func_file' );
 				$options = explode( '|', $this->getVar( 'options' ) );
 				$edit_form = $edit_func( $options );
@@ -324,7 +331,7 @@ class XoopsBlock extends XoopsObject {
 
 	function isCustom()
 	{
-		return in_array( $this->getVar( "block_type" ), array(
+		return in_array( $this->getVar( 'block_type' ), array(
 				'C' ,
 				'E' ) );
 	}
@@ -349,7 +356,7 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 	 * @param bool $isNew is the new block new??
 	 * @return object XoopsBlock reference to the new block
 	 */
-	function &create( $isNew = true )
+	function create( $isNew = true )
 	{
 		$block = new XoopsBlock();
 		if ( $isNew ) {
@@ -365,7 +372,7 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 	 * @param int $id bid of the block to retrieve
 	 * @return object XoopsBlock reference to the block
 	 */
-	function &get( $id )
+	function get( $id )
 	{
 		$block = false;
 		$id = intval( $id );
@@ -388,16 +395,12 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 	 * @param object $ XoopsBlock $block reference to the block to insert
 	 * @return bool TRUE if succesful
 	 */
-	function insert( &$block )
+	function insert( XoopsBlock $block )
 	{
-		/**
-		 *
-		 * @TODO : Change to if (!(class_exists($this->className) && $obj instanceof $this->className)) when going fully PHP5
-		 */
-		if ( !is_a( $block, 'xoopsblock' ) ) {
-			return false;
-		}
-		if ( !$block->isDirty() ) {
+		die();
+
+
+        if ( !$block->isDirty() ) {
 			return true;
 		}
 		if ( !$block->cleanVars() ) {
@@ -409,9 +412,9 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 		}
 		if ( $block->isNew() ) {
 			$bid = $this->db->genId( 'newblocks_bid_seq' );
-			$sql = sprintf( "INSERT INTO %s (bid, mid, func_num, options, name, title, description, content, side, weight, visible, block_type, c_type, isactive, dirname, func_file, show_func, edit_func, template, bcachetime, last_modified) VALUES (%u, %u, %u, '%s', '%s', '%s', '%s', %s, %u, %u, %u, '%s', '%s', %u, '%s', '%s', '%s', '%s', '%s', %u, %u)", $this->db->prefix( 'newblocks' ), $bid, $mid, $func_num, $options, $name, $title, $description, $content, $side, $weight, $visible, $block_type, $c_type, 1, $dirname, $func_file, $show_func, $edit_func, $template, $bcachetime, time() );
+			$sql = sprintf( 'INSERT INTO %s (bid, mid, func_num, options, name, title, description, content, side, weight, visible, block_type, c_type, isactive, dirname, func_file, show_func, edit_func, template, bcachetime, last_modified) VALUES (%u, %u, %u, \'%s\', \'%s\', \'%s\', \'%s\', %s, %u, %u, %u, \'%s\', \'%s\', %u, \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', %u, %u)', $this->db->prefix( 'newblocks' ), $bid, $mid, $func_num, $options, $name, $title, $description, $content, $side, $weight, $visible, $block_type, $c_type, 1, $dirname, $func_file, $show_func, $edit_func, $template, $bcachetime, time() );
 		} else {
-			$sql = sprintf( "UPDATE %s SET func_num = %u, options = '%s', name = '%s', title = '%s', content = '%s', side = %u, weight = %u, visible = %u, c_type = '%s', isactive = %u, func_file = '%s', show_func = '%s', edit_func = '%s', template = '%s', bcachetime = %u, last_modified = %u WHERE bid = %u", $this->db->prefix( 'newblocks' ), $func_num, $options, $name, $title, $content, $side, $weight, $visible, $c_type, $isactive, $func_file, $show_func, $edit_func, $template, $bcachetime, time(), $bid );
+			$sql = sprintf( 'UPDATE %s SET func_num = %u, options = \'%s\', name = \'%s\', title = \'%s\', content = \'%s\', side = %u, weight = %u, visible = %u, c_type = \'%s\', isactive = %u, func_file = \'%s\', show_func = \'%s\', edit_func = \'%s\', template = \'%s\', bcachetime = %u, last_modified = %u WHERE bid = %u', $this->db->prefix( 'newblocks' ), $func_num, $options, $name, $title, $content, $side, $weight, $visible, $c_type, $isactive, $func_file, $show_func, $edit_func, $template, $bcachetime, time(), $bid );
 		}
 		if ( !$result = $this->db->query( $sql ) ) {
 			return false;
@@ -429,21 +432,14 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 	 * @param object $ XoopsBlock $block reference to the block to delete
 	 * @return bool TRUE if succesful
 	 */
-	function delete( &$block )
+	function delete( XoopsBlock $block )
 	{
-		/**
-		 *
-		 * @TODO : Change to if (!(class_exists($this->className) && $obj instanceof $this->className)) when going fully PHP5
-		 */
-		if ( !is_a( $block, 'xoopsblock' ) ) {
-			return false;
-		}
 		$id = $block->getVar( 'bid' );
-		$sql = sprintf( "DELETE FROM %s WHERE bid = %u", $this->db->prefix( 'newblocks' ), $id );
+		$sql = sprintf( 'DELETE FROM %s WHERE bid = %u', $this->db->prefix( 'newblocks' ), $id );
 		if ( !$result = $this->db->query( $sql ) ) {
 			return false;
 		}
-		$sql = sprintf( "DELETE FROM %s WHERE block_id = %u", $this->db->prefix( 'block_module_link' ), $id );
+		$sql = sprintf( 'DELETE FROM %s WHERE block_id = %u', $this->db->prefix( 'block_module_link' ), $id );
 		$this->db->query( $sql );
 		return true;
 	}
@@ -455,12 +451,12 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 	 * @param bool $id_as_key should the blocks' bid be the key for the returned array?
 	 * @return array {@link XoopsBlock}s matching the conditions
 	 */
-	function getObjects( $criteria = null, $id_as_key = false )
+	function getObjects( CriteriaElement $criteria = null, $id_as_key = false )
 	{
 		$ret = array();
 		$limit = $start = 0;
 		$sql = 'SELECT DISTINCT(b.bid), b.* FROM ' . $this->db->prefix( 'newblocks' ) . ' b LEFT JOIN ' . $this->db->prefix( 'block_module_link' ) . ' l ON b.bid=l.block_id';
-		if ( isset( $criteria ) && is_subclass_of( $criteria, 'criteriaelement' ) ) {
+		if ( isset( $criteria ) ) {
 			$sql .= ' ' . $criteria->renderWhere();
 			$limit = $criteria->getLimit();
 			$start = $criteria->getStart();
@@ -472,9 +468,9 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 			$block = new XoopsBlock();
 			$block->assignVars( $myrow );
 			if ( !$id_as_key ) {
-				$ret[] = &$block;
+				$ret[] = $block;
 			} else {
-				$ret[$myrow['bid']] = &$block;
+				$ret[$myrow['bid']] = $block;
 			}
 			unset( $block );
 		}
@@ -487,7 +483,7 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 	 * @param string $criteria conditions to match
 	 * @return array array of blocks matching the conditions
 	 */
-	function getList( $criteria = null )
+	function getList( CriteriaElement $criteria = null )
 	{
 		$blocks = $this->getObjects( $criteria, true );
 		$ret = array();
@@ -497,38 +493,6 @@ class XoopsBlockHandler extends XoopsObjectHandler {
 		}
 		return $ret;
 	}
-	// #################### Deprecated Methods ######################
-	/**
-	 * *#@+
-	 *
-	 * @deprecated
-	 */
-	function getByModule( $moduleid, $asobject = true, $id_as_key = false )
-	{
-		trigger_error( __CLASS__ . "::" . __FUNCTION__ . ' is deprecated', E_USER_WARNING );
-		return false;
-	}
-
-	function getAllByGroupModule( $groupid, $module_id = 0, $toponlyblock = false, $visible = null, $orderby = 'i.weight,i.instanceid', $isactive = 1 )
-	{
-		trigger_error( __CLASS__ . "::" . __FUNCTION__ . ' is deprecated', E_USER_WARNING );
-		return false;
-	}
-
-	function getAdminBlocks( $groupid, $orderby = 'i.weight,i.instanceid' )
-	{
-		trigger_error( __CLASS__ . "::" . __FUNCTION__ . ' is deprecated', E_USER_WARNING );
-		return false;
-	}
-
-	function assignBlocks()
-	{
-		trigger_error( __CLASS__ . "::" . __FUNCTION__ . ' is deprecated', E_USER_WARNING );
-		return false;
-	}
-	/**
-	 * *#@-
-	 */
 }
 
 ?>

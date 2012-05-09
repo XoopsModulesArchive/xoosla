@@ -1,24 +1,27 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * XOOPS form element
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @package         kernel
- * @subpackage      form
- * @since           2.0.0
- * @author          Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
- * @version         $Id$
+ * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package kernel
+ * @subpackage form
+ * @since 2.0.0
+ * @author Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
+ * @version $Id$
  */
- 
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
 /**
  * A group of form elements
@@ -30,14 +33,14 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 * @var array
 	 * @access private
 	 */
-	var $_elements = array();
+	private $_elements = array();
 
 	/**
 	 * required elements
 	 *
 	 * @var array
 	 */
-	var $_required = array();
+	private $_required = array();
 
 	/**
 	 * HTML to seperate the elements
@@ -45,7 +48,7 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 * @var string
 	 * @access private
 	 */
-	var $_delimeter;
+	private $_delimeter;
 
 	/**
 	 * constructor
@@ -53,7 +56,8 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 * @param string $caption Caption for the group.
 	 * @param string $delimiter HTML to separate the elements
 	 */
-	function XoopsFormElementTray( $caption, $delimeter = "&nbsp;", $name = "" ) {
+	public function __Construct( $caption, $delimeter = "&nbsp;", $name = "" )
+	{
 		$this->setName( $name );
 		$this->setCaption( $caption );
 		$this->_delimeter = $delimeter;
@@ -64,7 +68,8 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 *
 	 * @return bool true
 	 */
-	function isContainer() {
+	public function isContainer()
+	{
 		return true;
 	}
 
@@ -73,7 +78,8 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 *
 	 * @return bool
 	 */
-	function isRequired() {
+	public function isRequired()
+	{
 		return !empty( $this->_required );
 	}
 
@@ -82,18 +88,19 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 *
 	 * @param object $ &$element    {@link XoopsFormElement} to add
 	 */
-	function addElement( &$formElement, $required = false ) {
-		$this->_elements[] = &$formElement;
+	public function addElement( XoopsFormElement &$formElement, $required = false )
+	{
+		$this->_elements[] = $formElement;
 		if ( !$formElement->isContainer() ) {
 			if ( $required ) {
 				$formElement->_required = true;
-				$this->_required[] = &$formElement;
+				$this->_required[] = $formElement;
 			}
 		} else {
-			$required_elements = &$formElement->getRequired();
+			$required_elements = $formElement->getRequired();
 			$count = count( $required_elements );
 			for ( $i = 0 ; $i < $count; $i++ ) {
-				$this->_required[] = &$required_elements[$i];
+				$this->_required[] = $required_elements[$i];
 			}
 		}
 	}
@@ -103,7 +110,8 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 *
 	 * @return array array of {@link XoopsFormElement}s
 	 */
-	function &getRequired() {
+	public function getRequired()
+	{
 		return $this->_required;
 	}
 
@@ -113,7 +121,8 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 * @param bool $recurse get elements recursively?
 	 * @return array Array of {@link XoopsFormElement} objects.
 	 */
-	function &getElements( $recurse = false ) {
+	public function getElements( $recurse = false )
+	{
 		if ( !$recurse ) {
 			return $this->_elements;
 		} else {
@@ -121,12 +130,12 @@ class XoopsFormElementTray extends XoopsFormElement {
 			$count = count( $this->_elements );
 			for ( $i = 0; $i < $count; $i++ ) {
 				if ( !$this->_elements[$i]->isContainer() ) {
-					$ret[] = &$this->_elements[$i];
+					$ret[] = $this->_elements[$i];
 				} else {
-					$elements = &$this->_elements[$i]->getElements( true );
+					$elements = $this->_elements[$i]->getElements( true );
 					$count2 = count( $elements );
 					for ( $j = 0; $j < $count2; $j++ ) {
-						$ret[] = &$elements[$j];
+						$ret[] = $elements[$j];
 					}
 					unset( $elements );
 				}
@@ -141,7 +150,8 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 * @param bool $encode To sanitizer the text?
 	 * @return string The delimiter
 	 */
-	function getDelimeter( $encode = false ) {
+	public function getDelimeter( $encode = false )
+	{
 		return $encode ? htmlspecialchars( str_replace( '&nbsp;', ' ', $this->_delimeter ) ) : $this->_delimeter;
 	}
 
@@ -150,15 +160,16 @@ class XoopsFormElementTray extends XoopsFormElement {
 	 *
 	 * @return string HTML output
 	 */
-	function render() {
+	public function render()
+	{
 		$count = 0;
-		$ret = "";
+		$ret = '';
 		foreach ( $this->getElements() as $ele ) {
 			if ( $count > 0 ) {
 				$ret .= $this->getDelimeter();
 			}
 			if ( $ele->getCaption() != '' ) {
-				$ret .= $ele->getCaption() . "&nbsp;";
+				$ret .= $ele->getCaption() . '&nbsp;';
 			}
 			$ret .= $ele->render() . NWLINE ;
 			if ( !$ele->isHidden() ) {

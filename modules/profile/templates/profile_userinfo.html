@@ -1,45 +1,24 @@
 <{includeq file="db:profile_breadcrumbs.html"}>
 
-<div>
-    <{if $avatar}>
-        <div class="floatleft pad5">
-            <img src="<{$avatar}>" alt="<{$uname}>" />
-        </div>
-    <{/if}>
-    <div class="floatleft pad10 block">
-        <strong><{$uname}></strong>
-        <{if $email}>
-            <{$email}> <br />
-        <{/if}>
-        <{if !$user_ownpage && $xoops_isuser == true}>
-        <form name="usernav" action="user.php" method="post">
-            <input type="button" value="<{$smarty.const._PROFILE_MA_SENDPM}>" onclick="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?send2=1&amp;to_userid=<{$user_uid}>', 'pmlite', 450, 380);" />
-        </form>
-        <{/if}>
-    </div>
-</div>
-<br class="clear"/>
-
 <{if $user_ownpage == true}>
-<div class="floatleft pad5">
+<div class="txtcenter pad5">
     <form name="usernav" action="user.php" method="post">
-        <input type="button" value="<{$lang_editprofile}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/edituser.php'" />
-        <input type="button" value="<{$lang_changepassword}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/changepass.php'" />
+        <input type="button" class="button" value="<{$lang_editprofile}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/edituser.php'" />
+        <input type="button" class="button" value="<{$lang_changepassword}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/changepass.php'" />
         <{if $user_changeemail}>
-            <input type="button" value="<{$smarty.const._PROFILE_MA_CHANGEMAIL}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/changemail.php'" />
+            <input type="button" class="button" value="<{$smarty.const._PROFILE_MA_CHANGEMAIL}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/changemail.php'" />
         <{/if}>
 
         <{if $user_candelete == true}>
             <form method="post" action="<{$xoops_url}>/modules/<{$xoops_dirname}>/user.php">
-                <input type="hidden" name="op" value="delete">
-                <input type="hidden" name="uid" value="<{$user_uid}>">
-                <input type="button" value="<{$lang_deleteaccount}>" onclick="submit();" />
+                <input type="hidden" class="button" name="op" value="delete">
+                <input type="hidden" class="button" name="uid" value="<{$user_uid}>">
+                <input type="button" class="button" value="<{$lang_deleteaccount}>" onclick="submit();" />
             </form>
         <{/if}>
-
-        <input type="button" value="<{$lang_avatar}>" onclick="location='edituser.php?op=avatarform'" />
-        <input type="button" value="<{$lang_inbox}>" onclick="location='<{$xoops_url}>/viewpmsg.php'" />
-        <input type="button" value="<{$lang_logout}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/user.php?op=logout'" />
+        <input type="button" class="button" value="<{$lang_avatar}>" onclick="location='edituser.php?op=avatarform'" />
+        <input type="button" class="button" value="<{$lang_inbox}>" onclick="location='<{$xoops_url}>/modules/pm/viewpmsg.php'" />
+        <input type="button" class="button" value="<{$lang_logout}>" onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/user.php?op=logout'" />
     </form>
 </div>
 <{elseif $xoops_isadmin != false}>
@@ -60,19 +39,42 @@
 
 <br class="clear"/>
 
+<div>
+    <{if $avatar}>
+        <div class="floatleft pad5">
+            <img src="<{$avatar}>" alt="<{$uname}>" />
+        </div>
+    <{/if}>
+    <div class="floatleft pad10 block">
+        <strong><{$uname}></strong>
+        <{if $email}>
+            <{$email}> <br />
+        <{/if}>
+        <{if !$user_ownpage && $xoops_isuser == true}>
+        <form name="usernav" action="user.php" method="post">
+            <input type="button" value="<{$smarty.const._PROFILE_MA_SENDPM}>" onclick="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?send2=1&amp;to_userid=<{$user_uid}>', 'pmlite', 450, 380);" />
+        </form>
+        <{/if}>
+    </div>
+</div>
+<br class="clear"/>
+
 <{foreach item=category from=$categories}>
     <{if isset($category.fields)}>
         <div class="profile-list-category" id="profile-category-<{$category.cat_id}>">
             <table class="outer" cellpadding="2" cellspacing="1">
                 <tr>
-                  <th class="txtcenter" colspan="2"><{$category.cat_title}></th>
+                  <th class="txtleft" colspan="2"><{$category.cat_title}></th>
                 </tr>
                 <{foreach item=field from=$category.fields}>
                     <tr>
-                        <td class="head"><{$field.title}></td>
+                        <td class="head" width="33%"><{$field.title}></td>
                         <td class="even"><{$field.value}></td>
                     </tr>
                 <{/foreach}>
+                <tr class="footer">
+                    <td  colspan="2">&nbsp;</td>
+                </tr>
             </table>
         </div>
     <{/if}>

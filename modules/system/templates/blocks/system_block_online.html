@@ -1,10 +1,10 @@
-<{$block.online_total}>
+<strong><{$block.online_total}></strong> <{$smarty.const._ONLINEPHRASEX}>
+<{ if $block.online_module }>
+ are browsing <strong><{ $block.online_module }></strong>
+<{/if}>
 <br /><br />
-<{$block.lang_members}>: <{$block.online_members}>
+<{$smarty.const._MEMBERS}>: <{$block.online_members}>
 <br />
-<{$block.lang_guests}>: <{$block.online_guests}>
+<{$smarty.const._GUESTS}>: <{$block.online_guests}>
 <br /><br />
-<{$block.online_names}>
-<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);" title="<{$block.lang_more}>">
-    <{$block.lang_more}>
-</a>
+<{$block.online_names}> <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);" title="<{$block.lang_more}>"><{$smarty.const._MORE}></a>

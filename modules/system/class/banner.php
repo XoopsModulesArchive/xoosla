@@ -1,6 +1,6 @@
 <?php
-/*
- * Banners Class Manager
+/**
+ * Xoosla
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -8,74 +8,72 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @author      Gregory Mage (AKA Mage)
- * @package     system
- * @version     $Id$
  */
 
-defined('XOOPS_ROOT_PATH') or die('XOOPS root path not defined');
+/**
+ *
+ * @copyright The Xoosla Project http://sourceforge.net/projects/xoosla/
+ * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @package banner.php
+ * @since 1.0.0.0
+ * @author John Neill <zaquria@xoosla.com>
+ * @version banner.php 26 2012-02-17 09:16:15Z catzwolf $Id:
+ */
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
 /**
  * System Banner
  *
- * @copyright   copyright (c) 2000 XOOPS.org
- * @package     system
+ * @copyright copyright (c) 2000 XOOPS.org
+ * @package system
  */
-class SystemBanner extends XoopsObject
-{
-    function __construct()
-    {
-        parent::__construct();
-        $this->initVar( 'bid', XOBJ_DTYPE_INT, null, false, 5 );
-        $this->initVar( 'cid', XOBJ_DTYPE_INT, null, false,3 );
-        $this->initVar( 'imptotal', XOBJ_DTYPE_INT, null, false, 8 );
-        $this->initVar( 'impmade', XOBJ_DTYPE_INT, null, false, 8 );
-        $this->initVar( 'clicks', XOBJ_DTYPE_INT, null, false, 8 );
-        $this->initVar( 'imageurl', XOBJ_DTYPE_TXTBOX, null, false );
-        $this->initVar( 'clickurl', XOBJ_DTYPE_TXTBOX, null, false );
-        $this->initVar( 'date', XOBJ_DTYPE_INT, null, false, 10 );
-        $this->initVar( 'htmlbanner', XOBJ_DTYPE_INT, null, false, 1 );
-        $this->initVar( 'htmlcode', XOBJ_DTYPE_TXTBOX, null, false );
-        // For allow HTML
-        //$this->initVar( 'dohtml', XOBJ_DTYPE_INT, 1, false);
-    }
+class SystemBanner extends XoopsObject {
+	/**
+	 * SystemBanner::__construct()
+	 */
+	public function __construct()
+	{
+		$this->initVar( 'bid', XOBJ_DTYPE_INT, null, false, 5 );
+		$this->initVar( 'cid', XOBJ_DTYPE_INT, null, false, 3 );
+		$this->initVar( 'imptotal', XOBJ_DTYPE_INT, null, false, 8 );
+		$this->initVar( 'impmade', XOBJ_DTYPE_INT, null, false, 8 );
+		$this->initVar( 'clicks', XOBJ_DTYPE_INT, null, false, 8 );
+		$this->initVar( 'imageurl', XOBJ_DTYPE_TXTBOX, null, false );
+		$this->initVar( 'clickurl', XOBJ_DTYPE_TXTBOX, null, false );
+		$this->initVar( 'date', XOBJ_DTYPE_INT, null, false, 10 );
+		$this->initVar( 'htmlbanner', XOBJ_DTYPE_INT, null, false, 1 );
+		$this->initVar( 'htmlcode', XOBJ_DTYPE_TXTBOX, null, false );
+		// $this->initVar( 'dohtml', XOBJ_DTYPE_INT, 1, false);
+	}
 
-    function getForm($action = false)
-    {
-        if ($action === false) {
-            $action = $_SERVER['REQUEST_URI'];
-        }
+	public function getForm( $action = false )
+	{
+		if ( $action === false ) {
+			$action = $_SERVER['REQUEST_URI'];
+		}
 
-        $title = $this->isNew() ? sprintf( _AM_SYSTEM_BANNERS_ADDNWBNR ) : sprintf( _AM_SYSTEM_BANNERS_EDITBNR );
+		$title = $this->isNew() ? sprintf( _AM_SYSTEM_BANNERS_ADDNWBNR ) : sprintf( _AM_SYSTEM_BANNERS_EDITBNR );
 
-        xoops_load('XoopsFormLoader');
+		$form = new XoopsThemeForm( $title, 'form', $action, 'post', true );
+		$banner_client_Handler = xoops_getModuleHandler( 'bannerclient', 'system' );
+		$client_select = new XoopsFormSelect( _AM_SYSTEM_BANNERS_CLINAMET, 'cid', $this->getVar( 'cid' ) );
+		$client_select->addOptionArray( $banner_client_Handler->getList() );
+		$form->addElement( $client_select, true );
 
-        $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
+		$form->addElement( new XoopsFormText( _AM_SYSTEM_BANNERS_IMPPURCHT, 'imptotal', 20, 255, $this->getVar( 'imptotal' ) ), true );
+		$form->addElement( new XoopsFormText( _AM_SYSTEM_BANNERS_IMGURLT, 'imageurl', 80, 255, $this->getVar( 'imageurl' ) ), false );
+		$form->addElement( new XoopsFormText( _AM_SYSTEM_BANNERS_CLICKURLT, 'clickurl', 80, 255, $this->getVar( 'clickurl' ) ), false );
 
-        $banner_client_Handler =& xoops_getModuleHandler('bannerclient', 'system');
-        $client_select = new XoopsFormSelect( _AM_SYSTEM_BANNERS_CLINAMET, 'cid', $this->getVar('cid') );
-        $client_select->addOptionArray($banner_client_Handler->getList());
-        $form->addElement($client_select, true);
-
-        $form->addElement(new XoopsFormText( _AM_SYSTEM_BANNERS_IMPPURCHT, 'imptotal', 20, 255, $this->getVar('imptotal') ), true );
-        $form->addElement(new XoopsFormText( _AM_SYSTEM_BANNERS_IMGURLT, 'imageurl', 80, 255, $this->getVar('imageurl') ), false );
-        $form->addElement(new XoopsFormText( _AM_SYSTEM_BANNERS_CLICKURLT, 'clickurl', 80, 255, $this->getVar('clickurl') ), false );
-
-        $htmlbanner = $this->isNew() ? 0 : $this->getVar('htmlbanner');
-        $form->addElement(new XoopsFormRadioYN( _AM_SYSTEM_BANNERS_USEHTML, 'htmlbanner', $htmlbanner, _YES, _NO) );
-
-        $form->addElement(new xoopsFormTextArea( _AM_SYSTEM_BANNERS_CODEHTML, 'htmlcode', $this->getVar('htmlcode'), 5, 50), false );
-        if (!$this->isNew()) {
-            $form->addElement(new XoopsFormHidden( 'bid', $this->getVar('bid') ) );
-        }
-        $form->addElement(new XoopsFormHidden( 'op', 'banner_save' ) );
-        $form->addElement(new XoopsFormButton( '', 'submit', _SUBMIT, 'submit' ) );
-        //$form->display();
-        return $form;
-    }
+		$htmlbanner = $this->isNew() ? 0 : $this->getVar( 'htmlbanner' );
+		$form->addElement( new XoopsFormRadioYN( _AM_SYSTEM_BANNERS_USEHTML, 'htmlbanner', $htmlbanner, _YES, _NO ) );
+		$form->addElement( new xoopsFormTextArea( _AM_SYSTEM_BANNERS_CODEHTML, 'htmlcode', $this->getVar( 'htmlcode' ), 5, 50 ), false );
+		if ( !$this->isNew() ) {
+			$form->addElement( new XoopsFormHidden( 'bid', $this->getVar( 'bid' ) ) );
+		}
+		$form->addElement( new XoopsFormHidden( 'op', 'banner_save' ) );
+		$form->addElement( new XoopsFormButton( '', 'submit', _SUBMIT, 'submit' ) );
+		return $form;
+	}
 }
 
 /**
@@ -84,16 +82,20 @@ class SystemBanner extends XoopsObject
  * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS block class objects.
  *
- * @copyright   copyright (c) 2000 XOOPS.org
- * @package     system
- * @subpackage  banner
+ * @copyright copyright (c) 2000 XOOPS.org
+ * @package system
+ * @subpackage banner
  */
-class SystemBannerHandler extends XoopsPersistableObjectHandler
-{
-    function __construct( $db )
-    {
-        parent::__construct( $db, 'banner', 'SystemBanner', 'bid', 'imageurl' );
-    }
+class SystemBannerHandler extends XoopsPersistableObjectHandler {
+	/**
+	 * SystemBannerHandler::__construct()
+	 *
+	 * @param mixed $db
+	 */
+	public function __construct( $db )
+	{
+		parent::__construct( $db, 'banner', 'SystemBanner', 'bid', 'imageurl' );
+	}
 }
 
 ?>

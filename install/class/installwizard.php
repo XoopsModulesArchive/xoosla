@@ -92,7 +92,7 @@ class XoopsInstallWizard {
 			install_acceptUser( $_COOKIE['xo_install_user'] );
 		}
 		if ( empty( $GLOBALS['xoopsUser'] ) ) {
-			redirect_header( '../user.php' );
+			redirect_header( '../user.php', 1 );
 		}
 		if ( !$GLOBALS['xoopsUser']->isAdmin() ) {
 			return false;

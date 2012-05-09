@@ -11,8 +11,7 @@ form {margin:0;padding:0;}
 .xo-pagenav {height: 20px;}
 /* Breadcrumb navigation */
 #xo-breadcrumb {
-    font: 11px Arial, Helvetica, sans-serif;
-    background-repeat:repeat-x;
+     background-repeat:repeat-x;
     height:30px;
     line-height:30px;
     color:#9b9b9b;
@@ -159,9 +158,9 @@ ul.xo-log-success li { list-style-image: url('../images/yes.png');}
 }
 .xo-catsetting img {	margin: 8px 25px 0;	text-align:center;}
 .xo-catsetting span {
-	font-weight: bold;
-	display: block;
-	text-align:center;
+   font-weight: normal;
+   display: block;
+   text-align:center;
 }
 #display_post #xo-logger-output { display:none;}
 /* Templates */

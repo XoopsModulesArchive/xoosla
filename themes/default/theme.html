@@ -18,170 +18,172 @@
 
 <!--- Wrapper -->
 <div id="xo-wrapper">
-	<!--- Header -->
-	<div id="xo-header">
-		<div class="container_12 inner">
-			<div id="xo-logo" class="grid_6">
-				<a class="xo-main-logo" href="<{xoAppUrl /}>"><img src="<{xoImgUrl img/logos/logo.png}>" alt="<{$xoops_sitename}>" /></a>
-			</div>
-			<div id="xo-banner" class="grid_6">
-				<{if $xoops_banner }><{$xoops_banner}><{/if}>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+  <!--- Header -->
+  <div id="xo-header">
+    <div class="container_12 inner">
+      <div id="xo-logo" class="grid_6">
+        <a class="xo-main-logo" href="<{xoAppUrl /}>"><img src="<{xoImgUrl img/logos/logo.png}>" alt="<{$xoops_sitename}>" /></a>
+      </div>
+      <div id="xo-banner" class="grid_6">
+        <{if $xoops_banner }><{$xoops_banner}><{/if}>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
 
-	<!-- Nav -->
-	<div id="xo-navigation">
-		<div class="container_12">
-			<div id="xo-menu">
-				<{includeq file="$theme_name/xomenu.html"}>
-			</div>
-		</div>
-	</div>
-	<div id="xo-navbar">
-		<div class="container_12">
-			<div class="xo-navbar"></div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
+  <!-- Nav -->
+  <div id="xo-navigation">
+    <div class="container_12">
+      <div id="xo-menu">
+        <{includeq file="$theme_name/xomenu.html"}>
+      </div>
+    </div>
+  </div>
+  <div id="xo-navbar">
+    <div class="container_12">
+      <div class="xo-navbar"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
 
-	<!-- Content -->
-	<div id="xo-page" class="container_12">
-		<{if $xoBlocks.canvas_left}>
-		<!-- Left Blocks -->
-		<div class="grid_3">
-			<div class="left-block">
-				<{foreach item=block from=$xoBlocks.canvas_left}>
-				<div class="block-style1">
-					<{if $block.title}><div class="left-block-title"><{$block.title}></div><{/if}>
-					<div class="left-block-content"><{$block.content}></div>
-				</div>
-				<{/foreach}>
-			</div>
-		</div>
-		<{/if}>
+  <!-- Content -->
+  <div id="xo-page" class="container_12">
+    <{if $xoBlocks.canvas_left}>
+    <!-- Left Blocks -->
+    <div class="grid_3">
+      <div class="left-block">
+        <{foreach item=block from=$xoBlocks.canvas_left}>
+        <div class="block-style1">
+          <{if $block.title}><div class="left-block-title"><{$block.title}></div><{/if}>
+          <div class="left-block-content"><{$block.content}></div>
+        </div>
+        <{/foreach}>
+      </div>
+    </div>
+    <{/if}>
 
-		<!-- Center Blocks -->
-		<{if $xoBlocks.canvas_left and $xoBlocks.canvas_right}>
-		<div id="xo-body" class="grid_6">
-		<{else}><{if $xoBlocks.canvas_left or $xoBlocks.canvas_right}>
-		<div id="xo-body" class="grid_9">
-		<{else}>
-		<div id="xo-body" class="grid_12">
-		<{/if}><{/if}>
-			<{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
-				<!-- Center Top Left -->
-				<div class="center-top-left">
-				<{foreach item=block from=$xoBlocks.page_topleft}>
-					<div class="center-top-left-block">
-						<h2><{$block.title}></h2>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-					<div class="center-top-left-block">
-						<h4><{$block.title}></h4>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-				</div>
-				<!-- Center Top Right -->
-				<div class="center-top-right">
-				<{foreach item=block from=$xoBlocks.page_topright}>
-					<div class="center-top-right-block">
-						<h2><{$block.title}></h2>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-				</div>
-				<!-- Center Top Center -->
-				<div class="center-top-center">
-				<{foreach item=block from=$xoBlocks.page_topcenter}>
-					<div class="center-top-center-block">
-						<h2><{$block.title}></h2>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-				</div>
-			<{/if}>
-			<!-- Content -->
-			<{if $xoops_contents && ($xoops_contents != '') }>
-				<div id="xo-content"><{$xoops_contents}></div>
-			<{/if}>
-			<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomcenter or $xoBlocks.page_bottomright}>
-				<!-- Center Bottom Left -->
-				<div class="center-bottom-left">
-				<{foreach item=block from=$xoBlocks.page_bottomleft}>
-					<div class="center-bottom-left-block">
-						<h2><{$block.title}></h2>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-				</div>
-				<!-- Center Bottom Right -->
-				<div class="center-bottom-right">
-				<{foreach item=block from=$xoBlocks.page_bottomright}>
-					<div class="center-bottom-block">
-						<h2><{$block.title}></h2>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-				</div>
-				<!-- Center Bottom Center -->
-				<div class="center-bottom-center">
-				<{foreach item=block from=$xoBlocks.page_bottomcenter}>
-					<div class="center-bottom-center-block">
-						<h2><{$block.title}></h2>
-						<div class="center-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-				</div>
-			<{/if}>
-		</div>
-		<{if $xoBlocks.canvas_right}>
-		<!-- Right Blocks -->
-		<div id="xo-right-blocks" class="grid_3">
-			<div class="right-block">
-				<{foreach item=block from=$xoBlocks.canvas_right}>
-					<div class="right-block-content">
-						<{if $block.title}><h2><{$block.title}></h2><{/if}>
-						<div class="right-block-content"><{$block.content}></div>
-					</div>
-				<{/foreach}>
-			</div>
-		</div>
-		<{/if}>
-		<div class="clear"></div>
-	</div>
+    <!-- Center Blocks -->
+    <{if $xoBlocks.canvas_left and $xoBlocks.canvas_right}>
+    <div id="xo-body" class="grid_6">
+    <{else}><{if $xoBlocks.canvas_left or $xoBlocks.canvas_right}>
+    <div id="xo-body" class="grid_9">
+    <{else}>
+    <div id="xo-body" class="grid_12">
+    <{/if}><{/if}>
+      <{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+        <!-- Center Top Left -->
+        <div class="center-top-left">
+        <{foreach item=block from=$xoBlocks.page_topleft}>
+          <div class="center-top-left-block">
+            <h2><{$block.title}></h2>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+          <div class="center-top-left-block">
+            <h4><{$block.title}></h4>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+        </div>
+        <!-- Center Top Right -->
+        <div class="center-top-right">
+        <{foreach item=block from=$xoBlocks.page_topright}>
+          <div class="center-top-right-block">
+            <h2><{$block.title}></h2>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+        </div>
+        <!-- Center Top Center -->
+        <div class="center-top-center">
+        <{foreach item=block from=$xoBlocks.page_topcenter}>
+          <div class="center-top-center-block">
+            <h2><{$block.title}></h2>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+        </div>
+      <{/if}>
+      <!-- Content -->
+      <{if $xoops_contents && ($xoops_contents != '') }>
+        <div id="xo-content"><{$xoops_contents}></div>
+      <{/if}>
+      <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomcenter or $xoBlocks.page_bottomright}>
+        <!-- Center Bottom Left -->
+        <div class="center-bottom-left">
+        <{foreach item=block from=$xoBlocks.page_bottomleft}>
+          <div class="center-bottom-left-block">
+            <h2><{$block.title}></h2>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+        </div>
+        <!-- Center Bottom Right -->
+        <div class="center-bottom-right">
+        <{foreach item=block from=$xoBlocks.page_bottomright}>
+          <div class="center-bottom-block">
+            <h2><{$block.title}></h2>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+        </div>
+        <!-- Center Bottom Center -->
+        <div class="center-bottom-center">
+        <{foreach item=block from=$xoBlocks.page_bottomcenter}>
+          <div class="center-bottom-center-block">
+            <h2><{$block.title}></h2>
+            <div class="center-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+        </div>
+      <{/if}>
+    </div>
+    <{if $xoBlocks.canvas_right}>
+    <!-- Right Blocks -->
+    <div id="xo-right-blocks" class="grid_3">
+      <div class="right-block">
+        <{foreach item=block from=$xoBlocks.canvas_right}>
+          <div class="right-block-content">
+            <{if $block.title}><h2><{$block.title}></h2><{/if}>
+            <div class="right-block-content"><{$block.content}></div>
+          </div>
+        <{/foreach}>
+      </div>
+    </div>
+    <{/if}>
+    <div class="clear"></div>
+  </div>
 
-	<!-- Bottom Blocks -->
-	<div id="xo-bottom-blocks">
-		<div class="container_12">
-			<div class="grid_4">
-				<{xoBlocks bid=1 class="block-style7"}>
-			</div>
-			<div class="grid_4">
-				<{xoBlocks bid=1 class="block-style7"}>
-			</div>
-			<div class="grid_4">
-				<{xoBlocks bid=1 class="block-style3"}>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+  <!-- Bottom Blocks -->
+  <div id="xo-bottom-blocks">
+    <div class="container_12">
+      <div class="grid_4">
+        <{xoBlocks bid=1 class="block-style7"}>
+      </div>
+      <div class="grid_4">
+        <{xoBlocks bid=1 class="block-style7"}>
+      </div>
+      <div class="grid_4">
+        <{xoBlocks bid=1 class="block-style3"}>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
 
-	<!-- Footer -->
-	<div id="xo-footer">
-		<div class="container_12">
-			<div class="grid_4 push_4">&nbsp;</div>
-			<div class="grid_4">
-				<div class="footer"><span class="copyright"><{$xoops_footer}></span></div>
-			</div>
-			<div class="grid_4 right"><a class="xo-rss" href="<{xoAppUrl /backend.php}>"><img src="<{xoImgUrl img/icons/rss.png}>" alt="<{$xoops_sitename}>" /></a></div>
-		</div>
-		<div class="clear"></div>
-	</div>
+  <!-- Footer -->
+  <div id="xo-footer">
+    <div class="container_12">
+      <div class="grid_4 push_4"> </div>
+      <div class="grid_4">
+        <div class="footer"><span class="copyright"><{$xoops_footer}></span></div>
+      </div>
+      <div class="grid_4 right"><a class="xo-rss" href="<{xoAppUrl /backend.php}>"><img src="<{xoImgUrl img/icons/rss.png}>" alt="<{$xoops_sitename}>" /></a></div>
+    </div>
+    <div class="clear"></div>
+  </div>
 </div>
 <!-- Enter Javascripts here -->
+
+<!--{xo-logger-output}-->
 </body>
 </html>

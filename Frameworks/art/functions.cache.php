@@ -1,4 +1,14 @@
 <?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
  * Cache handlers
  *
@@ -44,7 +54,7 @@ function mod_createFile($data, $name = null, $dirname = null, $root_path = XOOPS
     $name = ($name) ? $name : strval(time());
     $dirname = ($dirname) ? $dirname : (is_object($xoopsModule) ? $xoopsModule->getVar("dirname", "n") : "system");
 
-    xoops_load('XoopsCache');
+//    xoops_load('XoopsCache');
     $key = "{$dirname}_{$name}";
     return XoopsCache::write($key, $data);
 }
@@ -68,7 +78,7 @@ function mod_loadFile($name, $dirname = null, $root_path = XOOPS_CACHE_PATH)
 
     if (empty($name)) return $data;
     $dirname = ($dirname) ? $dirname : (is_object($xoopsModule) ? $xoopsModule->getVar("dirname", "n") : "system");
-    xoops_load('XoopsCache');
+//    xoops_load('XoopsCache');
     $key = "{$dirname}_{$name}";
     return XoopsCache::read($key);
 }

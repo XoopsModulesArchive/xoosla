@@ -34,29 +34,21 @@ register_shutdown_function( 'install_finalize', $installer_modified );
 
 ob_start();
 xoShowNotice( sprintf( INSTALL_FINISH_NOTICE, $installer_modified ), 't-warning' );
-?>
-
-    <fieldset>
+?> <fieldset>
         <legend><?php echo INSTALL_FINISH_YOUR_SITE_LEGEND; ?></legend>
         <div class="message"><?php echo INSTALL_FINISH_YOUR_SITE_MSG; ?></div>
-
         <div class="clear"></div>
      </fieldset>
-
     <fieldset>
         <legend><?php echo INSTALL_FINISH_SUPPORT_LEGEND; ?></legend>
         <div class="message"><?php echo INSTALL_FINISH_SUPPORT_MSG; ?></div>
-
         <div class="clear"></div>
      </fieldset>
-
      <fieldset>
         <legend><?php echo INSTALL_FINISH_SECURITY_LEGEND; ?></legend>
         <div class="message"><?php echo INSTALL_FINISH_SECURITY_MSG; ?></div>
-
         <div class="clear"></div>
      </fieldset>
-
 <?php
 
 $content = ob_get_contents();

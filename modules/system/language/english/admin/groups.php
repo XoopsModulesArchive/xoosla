@@ -1,39 +1,49 @@
 <?php
-// $Id$
-// _LANGCODE: en
-// _CHARSET : UTF-8
-// Translator: XOOPS Translation Team
-// %%%%%%	Admin Module Name  AdminGroup 	%%%%%
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
 
-//Nav
-define("_AM_SYSTEM_GROUPS_NAV_MANAGER","Groups Manager");
-define("_AM_SYSTEM_GROUPS_NAV_LIST","Groups list");
-define("_AM_SYSTEM_GROUPS_NAV_ADD","Add a new group");
-define("_AM_SYSTEM_GROUPS_NAV_EDIT","Edit group");
-define("_AM_SYSTEM_GROUPS_NAV_DELETE","Delete group");
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
 
-// Tips
-define("_AM_SYSTEM_GROUPS_NAV_TIPS_1","<ul><li>Create a new group with their own permissions.</li><li>Edit group for change permissions.</li></ul>");
-define("_AM_SYSTEM_GROUPS_NAV_TIPS_2","<ul><li>Change or create permission for this group, all modification will affect users of this group.</li></ul>");
+/**
+ * Xoosla Language
+ *
+ * @copyright Xoosla http://sourceforge.net/projects/xoosla/
+ * @license http://www.fsf.org/licensing/licenses/gpl.html GNU General Public License
+ * @package Language
+ * @since v1.0.0
+ * @author John
+ * @version $Id$
+ */
+defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
 
-//Infos
-define("_AM_SYSTEM_GROUPS_ACCESSRIGHTS","Module Access rights");
-define("_AM_SYSTEM_GROUPS_ACTION","Action");
-define("_AM_SYSTEM_GROUPS_ACTIVERIGHTS","Module Admin rights");
-define("_AM_SYSTEM_GROUPS_ADD","Add a new group");
-define("_AM_SYSTEM_GROUPS_BLOCKRIGHTS","Block Access Rights");
-define("_AM_SYSTEM_GROUPS_CUSTOMBLOCK","Custom Block");
-define("_AM_SYSTEM_GROUPS_DELETE","Delete group");
-define("_AM_SYSTEM_GROUPS_DESCRIPTION","Group Description");
-define("_AM_SYSTEM_GROUPS_EDIT","Edit group");
-define("_AM_SYSTEM_GROUPS_ERROR_DELETE","You can not remove this group");
-define("_AM_SYSTEM_GROUPS_ID","ID");
-define("_AM_SYSTEM_GROUPS_NAME","Group Name");
-define("_AM_SYSTEM_GROUPS_NB_USERS_BY_GROUPS","Number users by group");
-define("_AM_SYSTEM_GROUPS_NB_USERS_BY_GROUPS_USERS","%s user(s)");
-define("_AM_SYSTEM_GROUPS_SUREDEL","Are you sure you want to delete this group?");
-define("_AM_SYSTEM_GROUPS_SYSTEMRIGHTS","System Admin rights");
-
-define("_AM_SYSTEM_GROUPS_DBUPDATED",_AM_SYSTEM_DBUPDATED);
+define( '_AM_SYSTEM_GROUPS_NAV_MANAGER', 'Groups Manager' );
+define( '_AM_SYSTEM_GROUPS_NAV_LIST', 'Groups list' );
+define( '_AM_SYSTEM_GROUPS_NAV_ADD', 'Add a new group' );
+define( '_AM_SYSTEM_GROUPS_NAV_EDIT', 'Edit group' );
+define( '_AM_SYSTEM_GROUPS_NAV_DELETE', 'Delete group' );
+define( '_AM_SYSTEM_GROUPS_NAV_TIPS_1', '<ul><li>Create a new group with their own permissions.</li><li>Edit group for change permissions.</li></ul>' );
+define( '_AM_SYSTEM_GROUPS_NAV_TIPS_2', '<ul><li>Change or create permission for this group, all modification will affect users of this group.</li></ul>' );
+define( '_AM_SYSTEM_GROUPS_ACCESSRIGHTS', 'Module Access rights' );
+define( '_AM_SYSTEM_GROUPS_ACTION', 'Action' );
+define( '_AM_SYSTEM_GROUPS_ACTIVERIGHTS', 'Module Admin rights' );
+define( '_AM_SYSTEM_GROUPS_ADD', 'Add a new group' );
+define( '_AM_SYSTEM_GROUPS_BLOCKRIGHTS', 'Block Access Rights' );
+define( '_AM_SYSTEM_GROUPS_CUSTOMBLOCK', 'Custom Block' );
+define( '_AM_SYSTEM_GROUPS_DELETE', 'Delete group' );
+define( '_AM_SYSTEM_GROUPS_DESCRIPTION', 'Group Description' );
+define( '_AM_SYSTEM_GROUPS_EDIT', 'Edit group' );
+define( '_AM_SYSTEM_GROUPS_ERROR_DELETE', 'You can not remove this group' );
+define( '_AM_SYSTEM_GROUPS_ID', 'ID' );
+define( '_AM_SYSTEM_GROUPS_NAME', 'Group Name' );
+define( '_AM_SYSTEM_GROUPS_NB_USERS_BY_GROUPS', 'Number users by group' );
+define( '_AM_SYSTEM_GROUPS_NB_USERS_BY_GROUPS_USERS', '%s user(s)' );
+define( '_AM_SYSTEM_GROUPS_SUREDEL', 'Are you sure you want to delete this group?' );
+define( '_AM_SYSTEM_GROUPS_SYSTEMRIGHTS', 'System Admin rights' );
+define( '_AM_SYSTEM_GROUPS_DBUPDATED', _AM_SYSTEM_DBUPDATED );
 
 ?>
